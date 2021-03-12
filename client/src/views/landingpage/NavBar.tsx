@@ -30,7 +30,6 @@ const NavBar: React.FC<{}> = () => {
   const [current, setCurrent] = useState("");
   return (
     <div>
-        
       <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
         {Object.entries(menuData).map(([key, value]) => {
           return (

@@ -4,13 +4,13 @@ import Intro from "./Intro";
 import Scroll from "./Scroll";
 import NavBar from "./NavBar";
 import "antd/dist/antd.css";
-import "./landingpage.css"
+import "./landingpage.css";
 const { Title } = Typography;
 
 const LandingPage: React.FC<{}> = () => (
   <div className="landingFlex">
     <div className="navbar">
-      <NavBar  />
+      <NavBar />
     </div>
     <div className="intro">
       <Intro />
