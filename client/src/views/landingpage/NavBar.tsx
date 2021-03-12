@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import { Menu } from "antd";
+import { Button, Menu } from "antd";
 import {
   MailOutlined,
   AppstoreOutlined,
   SettingOutlined,
+  UserOutlined,
+  HomeOutlined,
+  BookOutlined,
+  CalendarOutlined,
+  PlayCircleOutlined,
 } from "@ant-design/icons";
 
 const { SubMenu } = Menu;
@@ -13,15 +18,26 @@ const handleClick = (e: any) => {
 };
 
 // holds the menu data as a json:
-const menuData = ["Login", "Home", "Learn", "Events", "Play"];
+const menuData = {
+  Login: <UserOutlined />,
+  Home: <HomeOutlined />,
+  Learn: <BookOutlined />,
+  Events: <CalendarOutlined />,
+  Play: <PlayCircleOutlined />,
+};
 
 const NavBar: React.FC<{}> = () => {
   const [current, setCurrent] = useState("");
   return (
     <div>
+        
       <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
-        {menuData.map((element) => {
-          return <Menu.Item key={element}>{element}</Menu.Item>;
+        {Object.entries(menuData).map(([key, value]) => {
+          return (
+            <Menu.Item icon={value} key={key}>
+              {key}
+            </Menu.Item>
+          );
         })}
       </Menu>
     </div>
