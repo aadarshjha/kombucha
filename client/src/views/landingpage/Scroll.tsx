@@ -3,9 +3,7 @@ import "antd/dist/antd.css";
 
 const Scroll: React.FC<{}> = () => (
   <div>
-      <h1>
-          Scroll
-      </h1>
+    <h1>Scroll</h1>
   </div>
 );
 
