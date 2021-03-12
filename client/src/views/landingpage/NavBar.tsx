@@ -1,17 +1,12 @@
 import React, { useState } from "react";
-import { Button, Menu } from "antd";
+import { Menu } from "antd";
 import {
-  MailOutlined,
-  AppstoreOutlined,
-  SettingOutlined,
   UserOutlined,
   HomeOutlined,
   BookOutlined,
   CalendarOutlined,
   PlayCircleOutlined,
 } from "@ant-design/icons";
-
-const { SubMenu } = Menu;
 
 const handleClick = (e: any) => {
   console.log("click ", e);
@@ -27,7 +22,7 @@ const menuData = {
 };
 
 const NavBar: React.FC<{}> = () => {
-  const [current, setCurrent] = useState("");
+  const [current] = useState("");
   return (
     <div>
       <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">

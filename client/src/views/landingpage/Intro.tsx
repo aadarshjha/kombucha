@@ -1,8 +1,6 @@
 import React from "react";
-import { Typography } from "antd";
 import "antd/dist/antd.css";
 import "./landingpage.css";
-import { CaretDownOutlined } from "@ant-design/icons";
 
 const Intro: React.FC<{}> = () => (
   <div className="centeredHeader">
