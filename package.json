@@ -1,0 +1,33 @@
+{
+  "name": "kombucha",
+  "version": "1.0.0",
+  "description": "Fully integrated, end-to-end educational platform for the Vanderbilt Undergraduate Microbiome Society (VUMS)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "prettier --write **/*.ts **/*.js **/*.tsx",
+    "format": "eslint **/*.js **/*.ts **/*.tsx",
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aadarshjha/kombucha.git"
+  },
+  "author": "Aadarsh Jha, Ashwin Kumar, Sam Lee, Zeyad Moustafa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aadarshjha/kombucha/issues"
+  },
+  "homepage": "https://github.com/aadarshjha/kombucha#readme",
+  "dependencies": {
+    "concurrently": "^6.0.0",
+    "typescript": "^4.2.3"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.17.0",
+    "@typescript-eslint/parser": "^4.17.0",
+    "eslint": "^7.21.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-react": "^7.22.0",
+    "prettier": "2.2.1"
+  }
+}
