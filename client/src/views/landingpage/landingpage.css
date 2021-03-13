@@ -21,15 +21,15 @@
   flex-direction: column;
 }
 
-/* different flex heights (space) */
-.navbar {
-}
-
 .intro {
   height: 95vh;
 }
 
 .scroll {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .vumslogo {
@@ -40,8 +40,3 @@
   font-style: italic;
   width: 40%;
 }
-
-/* .scrollDown {
-  position: relative;
-  top: 350px;
-} */

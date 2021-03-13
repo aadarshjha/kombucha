@@ -14,7 +14,7 @@ const LandingPage: React.FC<{}> = () => (
       <Intro />
     </div>
     <div className="scroll">
-      {/* <Scroll /> */}
+      <Scroll />
     </div>
   </div>
 );
