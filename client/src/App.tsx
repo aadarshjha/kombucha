@@ -1,8 +1,9 @@
 import React from "react";
+import LandingPage from "./views/landingpage/landingpage";
 
 const App: React.FC<{}> = () => (
   <div>
-    <h1>Kombucha!</h1>
+    <LandingPage />
   </div>
 );
 

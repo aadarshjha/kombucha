@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.centeredHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 80%;
+}
+
+.landingDiv {
+  height: 100vh;
+}
+
+.landingFlex {
+  display: flex;
+  flex-direction: column;
+}
+
+/* different flex heights (space) */
+.navbar {
+}
+
+.intro {
+  height: 95vh;
+}
+
+.scroll {
+}
+
+.vumslogo {
+  width: 250px;
+}
+
+.descriptionText {
+  font-style: italic;
+  width: 40%;
+}
+
+/* .scrollDown {
+  position: relative;
+  top: 350px;
+} */

@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "prettier --write **/*.ts **/*.js **/*.tsx",
-    "format": "eslint **/*.js **/*.ts **/*.tsx",
+    "lint": "prettier --write **/*.ts **/*.tsx",
+    "format": "eslint **/*.ts **/*.tsx"
   },
   "repository": {
     "type": "git",
