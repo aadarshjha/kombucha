@@ -40,3 +40,12 @@
   font-style: italic;
   width: 40%;
 }
+
+.left{
+  background-color: red;
+}
+
+.right {
+  background-color: green;
+}
+
