@@ -30,6 +30,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  /* background-color: blue; */
 }
 
 .vumslogo {
@@ -40,12 +41,22 @@
   font-style: italic;
   width: 40%;
 }
-
-.left{
-  background-color: red;
+.left p, .right p {
+  color: red;
+  width: 500px;
+  text-align: justify;
 }
 
-.right {
-  background-color: green;
+.left, .right {
+  padding: 30px;
 }
 
+.imageEventData {
+  width: 500px;
+}
+
+/* .vl {
+  border-left: 3px solid black;
+  height: 100%;
+  margin: 30px;
+} */
