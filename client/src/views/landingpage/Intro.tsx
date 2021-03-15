@@ -2,7 +2,7 @@ import React from "react";
 import "antd/dist/antd.css";
 import "./landingpage.css";
 
-const Intro: React.FC<{}> = () => (
+const Intro: React.FC<Record<string, never>> = () => (
   <div className="centeredHeader">
     <img src="vums.png" alt="VUMS Logo" className="vumslogo" />
     <h1>Welcome To VUMS</h1>
