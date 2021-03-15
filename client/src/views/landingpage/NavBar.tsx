@@ -8,12 +8,21 @@ import {
   PlayCircleOutlined,
 } from "@ant-design/icons";
 
-const handleClick = (e: any) => {
+const handleClick = (e: React.ChangeEvent<HTMLInputElement>) => {
   console.log("click ", e);
 };
 
 // holds the menu data as a json:
-const menuData = {
+
+interface menuStruct {
+  Login: JSX.Element;
+  Home: JSX.Element;
+  Learn: JSX.Element;
+  Events: JSX.Element;
+  Play: JSX.Element;
+}
+
+const menuData: menuStruct = {
   Login: <UserOutlined />,
   Home: <HomeOutlined />,
   Learn: <BookOutlined />,
@@ -21,7 +30,7 @@ const menuData = {
   Play: <PlayCircleOutlined />,
 };
 
-const NavBar: React.FC<{}> = () => {
+const NavBar: React.FC<Record<string, never>> = () => {
   const [current] = useState("");
   return (
     <div>

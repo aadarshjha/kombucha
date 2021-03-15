@@ -34,12 +34,12 @@ const rightMiletoneData = {
   ],
 };
 
-const Scroll: React.FC<{}> = () => (
+const Scroll: React.FC<Record<string, never>> = () => (
   <div className="scroll">
     <div className="left">
       {Object.entries(leftMilestoneData).map(([key, value]) => {
         return (
-          <div>
+          <div key={key}>
             <h1>{key}</h1>
             <img className={"imageEventData"} src={value[0]} alt="" />
             <p>{value[1]}</p>
@@ -51,7 +51,7 @@ const Scroll: React.FC<{}> = () => (
     <div className="right">
       {Object.entries(rightMiletoneData).map(([key, value]) => {
         return (
-          <div>
+          <div key={key}>
             <h1>{key}</h1>
             <img className={"imageEventData"} src={value[0]} alt="" />
             <p>{value[1]}</p>

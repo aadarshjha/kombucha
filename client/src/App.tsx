@@ -1,7 +1,7 @@
 import React from "react";
 import LandingPage from "./views/landingpage/landingpage";
 
-const App: React.FC<{}> = () => (
+const App: React.FC<Record<string, never>> = () => (
   <div>
     <LandingPage />
   </div>
