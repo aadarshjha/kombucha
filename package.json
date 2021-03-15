@@ -6,8 +6,7 @@
   "scripts": {
     "start": "concurrently \"cd client && npm start\" \"cd server && npm start\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "prettier --write **/*.ts **/*.tsx",
-    "format": "eslint **/*.ts **/*.tsx"
+    "format": "prettier --write **/*.js **/*.ts **/*.tsx"
   },
   "repository": {
     "type": "git",
