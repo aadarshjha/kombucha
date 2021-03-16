@@ -7,9 +7,6 @@ import "./landingpage.css";
 
 const LandingPage: React.FC<Record<string, never>> = () => (
   <div className="landingFlex">
-    <div className="navbar">
-      <NavBar />
-    </div>
     <div className="intro">
       <Intro />
     </div>
