@@ -6,6 +6,7 @@ import Login from "./views/login/login";
 import Events from "./views/events/events";
 import Learn from "./views/learn/learn";
 import Play from "./views/play/play";
+import NotFound from "./views/notfound/notfound";
 
 const App: React.FC<Record<string, never>> = () => (
   <div>
@@ -13,21 +14,22 @@ const App: React.FC<Record<string, never>> = () => (
       <NavBar />
       <div>
         <Switch>
-          <Route path="/learn">
+          <Route exact path="/learn">
             <Learn />
           </Route>
-          <Route path="/events">
+          <Route exact path="/events">
             <Events />
           </Route>
-          <Route path="/play">
+          <Route exact path="/play">
             <Play />
           </Route>
-          <Route path="/login">
+          <Route exact path="/login">
             <Login />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <LandingPage />
           </Route>
+          <Route component={NotFound}/>
         </Switch>
       </div>
     </Router>
