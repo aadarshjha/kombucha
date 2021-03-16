@@ -1,12 +1,11 @@
 import React from "react";
 import LandingPage from "./views/landingpage/landingpage";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavBar from "./NavBar";
-import Login from './views/login/login';
-import Events from './views/events/events';
-import Learn from './views/learn/learn';
-import Play from './views/play/play';
-
+import Login from "./views/login/login";
+import Events from "./views/events/events";
+import Learn from "./views/learn/learn";
+import Play from "./views/play/play";
 
 const App: React.FC<Record<string, never>> = () => (
   <div>
@@ -14,7 +13,7 @@ const App: React.FC<Record<string, never>> = () => (
       <NavBar />
       <div>
         <Switch>
-        <Route path = "/learn">
+          <Route path="/learn">
             <Learn />
           </Route>
           <Route path="/events">
@@ -23,7 +22,7 @@ const App: React.FC<Record<string, never>> = () => (
           <Route path="/play">
             <Play />
           </Route>
-          <Route path = "/login">
+          <Route path="/login">
             <Login />
           </Route>
           <Route path="/">

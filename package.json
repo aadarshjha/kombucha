@@ -6,7 +6,7 @@
   "scripts": {
     "start": "concurrently \"cd client && npm start\" \"cd server && npm start\"",
     "test": "echo \"No tests besides linting as of yet.\"",
-    "format": "prettier --write **/*.js **/*.ts **/*.tsx",
+    "format": "prettier --write **/*.ts **/*.tsx",
     "pretest": "eslint --ext .ts --ext .tsx ."
   },
   "repository": {
