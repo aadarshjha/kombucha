@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Menu } from "antd";
+import { Calendar, Menu } from "antd";
 import {
   UserOutlined,
   HomeOutlined,
@@ -8,11 +8,15 @@ import {
   PlayCircleOutlined,
 } from "@ant-design/icons";
 
-const handleClick = (e: React.ChangeEvent<HTMLInputElement>) => {
-  console.log("click ", e);
-};
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-// holds the menu data as a json:
+import LandingPage from "./landingpage";
+
+// umm idk typescript at all... i put <any> here
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// const handleClick: any = (e: React.ChangeEvent<HTMLInputElement>) => {
+//   console.log("click ", e);
+// };
 
 interface menuStruct {
   Login: JSX.Element;
@@ -33,17 +37,13 @@ const menuData: menuStruct = {
 const NavBar: React.FC<Record<string, never>> = () => {
   const [current] = useState("");
   return (
-    <div>
-      <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
-        {Object.entries(menuData).map(([key, value]) => {
-          return (
-            <Menu.Item icon={value} key={key}>
-              {key}
-            </Menu.Item>
-          );
-        })}
-      </Menu>
-    </div>
+    <Menu selectedKeys={[current]} mode="horizontal">
+      <Menu.Item icon={<HomeOutlined />}>Home</Menu.Item>
+      <Menu.Item icon={<UserOutlined />}>Login</Menu.Item>
+      <Menu.Item icon={<HomeOutlined />}>Learn</Menu.Item>
+      <Menu.Item icon={<CalendarOutlined />}>Events</Menu.Item>
+      <Menu.Item icon={<PlayCircleOutlined />}>Play</Menu.Item>
+    </Menu>
   );
 };
 
