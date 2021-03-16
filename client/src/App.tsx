@@ -29,7 +29,7 @@ const App: React.FC<Record<string, never>> = () => (
           <Route exact path="/">
             <LandingPage />
           </Route>
-          <Route component={NotFound}/>
+          <Route component={NotFound} />
         </Switch>
       </div>
     </Router>
