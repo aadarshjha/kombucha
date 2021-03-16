@@ -6,6 +6,7 @@
     flex-direction: column;
     position: relative;
     top: 50px;
+    padding-bottom: 35px;
 }
 
 .centered img {
