@@ -1,7 +1,7 @@
 import React from "react";
 import Intro from "./Intro";
 import Scroll from "./Scroll";
-import NavBar from "./NavBar";
+import NavBar from "../../NavBar";
 import "antd/dist/antd.css";
 import "./landingpage.css";
 
