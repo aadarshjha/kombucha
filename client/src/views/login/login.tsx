@@ -1,7 +1,10 @@
 import React from "react";
+import Logo from "../../components/Logo";
 
 const Login: React.FC<Record<string, never>> = () => {
-  return <h1>login</h1>;
+  return <Logo page="Login To VUMS"></Logo>
 };
 
 export default Login;
+
+
