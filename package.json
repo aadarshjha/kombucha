@@ -6,7 +6,7 @@
   "scripts": {
     "start": "concurrently \"cd client && npm start\" \"cd server && npm start\"",
     "test": "echo \"No tests besides linting as of yet.\"",
-    "format": "prettier --write **/*.js **/*.ts **/*.tsx",
+    "format": "prettier --write **/*.ts **/*.tsx",
     "pretest": "eslint --ext .ts --ext .tsx ."
   },
   "repository": {
@@ -21,9 +21,11 @@
   "homepage": "https://github.com/aadarshjha/kombucha#readme",
   "dependencies": {
     "concurrently": "^6.0.0",
+    "react-router-dom": "^5.2.0",
     "typescript": "^4.2.3"
   },
   "devDependencies": {
+    "@types/react-router-dom": "^5.1.7",
     "@typescript-eslint/eslint-plugin": "^4.17.0",
     "@typescript-eslint/parser": "^4.17.0",
     "eslint": "^7.21.0",
