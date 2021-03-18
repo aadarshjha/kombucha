@@ -1,6 +1,6 @@
 import React from "react";
 import Intro from "./Intro";
-import Scroll from "./Scroll";
+import Info from "./info";
 import "antd/dist/antd.css";
 import "./landingpage.css";
 
@@ -10,7 +10,8 @@ const LandingPage: React.FC<Record<string, never>> = () => (
       <Intro />
     </div>
     <div className="scroll">
-      <Scroll />
+      <Info />
+      {/* <Scroll /> */}
     </div>
   </div>
 );
