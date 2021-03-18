@@ -6,7 +6,7 @@ import {
   BookOutlined,
   CalendarOutlined,
   PlayCircleOutlined,
-  QuestionCircleOutlined
+  QuestionCircleOutlined,
 } from "@ant-design/icons";
 
 import { Link } from "react-router-dom";

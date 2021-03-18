@@ -7,7 +7,7 @@ import Events from "./views/events/events";
 import Learn from "./views/learn/learn";
 import Play from "./views/play/play";
 import NotFound from "./views/notfound/notfound";
-import About from "./views/about/about"
+import About from "./views/about/about";
 
 const App: React.FC<Record<string, never>> = () => (
   <div>
