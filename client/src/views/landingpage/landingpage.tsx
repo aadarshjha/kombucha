@@ -1,6 +1,5 @@
 import React from "react";
 import Intro from "./Intro";
-import Info from "./info";
 import "antd/dist/antd.css";
 import "./landingpage.css";
 
