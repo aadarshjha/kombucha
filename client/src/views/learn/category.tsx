@@ -18,7 +18,7 @@ const Category: React.FC<catProps> = ({ difficulty, categories }: catProps) => {
     //   we can demonstrate all easy, medium, hard categories
     <div>
         <h1>
-            {difficulty}
+            {difficulty[0].toUpperCase() + difficulty.substr(1)}
         </h1>
         {
             // categories.map(element => {

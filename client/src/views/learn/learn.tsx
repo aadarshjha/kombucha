@@ -1,6 +1,7 @@
 import React from "react";
 import Logo from "../../components/Logo";
 import Category from "./category";
+import './learn.css'
 
 // FETCHING THE DATA WILL GO HERE!
 // we can simple filter here
@@ -82,8 +83,7 @@ const Learn: React.FC<Record<string, never>> = () => {
   return (
     <div>
       <Logo page="Learn With VUMS" />
-      <div>
-        {/* Basically,  */}
+      <div className="categories">
         {/* easy */}
         <Category difficulty={"easy"} categories={data.easy} />
         {/* medium */}
