@@ -10,7 +10,7 @@ const LandingPage: React.FC<Record<string, never>> = () => (
       <Intro />
     </div>
     <div className="scroll">
-      <Info />
+      {/* <Info /> */}
       {/* <Scroll /> */}
     </div>
   </div>
