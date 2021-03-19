@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
+import { isLiteralExpression } from "typescript";
 import Logo from "../../components/Logo";
 import Category from "./category";
 import "./learn.css";
 
 // FETCHING THE DATA WILL GO HERE!
 // we can simple filter here
+
+// global view that we are in:
+
+// const isLearning = false; 
+
+// type stateObject = {
+//   isLearning: boolean;
+//   setLearning: any;
+// };
+
+// const viewState: stateObject = {
+//   isLearning: isLearning,
+//   setLearning: setLearning,
+// };
 
 type backendData = {
   header: string;
@@ -99,21 +114,42 @@ const fetchCategories = () => {
   };
 };
 
-const Learn: React.FC<Record<string, never>> = () => {
+const userView = (isLearning: boolean) => {
   const data = fetchCategories();
-  return (
-    <div className="test">
-      <Logo page="Learn With VUMS" />
-      <div className="categories">
-        {/* easy */}
-        <Category difficulty={"easy"} categories={data.easy} />
-        {/* medium */}
-        <Category difficulty={"medium"} categories={data.medium} />
-        {/* hard */}
-        <Category difficulty={"hard"} categories={data.hard} />
+  if (isLearning) {
+    return <h1>Test</h1>;
+  } else {
+    return (
+      <div className="test">
+        <Logo page="Learn With VUMS" />
+        <div className="categories">
+          {/* spread the state when we click the button */}
+
+          {/* easy */}
+          <Category
+            difficulty={"easy"}
+            categories={data.easy}
+          />
+          {/* medium */}
+          <Category
+            difficulty={"medium"}
+            categories={data.medium}
+          />
+          {/* hard */}
+          <Category
+            difficulty={"hard"}
+            categories={data.hard}
+          />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+};
+
+const Learn: React.FC<Record<string, never>> = () => {
+  const [isLearning, setLearning] = useState(false);
+  const returnedView = userView(isLearning);
+  return <div>{returnedView}</div>;
 };
 
 export default Learn;

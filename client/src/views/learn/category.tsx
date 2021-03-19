@@ -24,11 +24,14 @@ const fetchUniqueCategories = (list: Array<backendData>) => {
   return uniqueList;
 };
 
-const clickHandler = (e: any) => {
-  console.log(e)
-}
+// const clickHandler = (e: any) => {
+//   console.log(e);
+// }
 
-const Category: React.FC<catProps> = ({ difficulty, categories }: catProps) => {
+const Category: React.FC<catProps> = ({
+  difficulty,
+  categories
+}: catProps) => {
   const uniqueList = fetchUniqueCategories(categories);
   console.log(uniqueList);
   return (
@@ -39,7 +42,11 @@ const Category: React.FC<catProps> = ({ difficulty, categories }: catProps) => {
         {uniqueList.map((element) => {
           return (
             <div key={element} className="box">
-              <Button type="primary" className="buttonPadding" onClick={clickHandler}>
+              <Button
+                type="primary"
+                className="buttonPadding"
+                // onClick={() => {viewState.setLearning(true)}}
+              >
                 {element}
               </Button>
             </div>
