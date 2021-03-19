@@ -34,9 +34,15 @@
 }
 
 .buttonPadding {
-    max-width: 150px;
-    min-width: 150px;
-    max-height: 70px;
-    min-height: 70px;
+    max-width: 300px;
+    min-width: 300px;
+    max-height: 90px;
+    min-height: 90px;
     margin-bottom: 10px;
+}
+
+.buttonPadding span {
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

@@ -19,77 +19,63 @@ const dataFromBackend: Array<backendData> = [
     body:
       "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "easy",
-    category: "research",
-  },
-  {
-    header: "This is the title of the article",
-    body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
-    difficulty: "hard",
-    category: "test1",
-  },
-  {
-    header: "This is the title of the article",
-    body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
-    difficulty: "hard",
-    category: "test2",
+    category: "Bacteria",
   },
   {
     header: "This is the title of the article",
     body:
       "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "easy",
-    category: "test3",
+    category: "Viruses",
+  },
+  {
+    header: "This is the title of the article",
+    body:
+      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+    difficulty: "easy",
+    category: "Fungi",
   },
   {
     header: "This is the title of the article",
     body:
       "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "medium",
-    category: "test4",
+    category: "Human Microbiome",
+  },
+  {
+    header: "This is the title of the article",
+    body:
+      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+    difficulty: "medium",
+    category: "Dybiosis",
+  },
+  {
+    header: "This is the title of the article",
+    body:
+      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+    difficulty: "medium",
+    category: "Diseases Associated With The Microbiome",
   },
   {
     header: "This is the title of the article",
     body:
       "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "hard",
-    category: "test10",
+    category: "Current Research",
   },
   {
     header: "This is the title of the article",
     body:
       "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "hard",
-    category: "test9",
+    category: "Metagenomics",
   },
   {
     header: "This is the title of the article",
     body:
       "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "hard",
-    category: "test8",
-  },
-  {
-    header: "This is the title of the article",
-    body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
-    difficulty: "hard",
-    category: "test15",
-  },
-  {
-    header: "This is the title of the article",
-    body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
-    difficulty: "hard",
-    category: "test14",
-  },
-  {
-    header: "This is the title of the article",
-    body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
-    difficulty: "hard",
-    category: "test12",
+    category: "Research Methods For The Microbiome",
   },
 ];
 
