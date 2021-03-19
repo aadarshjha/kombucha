@@ -2,7 +2,6 @@ import React from "react";
 import Logo from "../../components/Logo";
 import { Card } from "antd";
 import "./events.css";
-import { title } from "node:process";
 
 const { Meta } = Card;
 
