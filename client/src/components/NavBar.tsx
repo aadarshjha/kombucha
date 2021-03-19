@@ -5,7 +5,6 @@ import {
   HomeOutlined,
   BookOutlined,
   CalendarOutlined,
-  PlayCircleOutlined,
   QuestionCircleOutlined,
 } from "@ant-design/icons";
 
