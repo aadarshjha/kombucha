@@ -1,8 +1,8 @@
 import express from "express";
 // controller modules
-import articleController from "../controllers/articleCOntroller";
-import authorController from "../controllers/authorController";
 import topicController from "../controllers/topicController";
+import articleController from "../controllers/articleController";
+import authorController from "../controllers/authorController";
 
 const router = express.Router();
 
