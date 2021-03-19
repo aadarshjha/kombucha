@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { isLiteralExpression } from "typescript";
 import Logo from "../../components/Logo";
 import Category from "./category";
 import "./learn.css";
@@ -33,7 +32,7 @@ const dataFromBackend: Array<backendData> = [
     body:
       "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "easy",
-    category: "Bacteria",
+    category: "Bacteria"
   },
   {
     header: "This is the title of the article",
@@ -161,7 +160,7 @@ const userView = (viewState: stateObject) => {
 };
 
 const Learn: React.FC<Record<string, never>> = () => {
-  const [isLearning, setLearning] = useState(true);
+  const [isLearning, setLearning] = useState(false);
   const viewState: stateObject = {
     isLearning: isLearning,
     setLearning: setLearning,

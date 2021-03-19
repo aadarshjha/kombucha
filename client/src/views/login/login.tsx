@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../../components/Logo";
 import { Form, Input, Button, Checkbox } from "antd";
 
+// minimal styling. 
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 },
@@ -12,6 +13,9 @@ const tailLayout = {
 };
 
 const Login: React.FC<Record<string, never>> = () => {
+
+  const [signedIn, setSignIn] = useState(false);
+
   const onFinish = (values: any) => {
     console.log("Success:", values);
   };
@@ -19,6 +23,10 @@ const Login: React.FC<Record<string, never>> = () => {
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
+
+  const renderView = () => {
+    if 
+  }
 
   return (
     <div>
