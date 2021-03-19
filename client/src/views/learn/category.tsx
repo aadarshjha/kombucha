@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import { Button } from "antd";
 
 // or import types. FIXME in a optimzation / re write.
@@ -24,6 +24,10 @@ const fetchUniqueCategories = (list: Array<backendData>) => {
   return uniqueList;
 };
 
+const clickHandler = (e: any) => {
+  console.log(e)
+}
+
 const Category: React.FC<catProps> = ({ difficulty, categories }: catProps) => {
   const uniqueList = fetchUniqueCategories(categories);
   console.log(uniqueList);
@@ -35,7 +39,7 @@ const Category: React.FC<catProps> = ({ difficulty, categories }: catProps) => {
         {uniqueList.map((element) => {
           return (
             <div key={element} className="box">
-              <Button type="primary" className="buttonPadding">
+              <Button type="primary" className="buttonPadding" onClick={clickHandler}>
                 {element}
               </Button>
             </div>
