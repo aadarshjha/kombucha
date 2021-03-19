@@ -8,3 +8,14 @@
     padding-right: 20%;
     padding-top: 10px;
 }
+
+.column {
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.categories {
+    background-color: green; 
+}

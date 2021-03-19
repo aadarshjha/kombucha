@@ -25,27 +25,15 @@ const fetchUniqueCategories = (list: Array<backendData>) => {
 
 const Category: React.FC<catProps> = ({ difficulty, categories }: catProps) => {
   const uniqueList = fetchUniqueCategories(categories);
-  console.log(uniqueList)
   return (
     //   we can demonstrate all easy, medium, hard categories
-    <div>
+    <div className="column">
       <h1>{difficulty[0].toUpperCase() + difficulty.substr(1)}</h1>
-      {/* {
-          uniqueList.map((element) => {
-              return (
-                  <p>{element}</p>
-              )
-          })
-      } */}
-      {/* {
-          uniqueList.map(element => {
-              return (
-                  <li key={element.toString()}>
-                      {element}
-                  </li>
-              )
-          })
-      } */}
+      <div className="categories">
+        {uniqueList.map((element) => {
+          return <div key={element}>{element}</div>;
+        })}
+      </div>
     </div>
   );
 };
