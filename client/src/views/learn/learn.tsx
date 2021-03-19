@@ -142,7 +142,7 @@ const userView = (viewState: stateObject) => {
 };
 
 const Learn: React.FC<Record<string, never>> = () => {
-  const [isLearning, setLearning] = useState(false);
+  const [isLearning, setLearning] = useState(true);
   const viewState: stateObject = {
     isLearning: isLearning,
     setLearning: setLearning,
