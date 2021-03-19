@@ -34,9 +34,11 @@ const Category: React.FC<catProps> = ({ difficulty, categories }: catProps) => {
       <div className="boxLevel">
         {uniqueList.map((element) => {
           return (
-              <div key={element} className="box">
-                  <Button type="primary" className="buttonPadding">{element}</Button>
-              </div>
+            <div key={element} className="box">
+              <Button type="primary" className="buttonPadding">
+                {element}
+              </Button>
+            </div>
           );
         })}
       </div>
