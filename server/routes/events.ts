@@ -11,9 +11,9 @@ eventRouter.get("/", eventController.list)
 
 
 // POST request for creating new topic
-/*
-eventRouter.post("/create", eventController.createPost);
 
+eventRouter.post("/create", eventController.createPost);
+/*
 // GET request to delete topic
 eventRouter.get("/:id/delete", eventController.deleteGet);
 
