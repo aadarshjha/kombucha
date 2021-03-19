@@ -12,22 +12,31 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    /* background-color:red;  */
-    width: 50%;
-    position: relative;
+    width: 80%;
 }
 
-.column {
+.highLevel {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* flex-direction: column; */
-    width: 100%;
+    flex-direction: column;
 }
 
-/* .categories {
+.boxLevel {
+    flex-direction: row;
+}
+
+.box {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-content: space-between;
-} */
+    align-items: center;
+}
+
+.buttonPadding {
+    max-width: 150px;
+    min-width: 150px;
+    max-height: 70px;
+    min-height: 70px;
+    margin-bottom: 10px;
+}

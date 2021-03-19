@@ -30,21 +30,16 @@ const Category: React.FC<catProps> = ({ difficulty, categories }: catProps) => {
   return (
     //   we can demonstrate all easy, medium, hard categories
     <div className="highLevel">
-        
-        <h1>{difficulty[0].toUpperCase() + difficulty.substr(1)}</h1>
-
-      {/* <div className="">
-        <div className="box">
-          {uniqueList.map((element) => {
-            return (
-              <Button type="primary" key={element}>
-                {element}
-              </Button>
-            );
-          })}
-        </div>
-        <br />
-      </div> */}
+      <h1>{difficulty[0].toUpperCase() + difficulty.substr(1)}</h1>
+      <div className="boxLevel">
+        {uniqueList.map((element) => {
+          return (
+              <div key={element} className="box">
+                  <Button type="primary" className="buttonPadding">{element}</Button>
+              </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
