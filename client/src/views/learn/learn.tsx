@@ -3,6 +3,7 @@ import Logo from "../../components/Logo";
 import Category from "./category";
 import "./learn.css";
 import Articles from "./articles";
+import { Button } from "antd";
 
 // FETCHING THE DATA WILL GO HERE!
 // we can simple filter here
@@ -127,7 +128,14 @@ const userView = (viewState: stateObject) => {
   const articles = fetchArticles();
   console.log(articles);
   if (viewState.isLearning) {
-    return <Articles articles={articles} />;
+    return (
+      <div>
+        <Articles articles={articles} />
+      <Button onClick={() => {viewState.setLearning(!viewState.isLearning)}}>
+            Toggle View
+      </Button>
+      </div>
+    );
   } else {
     return (
       <div className="test">
@@ -154,6 +162,9 @@ const userView = (viewState: stateObject) => {
             state={viewState}
           />
         </div>
+        <Button onClick={() => {viewState.setLearning(!viewState.isLearning)}}>
+            Toggle View
+      </Button>
       </div>
     );
   }

@@ -25,7 +25,10 @@ const tailLayout = {
       return (
         <div>
           <h1>
-            hello world
+            {/* <AddArticle /> */}
+            <h1>
+              Test
+            </h1>
           </h1>
           <Button onClick={() => {setSignIn(!signedIn)}}>
             Toggle View
