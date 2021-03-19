@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "antd";
 
 // or import types. FIXME in a optimzation / re write.
 type backendData = {
@@ -25,14 +26,24 @@ const fetchUniqueCategories = (list: Array<backendData>) => {
 
 const Category: React.FC<catProps> = ({ difficulty, categories }: catProps) => {
   const uniqueList = fetchUniqueCategories(categories);
+  console.log(uniqueList);
   return (
     //   we can demonstrate all easy, medium, hard categories
-    <div className="column">
-      <h1>{difficulty[0].toUpperCase() + difficulty.substr(1)}</h1>
+    <div>
+      <div className="column">
+        <h1>{difficulty[0].toUpperCase() + difficulty.substr(1)}</h1>
+      </div>
       <div className="categories">
-        {uniqueList.map((element) => {
-          return <div key={element}>{element}</div>;
-        })}
+        <div className="box">
+          {uniqueList.map((element) => {
+            return (
+              <Button type="primary" key={element}>
+                {element}
+              </Button>
+            );
+          })}
+        </div>
+        <br />
       </div>
     </div>
   );

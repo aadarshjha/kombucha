@@ -54,7 +54,42 @@ const dataFromBackend: Array<backendData> = [
     body:
       "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "hard",
-    category: "test5",
+    category: "test10",
+  },
+  {
+    header: "This is the title of the article",
+    body:
+      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+    difficulty: "hard",
+    category: "test9",
+  },
+  {
+    header: "This is the title of the article",
+    body:
+      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+    difficulty: "hard",
+    category: "test8",
+  },
+  {
+    header: "This is the title of the article",
+    body:
+      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+    difficulty: "hard",
+    category: "test15",
+  },
+  {
+    header: "This is the title of the article",
+    body:
+      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+    difficulty: "hard",
+    category: "test14",
+  },
+  {
+    header: "This is the title of the article",
+    body:
+      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+    difficulty: "hard",
+    category: "test12",
   },
 ];
 
@@ -63,9 +98,9 @@ const fetchCategories = () => {
   const medium: Array<backendData> = [];
   const hard: Array<backendData> = [];
   dataFromBackend.map((element) => {
-    if (element.category === "easy") {
+    if (element.difficulty === "easy") {
       easy.push(element);
-    } else if (element.category === "medium") {
+    } else if (element.difficulty === "medium") {
       medium.push(element);
     } else {
       hard.push(element);

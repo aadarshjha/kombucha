@@ -1,21 +1,24 @@
 .categories {
-    /* background-color: red; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-left: 20%;
-    padding-right: 20%;
-    padding-top: 10px;
+    position: relative; 
+    top: 10px; 
+    width: 100%;
 }
 
 .column {
-    background-color: red;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    
+    width: 100%;
 }
 
 .categories {
-    background-color: green; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: space-between;
 }
