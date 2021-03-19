@@ -33,7 +33,7 @@ const dataFromBackend: Array<backendData> = [
     body:
       "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "easy",
-    category: "Bacteria"
+    category: "Bacteria",
   },
   {
     header: "This is the title of the article",
@@ -131,9 +131,13 @@ const userView = (viewState: stateObject) => {
     return (
       <div>
         <Articles articles={articles} />
-      <Button onClick={() => {viewState.setLearning(!viewState.isLearning)}}>
-            Toggle View
-      </Button>
+        <Button
+          onClick={() => {
+            viewState.setLearning(!viewState.isLearning);
+          }}
+        >
+          Toggle View
+        </Button>
       </div>
     );
   } else {
@@ -162,9 +166,13 @@ const userView = (viewState: stateObject) => {
             state={viewState}
           />
         </div>
-        <Button onClick={() => {viewState.setLearning(!viewState.isLearning)}}>
-            Toggle View
-      </Button>
+        <Button
+          onClick={() => {
+            viewState.setLearning(!viewState.isLearning);
+          }}
+        >
+          Toggle View
+        </Button>
       </div>
     );
   }
