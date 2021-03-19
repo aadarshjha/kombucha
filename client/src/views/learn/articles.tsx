@@ -25,19 +25,17 @@ const Articles: React.FC<catProps> = ({ articles }: catProps) => {
           );
         })} */}
         <List
-            bordered
-            dataSource={articles}
-            renderItem={item => (
-              <List.Item>
-                  <h4>
-                  {item.header}
-                  </h4>
-              </List.Item>
-            )}
-          />
+          bordered
+          dataSource={articles}
+          renderItem={(item) => (
+            <List.Item>
+              <h4>{item.header}</h4>
+            </List.Item>
+          )}
+        />
       </div>
       <div className="right">
-          {/* This is dynamically loaded based on what is selected */}
+        {/* This is dynamically loaded based on what is selected */}
         <div>{/* header */}</div>
         <div>{/* body */}</div>
       </div>
