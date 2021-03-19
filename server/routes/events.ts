@@ -13,18 +13,25 @@ eventRouter.get("/", eventController.list)
 // POST request for creating new topic
 
 eventRouter.post("/create", eventController.createPost);
-/*
+
+
+
 // GET request to delete topic
 eventRouter.get("/:id/delete", eventController.deleteGet);
+
+
 
 // POST request to delete topic
 eventRouter.post("/:id/delete", eventController.deletePost);
 
+
 // GET request to update topic
 eventRouter.get("/:id/update", eventController.updateGet);
+
+
 
 // POST request to update topic
 eventRouter.post("/:id/update", eventController.updatePost);
 
-*/
+
 export default eventRouter;
