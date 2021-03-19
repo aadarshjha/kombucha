@@ -2,6 +2,9 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
+// Routers
+import indexRouter from "./routes/index";
+import learnRouter from "./routes/learn";
 
 const app = express();
 dotenv.config();
@@ -23,4 +26,12 @@ mongoose
 
 mongoose.set("useFindAndModify", false);
 
-app;
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "MongoDB connection error:"));
+
+app.use("/", indexRouter);
+app.use("/learn", learnRouter);
+
+// TODO: implement if necessary. Otherwise everything goes into indexRouter.
+// app.use('/events', eventsRouter);
+// app.use('/about', aboutRouter);
