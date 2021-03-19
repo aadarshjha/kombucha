@@ -116,7 +116,7 @@ const fetchCategories = () => {
 const Learn: React.FC<Record<string, never>> = () => {
   const data = fetchCategories();
   return (
-    <div>
+    <div className="test">
       <Logo page="Learn With VUMS" />
       <div className="categories">
         {/* easy */}
