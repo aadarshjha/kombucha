@@ -1,10 +1,10 @@
-import express from "express";
+// import express from "express";
 
-const router = express.Router();
+// const router = express.Router();
 
 // TODO: implement lol
-router.get("/", function (req, res, next) {
-  console.log("Index route not yet implemented!");
-});
+// router.get("/", function (req, res, next) {
+//   console.log("Index route not yet implemented!");
+// });
 
-export default router;
+// export default router;
