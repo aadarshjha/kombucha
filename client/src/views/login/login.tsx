@@ -2,6 +2,9 @@
 import React, { useState } from "react";
 import Logo from "../../components/Logo";
 import { Form, Input, Button, Checkbox } from "antd";
+import NavBar from "../../components/NavBar";
+import Options from "./options";
+import "antd/dist/antd.css";
 
 // minimal styling.
 const layout = {
@@ -25,6 +28,8 @@ const renderView = (signedIn: boolean, setSignIn: any) => {
     return (
       <div>
         <Logo page="Admin Update Page"></Logo>
+        {/* <NavBar /> */}
+        <Options />
         <Button
           onClick={() => {
             setSignIn(!signedIn);
