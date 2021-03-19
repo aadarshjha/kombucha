@@ -7,19 +7,10 @@ import "./learn.css";
 // FETCHING THE DATA WILL GO HERE!
 // we can simple filter here
 
-// global view that we are in:
-
-// const isLearning = false; 
-
-// type stateObject = {
-//   isLearning: boolean;
-//   setLearning: any;
-// };
-
-// const viewState: stateObject = {
-//   isLearning: isLearning,
-//   setLearning: setLearning,
-// };
+type stateObject = {
+  isLearning: boolean;
+  setLearning: any;
+};
 
 type backendData = {
   header: string;
@@ -114,9 +105,9 @@ const fetchCategories = () => {
   };
 };
 
-const userView = (isLearning: boolean) => {
+const userView = (viewState:stateObject) => {
   const data = fetchCategories();
-  if (isLearning) {
+  if (viewState.isLearning) {
     return <h1>Test</h1>;
   } else {
     return (
@@ -129,16 +120,19 @@ const userView = (isLearning: boolean) => {
           <Category
             difficulty={"easy"}
             categories={data.easy}
+            state={viewState}
           />
           {/* medium */}
           <Category
             difficulty={"medium"}
             categories={data.medium}
+            state={viewState}
           />
           {/* hard */}
           <Category
             difficulty={"hard"}
             categories={data.hard}
+            state={viewState}
           />
         </div>
       </div>
@@ -148,7 +142,11 @@ const userView = (isLearning: boolean) => {
 
 const Learn: React.FC<Record<string, never>> = () => {
   const [isLearning, setLearning] = useState(false);
-  const returnedView = userView(isLearning);
+  const viewState: stateObject = {
+    isLearning: isLearning,
+    setLearning: setLearning,
+  };
+  const returnedView = userView(viewState);
   return <div>{returnedView}</div>;
 };
 

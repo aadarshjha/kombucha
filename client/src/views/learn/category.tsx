@@ -9,9 +9,15 @@ type backendData = {
   category: string;
 };
 
+type stateObject = {
+  isLearning: boolean;
+  setLearning: any;
+};
+
 type catProps = {
   difficulty: string;
   categories: Array<backendData>;
+  state: stateObject;
 };
 
 const fetchUniqueCategories = (list: Array<backendData>) => {
@@ -30,7 +36,8 @@ const fetchUniqueCategories = (list: Array<backendData>) => {
 
 const Category: React.FC<catProps> = ({
   difficulty,
-  categories
+  categories,
+  state
 }: catProps) => {
   const uniqueList = fetchUniqueCategories(categories);
   console.log(uniqueList);
@@ -45,7 +52,7 @@ const Category: React.FC<catProps> = ({
               <Button
                 type="primary"
                 className="buttonPadding"
-                // onClick={() => {viewState.setLearning(true)}}
+                onClick={() => {state.setLearning(!state.isLearning)}}
               >
                 {element}
               </Button>
