@@ -3,6 +3,7 @@ import { isLiteralExpression } from "typescript";
 import Logo from "../../components/Logo";
 import Category from "./category";
 import "./learn.css";
+import Articles from './articles';
 
 // FETCHING THE DATA WILL GO HERE!
 // we can simple filter here
@@ -105,10 +106,10 @@ const fetchCategories = () => {
   };
 };
 
-const userView = (viewState:stateObject) => {
+const userView = (viewState: stateObject) => {
   const data = fetchCategories();
   if (viewState.isLearning) {
-    return <h1>Test</h1>;
+    return <Articles />;
   } else {
     return (
       <div className="test">

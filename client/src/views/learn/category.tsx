@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from "react";
+import React from "react";
 import { Button } from "antd";
 
 // or import types. FIXME in a optimzation / re write.
@@ -37,10 +37,9 @@ const fetchUniqueCategories = (list: Array<backendData>) => {
 const Category: React.FC<catProps> = ({
   difficulty,
   categories,
-  state
+  state,
 }: catProps) => {
   const uniqueList = fetchUniqueCategories(categories);
-  console.log(uniqueList);
   return (
     //   we can demonstrate all easy, medium, hard categories
     <div className="highLevel">
@@ -52,7 +51,9 @@ const Category: React.FC<catProps> = ({
               <Button
                 type="primary"
                 className="buttonPadding"
-                onClick={() => {state.setLearning(!state.isLearning)}}
+                onClick={() => {
+                  state.setLearning(!state.isLearning);
+                }}
               >
                 {element}
               </Button>
