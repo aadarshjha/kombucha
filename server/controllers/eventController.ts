@@ -1,4 +1,3 @@
-import async from "async";
 import Event from "../models/events"
 
 export const list = (req: Express.Request, res: Express.Response, next: unknown): any => {

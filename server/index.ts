@@ -31,7 +31,7 @@ mongoose.set("useFindAndModify", false);
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
-app.use("/events", eventsRouter);
+app.use("/events", eventRouter);
 
 // app.use("/", indexRouter);
 // app.use("/learn", learnRouter);
