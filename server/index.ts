@@ -3,9 +3,6 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 
-// Routers
-// import indexRouter from "./routes/index";
-// import learnRouter from "./routes/learn";
 import eventRouter from "./routes/events";
 
 const app = express();

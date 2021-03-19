@@ -1,7 +1,7 @@
 import Event from "../models/events"
 
-export const list = (req: Express.Request, res: Express.Response, next: unknown): any => {
-    Event.find().exec(function (err: unknown, list_events: unknown) {
+export const list = (res: any): any => {
+    Event.find().exec(function (_err: unknown, list_events: unknown) {
         /*
          if (err) {
            return next(err);
