@@ -17,3 +17,14 @@
     width: 100%;
     flex: 3;
 }
+
+.test {
+    /* background-color: red;  */
+    margin-bottom: 5px;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 10px;
+}
