@@ -3,7 +3,7 @@ import { isLiteralExpression } from "typescript";
 import Logo from "../../components/Logo";
 import Category from "./category";
 import "./learn.css";
-import Articles from './articles';
+import Articles from "./articles";
 
 // FETCHING THE DATA WILL GO HERE!
 // we can simple filter here
@@ -23,6 +23,13 @@ type backendData = {
 const dataFromBackend: Array<backendData> = [
   {
     header: "This is the title of the article",
+    body:
+      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+    difficulty: "easy",
+    category: "Bacteria",
+  },
+  {
+    header: "This is the title of the article #2",
     body:
       "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "easy",
@@ -106,10 +113,22 @@ const fetchCategories = () => {
   };
 };
 
+const fetchArticles = () => {
+  const returnedArticles: Array<backendData> = [];
+  dataFromBackend.map((element) => {
+    if (element.category == "Bacteria") {
+      returnedArticles.push(element);
+    }
+  });
+  return returnedArticles;
+};
+
 const userView = (viewState: stateObject) => {
   const data = fetchCategories();
+  const articles = fetchArticles();
+  console.log(articles);
   if (viewState.isLearning) {
-    return <Articles />;
+    return <Articles articles={articles} />;
   } else {
     return (
       <div className="test">

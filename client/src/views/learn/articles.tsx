@@ -1,18 +1,38 @@
 import React from "react";
-import './articles.css';
+import "./articles.css";
+import { Card } from "antd";
 
-const Articles: React.FC<Record<string, never>> = () => {
+type backendData = {
+  header: string;
+  body: string;
+  difficulty: string;
+  category: string;
+};
+
+type catProps = {
+  articles: Array<backendData>;
+};
+
+const Articles: React.FC<catProps> = ({ articles }: catProps) => {
   return (
-      <div className="flex">
-          <div className="left">
-              {/* displays the potential articles */}
-              a
-          </div>
-          <div className="right">
-              {/* displays the article */}
-              b
-          </div>
+    <div className="flex">
+      <div className="left">
+        {/* all of the articles */}
+        {articles.map((element) => {
+          <div key={element.header}>
+            <Card
+              title={element.header}
+              bordered={false}
+              style={{ width: "100%" }}
+            ></Card>
+          </div>;
+        })}
       </div>
+      <div className="right">
+        <div>{/* header */}</div>
+        <div>{/* body */}</div>
+      </div>
+    </div>
   );
 };
 
