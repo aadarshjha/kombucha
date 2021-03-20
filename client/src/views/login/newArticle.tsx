@@ -3,11 +3,7 @@ import React, { useState } from "react";
 // import { Menu, Dropdown, Button } from "antd";
 import "antd/dist/antd.css";
 import "./options.css";
-import {
-  Form,
-  Input,
-  Button,
-} from "antd";
+import { Form, Input, Button } from "antd";
 
 const { TextArea } = Input;
 
@@ -94,6 +90,20 @@ const NewArticle: React.FC<Record<string, never>> = () => {
           hasFeedback
         >
           <TextArea rows={4} />
+        </Form.Item>
+
+        <Form.Item
+          name="category"
+          label="category"
+          rules={[
+            {
+              required: true,
+              message: "Category",
+            },
+          ]}
+          hasFeedback
+        >
+          <Input />
         </Form.Item>
 
         <Form.Item {...tailFormItemLayout}>
