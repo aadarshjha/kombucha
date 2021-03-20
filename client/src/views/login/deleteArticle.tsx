@@ -51,7 +51,7 @@ const DeleteArticle: React.FC<Record<string, never>> = () => {
         }}
         scrollToFirstError
       >
-          <Form.Item
+        <Form.Item
           name="article"
           label="Article ID"
           rules={[
