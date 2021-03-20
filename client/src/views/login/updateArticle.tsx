@@ -30,7 +30,7 @@ const tailFormItemLayout = {
   },
 };
 
-const NewArticle: React.FC<Record<string, never>> = () => {
+const UpdateArticle: React.FC<Record<string, never>> = () => {
   const [form] = Form.useForm();
 
   const onFinish = (values: any) => {
@@ -52,7 +52,7 @@ const NewArticle: React.FC<Record<string, never>> = () => {
       >
         <Form.Item
           name="article"
-          label="Article"
+          label="Article ID"
           rules={[
             {
               required: true,
@@ -66,7 +66,7 @@ const NewArticle: React.FC<Record<string, never>> = () => {
 
         <Form.Item
           name="header"
-          label="Title"
+          label="New Title"
           rules={[
             {
               required: true,
@@ -80,7 +80,7 @@ const NewArticle: React.FC<Record<string, never>> = () => {
 
         <Form.Item
           name="body"
-          label="Body"
+          label="New Body"
           rules={[
             {
               required: true,
@@ -94,7 +94,7 @@ const NewArticle: React.FC<Record<string, never>> = () => {
 
         <Form.Item
           name="category"
-          label="Category"
+          label="New Category"
           rules={[
             {
               required: true,
@@ -116,4 +116,4 @@ const NewArticle: React.FC<Record<string, never>> = () => {
   );
 };
 
-export default NewArticle;
+export default UpdateArticle;
