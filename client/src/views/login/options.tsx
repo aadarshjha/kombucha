@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
-import { Menu, Dropdown } from "antd";
+import { Menu, Dropdown, Button } from "antd";
 import { DownOutlined } from "@ant-design/icons";
+import "antd/dist/antd.css";
+import "./options.css"
 
 const menu = (
   <Menu>
@@ -9,40 +11,36 @@ const menu = (
       <a
         target="_blank"
         rel="noopener noreferrer"
-        href="https://www.antgroup.com"
       >
-        1st menu item
+        New Article
       </a>
     </Menu.Item>
-    <Menu.Item icon={<DownOutlined />} disabled>
+    <Menu.Item>
       <a
         target="_blank"
         rel="noopener noreferrer"
-        href="https://www.aliyun.com"
       >
-        2nd menu item
+        Update Article
       </a>
     </Menu.Item>
-    <Menu.Item disabled>
+    <Menu.Item>
       <a
         target="_blank"
         rel="noopener noreferrer"
-        href="https://www.luohanacademy.com"
       >
-        3rd menu item
+        Delete Article
       </a>
     </Menu.Item>
-    <Menu.Item danger>a danger item</Menu.Item>
   </Menu>
 );
 
 const Options: React.FC<Record<string, never>> = () => {
   return (
-    <div>
+    <div className="centered">
       <Dropdown overlay={menu}>
-        <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-          Hover me <DownOutlined />
-        </a>
+        <Button>
+          Button <DownOutlined />
+        </Button>
       </Dropdown>
     </div>
   );
