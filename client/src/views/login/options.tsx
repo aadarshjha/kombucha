@@ -4,6 +4,7 @@ import { Menu, Dropdown, Button } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css";
 import "./options.css";
+import UpdateArticle from "./updateArticle";
 import NewArticle from "./newArticle";
 
 const updateView = (updatedView: string) => {
@@ -11,7 +12,7 @@ const updateView = (updatedView: string) => {
   if (updatedView == "new") {
     return <NewArticle />;
   } else if (updatedView == "update") {
-    return <h1>Test</h1>;
+    return <UpdateArticle />;
   } else {
     return <h1>Bye</h1>;
   }
