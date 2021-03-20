@@ -6,15 +6,15 @@ import "antd/dist/antd.css";
 import "./options.css";
 import UpdateArticle from "./updateArticle";
 import NewArticle from "./newArticle";
+import DeleteArticle from "./deleteArticle";
 
 const updateView = (updatedView: string) => {
-  // console.log(updatedView)
   if (updatedView == "new") {
     return <NewArticle />;
   } else if (updatedView == "update") {
     return <UpdateArticle />;
   } else {
-    return <h1>Bye</h1>;
+    return <DeleteArticle />;
   }
 };
 
