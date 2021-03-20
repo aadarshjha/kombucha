@@ -4,15 +4,14 @@ import { Menu, Dropdown, Button } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css";
 import "./options.css"
+import NewArticle from "./newArticle"
 
 
 const updateView = (updatedView: string) => {
   // console.log(updatedView)
   if (updatedView == "new") {
     return (
-      <h1>
-        Hello 
-      </h1>
+      <NewArticle />
     )
   } else if (updatedView == "update") {
     return (
@@ -28,8 +27,6 @@ const updateView = (updatedView: string) => {
     )
   }
  }
-
-
 
 const Options: React.FC<Record<string, never>> = () => {
   // tells us which option were on: 
