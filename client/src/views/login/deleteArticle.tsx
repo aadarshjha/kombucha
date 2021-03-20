@@ -51,6 +51,19 @@ const DeleteArticle: React.FC<Record<string, never>> = () => {
         }}
         scrollToFirstError
       >
+          <Form.Item
+          name="article"
+          label="Article ID"
+          rules={[
+            {
+              required: true,
+              message: "Enter Article ID",
+            },
+          ]}
+          hasFeedback
+        >
+          <Input />
+        </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
             Submit Article
