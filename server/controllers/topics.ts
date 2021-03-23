@@ -5,6 +5,9 @@ import Topic from "../models/topic";
 // import Article from "../models/article";
 
 // export const createGet = (req, res, next) => {};
+
+//TODO: MODEL THIS AFTER THE EVENTS HANDLERS BECAUSE ERROR HANDLING DOESN'T EXIST RIGHT NOW
+
 interface controller {
   (
     req: Express.Request,
@@ -22,7 +25,7 @@ export const list: controller = (_req, res, next) => {
   });
 };
 
-export const createPut: controller = async (req, res, next) => {
+export const create: controller = async (req, res, next) => {
   const topic = new Topic({
     name: req.body.name,
   });
@@ -33,7 +36,7 @@ export const createPut: controller = async (req, res, next) => {
   res.send(`Successfully created new topic: ${req.body.name}\n`);
 };
 
-export const updatePatch: controller = async (req, res, next) => {
+export const update: controller = async (req, res, next) => {
   const oldName = req.params.name;
   const newName = req.body.name;
   Topic.findOneAndUpdate({ name: oldName }, { name: newName }).exec(

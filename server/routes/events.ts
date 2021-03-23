@@ -1,37 +1,26 @@
 import express from "express";
-import * as eventController from "../controllers/eventController";
+import * as eventController from "../controllers/events";
 
 const eventRouter = express.Router();
 
-// here we define all the routes: 
+// here we define all the routes:
 
-// get request 
-// this will return all the events. 
-eventRouter.get("/", eventController.list)
-
+// GET request: this will return all the events.
+eventRouter.get("/", eventController.list);
 
 // POST request for creating new topic
+eventRouter.put("/create", eventController.create);
 
-eventRouter.post("/create", eventController.createPost);
+// // GET request to delete topic
+// eventRouter.get("/:id/delete", eventController.removeGet);
 
+// // POST request to delete topic
+eventRouter.delete("/:id/delete", eventController.remove);
 
+// // GET request to update topic
+// eventRouter.get("/:id/update", eventController.updateGet);
 
-// GET request to delete topic
-eventRouter.get("/:id/delete", eventController.deleteGet);
-
-
-
-// POST request to delete topic
-eventRouter.post("/:id/delete", eventController.deletePost);
-
-
-// GET request to update topic
-eventRouter.get("/:id/update", eventController.updateGet);
-
-
-
-// POST request to update topic
-eventRouter.post("/:id/update", eventController.updatePost);
-
+// // POST request to update topic
+eventRouter.patch("/:id/update", eventController.update);
 
 export default eventRouter;

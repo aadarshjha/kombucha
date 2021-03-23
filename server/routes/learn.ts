@@ -1,6 +1,6 @@
 import express from "express";
 // controller modules
-import * as topicController from "../controllers/topicController";
+import * as topicController from "../controllers/topics";
 // import articleController from "../controllers/articleController";
 // import authorController from "../controllers/authorController";
 
@@ -11,7 +11,7 @@ const learnRouter = express.Router();
 /* TOPIC ROUTES */
 
 // PUT request for creating new topic
-learnRouter.put("/topic/create", topicController.createPut);
+learnRouter.put("/topic/create", topicController.create);
 
 // // GET request to delete topic
 // learnRouter.get("/topic/:id/delete", topicController.deleteGet);
@@ -23,7 +23,7 @@ learnRouter.put("/topic/create", topicController.createPut);
 // learnRouter.get("/topic/:id/update", topicController.updateGet);
 
 // // PATCH request to update topic
-learnRouter.patch("/topic/:name/update", topicController.updatePatch);
+learnRouter.patch("/topic/:name/update", topicController.update);
 
 // // GET all articles in topic
 // learnRouter.get("/topic/:id", topicController.contentsGet);
