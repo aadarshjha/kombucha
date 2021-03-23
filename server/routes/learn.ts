@@ -23,7 +23,7 @@ learnRouter.put("/topic/create", topicController.createPut);
 // learnRouter.get("/topic/:id/update", topicController.updateGet);
 
 // // PATCH request to update topic
-// learnRouter.patch("/topic/:id/update", topicController.updateput);
+learnRouter.patch("/topic/:name/update", topicController.updatePatch);
 
 // // GET all articles in topic
 // learnRouter.get("/topic/:id", topicController.contentsGet);
