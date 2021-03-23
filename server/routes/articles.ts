@@ -1,8 +1,8 @@
-import express from "express";
-import { getPosts } from '../controllers/articles.ts"';
+// import express from "express";
+// import { getPosts } from '../controllers/articles.ts"';
 
-const router = express.Router();
+// const router = express.Router();
 
-router.get("/", getArticles);
+// router.get("/", getArticles);
 
-export default router;
+// export default router;
