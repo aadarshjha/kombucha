@@ -1,80 +1,80 @@
 import express from "express";
 // controller modules
-import topicController from "../controllers/topicController";
-import articleController from "../controllers/articleController";
-import authorController from "../controllers/authorController";
+import * as topicController from "../controllers/topics";
+// import articleController from "../controllers/articleController";
+// import authorController from "../controllers/authorController";
 
-const router = express.Router();
+const learnRouter = express.Router();
 
 // TODO: implement lol
 
 /* TOPIC ROUTES */
 
-// POST request for creating new topic
-router.post("/topic/create", topicController.createGet);
+// PUT request for creating new topic
+learnRouter.put("/topic/create", topicController.create);
 
-// GET request to delete topic
-router.get("/topic/:id/delete", topicController.deleteGet);
+// // GET request to delete topic
+// learnRouter.get("/topic/:id/delete", topicController.deleteGet);
 
-// POST request to delete topic
-router.get("/topic/:id/delete", topicController.deletePost);
+// // DELETE request to delete topic
+// learnRouter.delete("/topic/:id/delete", topicController.deleteput);
 
-// GET request to update topic
-router.get("/topic/:id/update", topicController.updateGet);
+// // GET request to update topic
+// learnRouter.get("/topic/:id/update", topicController.updateGet);
 
-// POST request to update topic
-router.get("/topic/:id/update", topicController.updatePost);
+// // PATCH request to update topic
+learnRouter.patch("/topic/:name/update", topicController.update);
 
-// GET all articles in topic
-router.get("/topic/:id", topicController.contentsGet);
+// // GET all articles in topic
+// learnRouter.get("/topic/:id", topicController.contentsGet);
 
 //GET request for all topics
-router.get("/topics", topicController.list);
+learnRouter.get("/topics", topicController.list);
 
-/* ARTICLE ROUTES */
+// /* ARTICLE ROUTES */
 
-// POST request for creating new article
-router.post("/article/create", articleController.createGet);
+// // PUT request for creating new article
+// learnRouter.put("/article/create", articleController.createGet);
 
-// GET request to delete article
-router.get("/article/:id/delete", articleController.deleteGet);
+// // GET request to delete article
+// learnRouter.get("/article/:id/delete", articleController.deleteGet);
 
-// POST request to delete article
-router.get("/article/:id/delete", articleController.deletePost);
+// // PUT request to delete article
+// learnRouter.delete("/article/:id/delete", articleController.deleteput);
 
-// GET request to update article
-router.get("/article/:id/update", articleController.updateGet);
+// // GET request to update article
+// learnRouter.get("/article/:id/update", articleController.updateGet);
 
-// POST request to update article
-router.get("/article/:id/update", articleController.updatePost);
+// // PATCH request to update article
+// learnRouter.patch("/article/:id/update", articleController.updateput);
 
-// GET contents of article
-router.get("/article/:id", articleController.contentsGet);
+// // GET contents of article
+// learnRouter.get("/article/:id", articleController.contentsGet);
 
-//GET request for all articles
-router.get("/articles", articleController.list);
+// //GET request for all articles
+// learnRouter.get("/articles", articleController.list);
 
-/* AUTHOR ROUTES */
+// /* AUTHOR ROUTES */
 
-// POST request for creating new author
-router.post("/author/create", authorController.createGet);
+// // PUT request for creating new author
+// learnRouter.put("/author/create", authorController.createGet);
 
-// GET request to delete author
-router.get("/author/:id/delete", authorController.deleteGet);
+// // GET request to delete author
+// learnRouter.get("/author/:id/delete", authorController.deleteGet);
 
-// POST request to delete author
-router.get("/author/:id/delete", authorController.deletePost);
+// // DELETE request to delete author
+// learnRouter.delete("/author/:id/delete", authorController.deleteput);
 
-// GET request to update author
-router.get("/author/:id/update", authorController.updateGet);
+// // GET request to update author
+// learnRouter.get("/author/:id/update", authorController.updateGet);
 
-// POST request to update author
-router.get("/author/:id/update", authorController.updatePost);
+// // PATCH request to update author
+// learnRouter.patch("/author/:id/update", authorController.updateput);
 
-// GET all articles in author
-router.get("/author/:id", authorController.contentsGet);
+// // GET all articles in author
+// learnRouter.get("/author/:id", authorController.contentsGet);
 
-//GET request for all authors
-router.get("/authors", authorController.list);
+// //GET request for all authors
+// learnRouter.get("/authors", authorController.list);
 
-export default router;
+export default learnRouter;
