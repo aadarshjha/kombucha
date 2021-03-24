@@ -4,65 +4,65 @@ import Event from "../models/events";
 import Express from "express";
 // import { CallbackError } from "mongoose";
 interface controller {
-  (
-    req: Express.Request,
-    res: Express.Response,
-    next: (err: Error) => void
-  ): void;
+    (
+        req: Express.Request,
+        res: Express.Response,
+        next: (err: Error) => void
+    ): void;
 }
 
 export const list: controller = (_req, res, next) => {
-  Event.find({}).exec((err: Error, events: unknown[]) => {
-    if (err) {
-      next(err);
-    }
-    res.json(events);
-  });
+    Event.find({}).exec((err: Error, events: unknown[]) => {
+        if (err) {
+            next(err);
+        }
+        res.json(events);
+    });
 };
 
 export const create: controller = async (req, res, next) => {
-  try {
-    // Only create new event if the title doesn't exist already
-    if (await Event.findOne({ title: req.body.title })) {
-      res.send(`Event named ${req.body.title} already exists.\n`);
-    } else {
-      await Event.create({
-        title: req.body.title,
-        image: req.body.imageString,
-        body: req.body.body,
-      });
-      res.send(`Successfully created new event: ${req.body.title}\n`);
+    try {
+        // Only create new event if the title doesn't exist already
+        if (await Event.findOne({ title: req.body.title })) {
+            res.send(`Event named ${req.body.title} already exists.\n`);
+        } else {
+            await Event.create({
+                title: req.body.title,
+                image: req.body.imageString,
+                body: req.body.body,
+            });
+            res.send(`Successfully created new event: ${req.body.title}\n`);
+        }
+    } catch (err) {
+        next(err);
+        res.send(
+            "Creating new event failed. Maybe check to see that all fields are included.\n"
+        );
     }
-  } catch (err) {
-    next(err);
-    res.send(
-      "Creating new event failed. Maybe check to see that all fields are included.\n"
-    );
-  }
 };
 
 export const remove: controller = async (req, res, next) => {
-  try {
-    const deletedEvent = await Event.findByIdAndDelete(req.params.id);
-    res.send(`Successfully deleted event titled ${deletedEvent.title}\n`);
-  } catch (err) {
-    next(err);
-    res.send("Deleting event failed. Maybe check that you got the ID right.\n");
-  }
+    try {
+        const deletedEvent = await Event.findByIdAndDelete(req.params.id);
+        res.send(`Successfully deleted event titled ${deletedEvent.title}\n`);
+    } catch (err) {
+        next(err);
+        res.send("Deleting event failed. Maybe check that you got the ID right.\n");
+    }
 };
 
 export const update: controller = async (req, res, next) => {
-  try {
-    const updatedEvent = await Event.findByIdAndUpdate(req.params.id, {
-      $set: req.body,
-    });
-    res.send(`Successfully updated event with ID: ${updatedEvent._id}\n`);
-  } catch (err) {
-    next(err);
-    res.send(
-      "Updating event failed. Maybe check that you got the ID and event fields right.\n"
-    );
-  }
+    try {
+        const updatedEvent = await Event.findByIdAndUpdate(req.params.id, {
+            $set: req.body,
+        });
+        res.send(`Successfully updated event with ID: ${updatedEvent._id}\n`);
+    } catch (err) {
+        next(err);
+        res.send(
+            "Updating event failed. Maybe check that you got the ID and event fields right.\n"
+        );
+    }
 };
 // export const deleteGet = async (req: any, res: any) => {
 //   const { id } = req.params;
