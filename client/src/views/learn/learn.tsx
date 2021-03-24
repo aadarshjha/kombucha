@@ -5,9 +5,6 @@ import "./learn.css";
 import Articles from "./articles";
 import { Button } from "antd";
 
-// FETCHING THE DATA WILL GO HERE!
-// we can simple filter here
-
 type stateObject = {
   isLearning: boolean;
   setLearning: any;
@@ -89,7 +86,42 @@ const dataFromBackend: Array<backendData> = [
     body:
       "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "hard",
-    category: "Research Methods For The Microbiome",
+    category: "Bacteria",
+  },
+  {
+    header: "This is the title of the article",
+    body:
+      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+    difficulty: "hard",
+    category: "Bacteria",
+  },
+  {
+    header: "This is the title of the article",
+    body:
+      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+    difficulty: "hard",
+    category: "Bacteria",
+  },
+  {
+    header: "This is the title of the article",
+    body:
+      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+    difficulty: "hard",
+    category: "Bacteria",
+  },
+  {
+    header: "This is the title of the article",
+    body:
+      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+    difficulty: "hard",
+    category: "Bacteria",
+  },
+  {
+    header: "This is the title of the article",
+    body:
+      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+    difficulty: "hard",
+    category: "Bacteria",
   },
 ];
 
@@ -126,11 +158,13 @@ const fetchArticles = () => {
 const userView = (viewState: stateObject) => {
   const data = fetchCategories();
   const articles = fetchArticles();
-  console.log(articles);
   if (viewState.isLearning) {
     return (
       <div>
-        <Articles articles={articles} />
+        <div>
+          <Articles articles={articles} />
+          {/* <ArticleDisplay /> */}
+        </div>
         <Button
           onClick={() => {
             viewState.setLearning(!viewState.isLearning);
