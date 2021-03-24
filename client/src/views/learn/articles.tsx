@@ -14,8 +14,6 @@ type catProps = {
 };
 
 const Articles: React.FC<catProps> = ({ articles }: catProps) => {
-  console.log(">>>");
-  console.log(articles);
   return (
     <div className="flex">
       <div className="left">
