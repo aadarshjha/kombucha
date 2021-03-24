@@ -1,6 +1,6 @@
 import React from "react";
 import "./articles.css";
-import { Card, List } from "antd";
+import { List } from "antd";
 
 type backendData = {
   header: string;
@@ -30,10 +30,13 @@ const Articles: React.FC<catProps> = ({ articles }: catProps) => {
       <div className="right">
         {/* This is dynamically loaded based on what is selected */}
         <div>
-          <h1>This Is the Current Article Title</h1>
+          <h1>
+            This Is the Current Article Title And Its Really Long Lets Go Yeah I
+            Like Cheese
+          </h1>
         </div>
         <div>
-          <p>
+          <span>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -132,7 +135,7 @@ const Articles: React.FC<catProps> = ({ articles }: catProps) => {
             esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
             cupidatat non proident, sunt in culpa qui officia deserunt mollit
             anim id est laborum
-          </p>
+          </span>
         </div>
       </div>
     </div>

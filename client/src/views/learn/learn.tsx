@@ -91,7 +91,42 @@ const dataFromBackend: Array<backendData> = [
     body:
       "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "hard",
-    category: "Research Methods For The Microbiome",
+    category: "Bacteria",
+  },
+  {
+    header: "This is the title of the article",
+    body:
+      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+    difficulty: "hard",
+    category: "Bacteria",
+  },
+  {
+    header: "This is the title of the article",
+    body:
+      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+    difficulty: "hard",
+    category: "Bacteria",
+  },
+  {
+    header: "This is the title of the article",
+    body:
+      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+    difficulty: "hard",
+    category: "Bacteria",
+  },
+  {
+    header: "This is the title of the article",
+    body:
+      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+    difficulty: "hard",
+    category: "Bacteria",
+  },
+  {
+    header: "This is the title of the article",
+    body:
+      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+    difficulty: "hard",
+    category: "Bacteria",
   },
 ];
 
