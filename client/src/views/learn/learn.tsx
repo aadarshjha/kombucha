@@ -3,7 +3,9 @@ import Logo from "../../components/Logo";
 import Category from "./category";
 import "./learn.css";
 import Articles from "./articles";
+import AritcleDisplay from "./articleDisplay";
 import { Button } from "antd";
+import ArticleDisplay from "./articleDisplay";
 
 // FETCHING THE DATA WILL GO HERE!
 // we can simple filter here
@@ -126,11 +128,13 @@ const fetchArticles = () => {
 const userView = (viewState: stateObject) => {
   const data = fetchCategories();
   const articles = fetchArticles();
-  console.log(articles);
   if (viewState.isLearning) {
     return (
       <div>
-        <Articles articles={articles} />
+        <div>
+          <Articles articles={articles} />
+          {/* <ArticleDisplay /> */}
+        </div>
         <Button
           onClick={() => {
             viewState.setLearning(!viewState.isLearning);

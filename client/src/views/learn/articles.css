@@ -1,8 +1,12 @@
 .flex {
     display: flex;
     flex-direction: row;
+}
 
-
+.articleFlex {
+    background-color: red; 
+    display: flex;
+    flex-direction: row;
 }
 
 .left {
@@ -10,16 +14,22 @@
     width: 100%;
     flex: 1;
     padding: 0;
+    background-color: blue; 
 }
 
 .right {
     height: 94.9vh;
     width: 100%;
     flex: 3;
+    background-color: red; 
 }
 
+.right > div {
+    width: 100%;
+    background-color: green; 
+}
 .test {
-    background-color: red; 
+    /* background-color: red;  */
     margin-bottom: 5px;
     margin-top: 5px;
     display: flex;
