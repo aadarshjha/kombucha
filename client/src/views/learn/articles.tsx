@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import "./articles.css";
-import { Menu } from "antd";
+import { Button, Menu } from "antd";
 
 const { SubMenu } = Menu;
 
@@ -11,11 +11,17 @@ type backendData = {
   category: string;
 };
 
-type catProps = {
-  articles: Array<backendData>;
+type stateObject = {
+  isLearning: boolean;
+  setLearning: any;
 };
 
-const Articles: React.FC<catProps> = ({ articles }: catProps) => {
+type catProps = {
+  articles: Array<backendData>, 
+  state: stateObject;
+};
+
+const Articles: React.FC<catProps> = ({ articles, state }: catProps) => {
   const [articleTitle, setArticleTitle] = useState(articles[0].header);
   const [articleText, setArticleText] = useState(articles[0].body);
 
@@ -45,15 +51,22 @@ const Articles: React.FC<catProps> = ({ articles }: catProps) => {
             })}
           </SubMenu>
         </Menu>
-        {/* <List
-          bordered
-          dataSource={articles}
-          renderItem={(item) => (
-            <List.Item>
-              <h4>{item.header}</h4>
-            </List.Item>
-          )}
-        /> */}
+        <div
+          style={{
+            backgroundColor: "red",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center"
+          }}
+          >
+          <Button
+          onClick={() => {
+            state.setLearning(!state.isLearning);
+          }}
+        >
+          Back
+        </Button>
+          </div>
       </div>
       <div className="right">
         {/* This is dynamically loaded based on what is selected */}

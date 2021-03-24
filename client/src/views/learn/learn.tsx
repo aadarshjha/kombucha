@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Logo from "../../components/Logo";
 import Category from "./category";
 import "./learn.css";
+import "./articles.css"
 import Articles from "./articles";
 import { Button } from "antd";
 
@@ -161,17 +162,7 @@ const userView = (viewState: stateObject) => {
   if (viewState.isLearning) {
     return (
       <div>
-        <div>
-          <Articles articles={articles} />
-          {/* <ArticleDisplay /> */}
-        </div>
-        <Button
-          onClick={() => {
-            viewState.setLearning(!viewState.isLearning);
-          }}
-        >
-          Toggle View
-        </Button>
+          <Articles articles={articles} state={viewState} /> 
       </div>
     );
   } else {
