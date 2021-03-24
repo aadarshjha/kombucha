@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "antd";
+import Articles from "./articles";
 
 // or import types. FIXME in a optimzation / re write.
 type backendData = {
@@ -12,6 +13,10 @@ type backendData = {
 type stateObject = {
   isLearning: boolean;
   setLearning: any;
+  articleCategory: string;
+  setarticleCategory: any;
+  articleDifficulty: string;
+  setarticleDifficulty: any;
 };
 
 type catProps = {
@@ -40,6 +45,17 @@ const Category: React.FC<catProps> = ({
   state,
 }: catProps) => {
   const uniqueList = fetchUniqueCategories(categories);
+
+  const fetchArticles = (list: Array<backendData>, elementCategory: string) => {
+    const returnedArticles: Array<backendData> = [];
+    list.map((element) => {
+      if (element.category == elementCategory) {
+        returnedArticles.push(element);
+      }
+    });
+    return returnedArticles;
+  };
+
   return (
     //   we can demonstrate all easy, medium, hard categories
     <div className="highLevel">
@@ -52,6 +68,8 @@ const Category: React.FC<catProps> = ({
                 type="primary"
                 className="buttonPadding"
                 onClick={() => {
+                  state.setarticleCategory(element);
+                  state.setarticleDifficulty(difficulty);
                   state.setLearning(!state.isLearning);
                 }}
               >

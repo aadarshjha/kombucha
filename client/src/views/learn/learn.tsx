@@ -8,6 +8,10 @@ import { Button } from "antd";
 type stateObject = {
   isLearning: boolean;
   setLearning: any;
+  articleCategory: string;
+  setarticleCategory: any;
+  articleDifficulty: string;
+  setarticleDifficulty: any;
 };
 
 type backendData = {
@@ -19,107 +23,107 @@ type backendData = {
 
 const dataFromBackend: Array<backendData> = [
   {
-    header: "This is the title of the article",
+    header: "Bacteria Easy 1",
     body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "Bacteria Easy 1 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "easy",
     category: "Bacteria",
   },
   {
-    header: "This is the title of the article #2",
+    header: "Bacteria Easy 2",
     body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "Bacteria Easy 2 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "easy",
     category: "Bacteria",
   },
   {
-    header: "This is the title of the article",
+    header: "Virus Easy 1 -- This is the title of the article",
     body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "Virus Easy 1 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "easy",
     category: "Viruses",
   },
   {
-    header: "This is the title of the article",
+    header: "Fungi Easy 1 -- This is the title of the article",
     body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "Fungi 1 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "easy",
     category: "Fungi",
   },
   {
-    header: "This is the title of the article",
+    header: "HM Medium 1 -- This is the title of the article",
     body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "HM 1 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "medium",
     category: "Human Microbiome",
   },
   {
-    header: "This is the title of the article",
+    header: "Dybiosis Medium 1 -- This is the title of the article",
     body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "Dybiosis 1 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "medium",
     category: "Dybiosis",
   },
   {
-    header: "This is the title of the article",
+    header: "DAWM Medium 1 -- This is the title of the article",
     body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "DAWM 1 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "medium",
     category: "Diseases Associated With The Microbiome",
   },
   {
-    header: "This is the title of the article",
+    header: "CR Hard 1 -- This is the title of the article",
     body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "CR Hard 1 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "hard",
     category: "Current Research",
   },
   {
-    header: "This is the title of the article",
+    header: "Metagenomics Hard 1 -- This is the title of the article",
     body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "Metagenomics Hard 1 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "hard",
     category: "Metagenomics",
   },
   {
-    header: "This is the title of the article",
+    header: "Bacteria Hard 1 -- This is the title of the article",
     body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "Bacteria Hard 1 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "hard",
     category: "Bacteria",
   },
   {
-    header: "This is the title of the article",
+    header: "Bacteria Hard 2 -- This is the title of the article",
     body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "Bacteria Hard 2 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "hard",
     category: "Bacteria",
   },
   {
-    header: "This is the title of the article",
+    header: "Bacteria Hard 3 -- This is the title of the article",
     body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "Bacteria Hard 3 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "hard",
     category: "Bacteria",
   },
   {
-    header: "This is the title of the article",
+    header: "Bacteria Hard 4 -- This is the title of the article",
     body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "Bacteria Hard 4 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "hard",
     category: "Bacteria",
   },
   {
-    header: "This is the title of the article",
+    header: "Bacteria Hard 5 -- This is the title of the article",
     body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "Bacteria Hard 5 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "hard",
     category: "Bacteria",
   },
   {
-    header: "This is the title of the article",
+    header: "Bacteria Hard 6 -- This is the title of the article",
     body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "Bacteria Hard 6 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "hard",
     category: "Bacteria",
   },
@@ -145,10 +149,10 @@ const fetchCategories = () => {
   };
 };
 
-const fetchArticles = () => {
+const fetchArticles = (elementCategory: string, elementDifficulty: string) => {
   const returnedArticles: Array<backendData> = [];
   dataFromBackend.map((element) => {
-    if (element.category == "Bacteria") {
+    if (element.category == elementCategory && element.difficulty == elementDifficulty) {
       returnedArticles.push(element);
     }
   });
@@ -157,12 +161,12 @@ const fetchArticles = () => {
 
 const userView = (viewState: stateObject) => {
   const data = fetchCategories();
-  const articles = fetchArticles();
+  //const articles = fetchArticles("Bacteria");
   if (viewState.isLearning) {
     return (
       <div>
         <div>
-          <Articles articles={articles} />
+          <Articles articles={fetchArticles(viewState.articleCategory, viewState.articleDifficulty)} />
           {/* <ArticleDisplay /> */}
         </div>
         <Button
@@ -170,7 +174,7 @@ const userView = (viewState: stateObject) => {
             viewState.setLearning(!viewState.isLearning);
           }}
         >
-          Toggle View
+          Back
         </Button>
       </div>
     );
@@ -180,7 +184,6 @@ const userView = (viewState: stateObject) => {
         <Logo page="Learn With VUMS" />
         <div className="categories">
           {/* spread the state when we click the button */}
-
           {/* easy */}
           <Category
             difficulty={"easy"}
@@ -200,13 +203,13 @@ const userView = (viewState: stateObject) => {
             state={viewState}
           />
         </div>
-        <Button
+        {/* <Button
           onClick={() => {
             viewState.setLearning(!viewState.isLearning);
           }}
         >
           Toggle View
-        </Button>
+        </Button> */}
       </div>
     );
   }
@@ -214,9 +217,15 @@ const userView = (viewState: stateObject) => {
 
 const Learn: React.FC<Record<string, never>> = () => {
   const [isLearning, setLearning] = useState(false);
+  const [articleCategory, setarticleCategory] = useState("Bacteria");
+  const [articleDifficulty, setarticleDifficulty] = useState("Easy");
   const viewState: stateObject = {
     isLearning: isLearning,
     setLearning: setLearning,
+    articleCategory: articleCategory,
+    setarticleCategory: setarticleCategory,
+    articleDifficulty: articleDifficulty,
+    setarticleDifficulty: setarticleDifficulty
   };
   const returnedView = userView(viewState);
   return <div>{returnedView}</div>;
