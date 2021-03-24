@@ -33,7 +33,7 @@ const Articles: React.FC<catProps> = ({ articles }: catProps) => {
           <SubMenu
             key="sub4"
             // icon={<SettingOutlined />}
-            title="Navigation Three"
+            title="Articles"
           >
             {articles.map((element, i) => {
               return <Menu.Item key={i}>{element.header}</Menu.Item>;
