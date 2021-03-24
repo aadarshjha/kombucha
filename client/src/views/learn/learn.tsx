@@ -3,12 +3,7 @@ import Logo from "../../components/Logo";
 import Category from "./category";
 import "./learn.css";
 import Articles from "./articles";
-import AritcleDisplay from "./articleDisplay";
 import { Button } from "antd";
-import ArticleDisplay from "./articleDisplay";
-
-// FETCHING THE DATA WILL GO HERE!
-// we can simple filter here
 
 type stateObject = {
   isLearning: boolean;

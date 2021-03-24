@@ -1,6 +1,8 @@
 import React from "react";
 import "./articles.css";
-import { List } from "antd";
+import { Menu } from "antd";
+
+const { SubMenu } = Menu;
 
 type backendData = {
   header: string;
@@ -13,11 +15,32 @@ type catProps = {
   articles: Array<backendData>;
 };
 
+const handleClick = (e: any) => {
+  console.log("click", e);
+};
+
 const Articles: React.FC<catProps> = ({ articles }: catProps) => {
   return (
     <div className="flex">
       <div className="left">
-        <List
+        <Menu
+          onClick={handleClick}
+          style={{ width: 256 }}
+          defaultSelectedKeys={["1"]}
+          defaultOpenKeys={["sub4"]}
+          mode="inline"
+        >
+          <SubMenu
+            key="sub4"
+            // icon={<SettingOutlined />}
+            title="Navigation Three"
+          >
+            {articles.map((element, i) => {
+              return <Menu.Item key={i}>{element.header}</Menu.Item>;
+            })}
+          </SubMenu>
+        </Menu>
+        {/* <List
           bordered
           dataSource={articles}
           renderItem={(item) => (
@@ -25,7 +48,7 @@ const Articles: React.FC<catProps> = ({ articles }: catProps) => {
               <h4>{item.header}</h4>
             </List.Item>
           )}
-        />
+        /> */}
       </div>
       <div className="right">
         {/* This is dynamically loaded based on what is selected */}
