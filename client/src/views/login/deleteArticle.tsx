@@ -53,11 +53,11 @@ const DeleteArticle: React.FC<Record<string, never>> = () => {
       >
         <Form.Item
           name="article"
-          label="Article ID"
+          label="Article Name"
           rules={[
             {
               required: true,
-              message: "Enter Article ID",
+              message: "Enter Article Name",
             },
           ]}
           hasFeedback

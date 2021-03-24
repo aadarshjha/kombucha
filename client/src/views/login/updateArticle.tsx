@@ -50,7 +50,7 @@ const UpdateArticle: React.FC<Record<string, never>> = () => {
         }}
         scrollToFirstError
       >
-        <Form.Item
+        {/* <Form.Item
           name="article"
           label="Article ID"
           rules={[
@@ -62,7 +62,7 @@ const UpdateArticle: React.FC<Record<string, never>> = () => {
           hasFeedback
         >
           <Input />
-        </Form.Item>
+        </Form.Item> */}
 
         <Form.Item
           name="header"
