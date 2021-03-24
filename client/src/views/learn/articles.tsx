@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./articles.css";
 import { Button, Menu } from "antd";
 
@@ -17,7 +17,7 @@ type stateObject = {
 };
 
 type catProps = {
-  articles: Array<backendData>, 
+  articles: Array<backendData>;
   state: stateObject;
 };
 
@@ -41,11 +41,7 @@ const Articles: React.FC<catProps> = ({ articles, state }: catProps) => {
           defaultOpenKeys={["sub4"]}
           mode="inline"
         >
-          <SubMenu
-            key="sub4"
-            // icon={<SettingOutlined />}
-            title="Articles"
-          >
+          <SubMenu key="sub4" title="Articles">
             {articles.map((element, i) => {
               return <Menu.Item key={i}>{element.header}</Menu.Item>;
             })}
@@ -53,32 +49,28 @@ const Articles: React.FC<catProps> = ({ articles, state }: catProps) => {
         </Menu>
         <div
           style={{
-            backgroundColor: "red",
+            paddingTop: "5px",
             display: "flex",
             flexDirection: "row",
-            justifyContent: "center"
-          }}
-          >
-          <Button
-          onClick={() => {
-            state.setLearning(!state.isLearning);
+            justifyContent: "center",
           }}
         >
-          Back
-        </Button>
-          </div>
+          <Button
+            onClick={() => {
+              state.setLearning(!state.isLearning);
+            }}
+          >
+            Back
+          </Button>
+        </div>
       </div>
       <div className="right">
         {/* This is dynamically loaded based on what is selected */}
         <div>
-          <h1>
-            {articleTitle}
-          </h1>
+          <h1>{articleTitle}</h1>
         </div>
         <div>
-          <span>
-            {articleText}
-          </span>
+          <span>{articleText}</span>
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Logo from "../../components/Logo";
 import Category from "./category";
 import "./learn.css";
-import "./articles.css"
+import "./articles.css";
 import Articles from "./articles";
 import { Button } from "antd";
 
@@ -105,22 +105,19 @@ const dataFromBackend: Array<backendData> = [
   },
   {
     header: "bruh moment",
-    body:
-      "YEEETT.",
+    body: "YEEETT.",
     difficulty: "hard",
     category: "Bacteria",
   },
   {
     header: "yeet yeet yeet",
-    body:
-      "Jha",
+    body: "Jha",
     difficulty: "hard",
     category: "Bacteria",
   },
   {
     header: "am i cool yet",
-    body:
-      "aadarsh ",
+    body: "aadarsh ",
     difficulty: "hard",
     category: "Bacteria",
   },
@@ -162,7 +159,7 @@ const userView = (viewState: stateObject) => {
   if (viewState.isLearning) {
     return (
       <div>
-          <Articles articles={articles} state={viewState} /> 
+        <Articles articles={articles} state={viewState} />
       </div>
     );
   } else {
@@ -196,7 +193,7 @@ const userView = (viewState: stateObject) => {
             viewState.setLearning(!viewState.isLearning);
           }}
         >
-          Toggle View
+          {/* Toggle View */}
         </Button>
       </div>
     );
