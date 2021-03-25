@@ -164,19 +164,7 @@ const userView = (viewState: stateObject) => {
   //const articles = fetchArticles("Bacteria");
   if (viewState.isLearning) {
     return (
-      <div>
-        <div>
-          <Articles articles={fetchArticles(viewState.articleCategory, viewState.articleDifficulty)} />
-          {/* <ArticleDisplay /> */}
-        </div>
-        <Button
-          onClick={() => {
-            viewState.setLearning(!viewState.isLearning);
-          }}
-        >
-          Back
-        </Button>
-      </div>
+      <Articles articles={fetchArticles(viewState.articleCategory, viewState.articleDifficulty)} state={viewState}/>
     );
   } else {
     return (
