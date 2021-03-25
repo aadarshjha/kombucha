@@ -3,28 +3,19 @@ import React from "react";
 // import { Menu, Dropdown, Button } from "antd";
 import "antd/dist/antd.css";
 import "./options.css";
-import { Form, Input, Button, Upload, message  } from "antd";
-import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
-
-const props = {
-    name: 'file',
-    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-    headers: {
-      authorization: 'authorization-text',
-    },
-    onChange(info: any) {
-      if (info.file.status !== 'uploading') {
-        console.log(info.file, info.fileList);
-      }
-      if (info.file.status === 'done') {
-        message.success(`${info.file.name} file uploaded successfully`);
-      } else if (info.file.status === 'error') {
-        message.error(`${info.file.name} file upload failed.`);
-      }
-    },
-  };
+import { Form, Input, Button, Upload, message, Alert } from "antd";
+import { UploadOutlined, InboxOutlined } from "@ant-design/icons";
+import axios from "axios";
 
 const { TextArea } = Input;
+
+const normFile = (e: any) => {
+  console.log("Upload event:", e);
+  if (Array.isArray(e)) {
+    return e;
+  }
+  return e && e.fileList;
+};
 
 const formItemLayout = {
   labelCol: {
@@ -51,11 +42,21 @@ const tailFormItemLayout = {
 
 const AddEvent: React.FC<Record<string, never>> = () => {
   const [form] = Form.useForm();
-
+  //   title: req.body.title,
+  //   image: req.body.imageString,
+  //   body: req.body.body,
   const onFinish = (values: any) => {
-    // console.log("Received values of form: ", values);
-    // PUT REQUEST HERE: 
-
+    axios.put(
+      "http://localhost:5000/events/create",
+      {
+        title: values.header,
+        imageString: "testFile",
+        body: values.body,
+      }).then(_response => {
+        alert("Reponse Saved!")
+      }).catch(_err => {
+          alert("Something Went Wrong!")
+      });
   };
 
   return (
@@ -86,6 +87,26 @@ const AddEvent: React.FC<Record<string, never>> = () => {
         </Form.Item>
 
         {/* an image upload will go here */}
+        <Form.Item label="Dragger">
+          <Form.Item
+            name="file"
+            valuePropName="fileList"
+            getValueFromEvent={normFile}
+            noStyle
+          >
+            <Upload.Dragger name="files" action="/upload.do">
+              <p className="ant-upload-drag-icon">
+                <InboxOutlined />
+              </p>
+              <p className="ant-upload-text">
+                Click or drag file to this area to upload
+              </p>
+              <p className="ant-upload-hint">
+                Support for a single or bulk upload.
+              </p>
+            </Upload.Dragger>
+          </Form.Item>
+        </Form.Item>
 
         <Form.Item
           name="body"
@@ -100,32 +121,6 @@ const AddEvent: React.FC<Record<string, never>> = () => {
         >
           <TextArea rows={4} />
         </Form.Item>
-
-        <Form.Item label="Dragger">
-        <Form.Item name="dragger" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
-          <Upload.Dragger name="files" action="/upload.do">
-            <p className="ant-upload-drag-icon">
-              <InboxOutlined />
-            </p>
-            <p className="ant-upload-text">Click or drag file to this area to upload</p>
-            <p className="ant-upload-hint">Support for a single or bulk upload.</p>
-          </Upload.Dragger>
-        </Form.Item>
-      </Form.Item>
-
-        {/* <Form.Item
-          name="category"
-          label="Category"
-          rules={[
-            {
-              required: true,
-              message: "Category",
-            },
-          ]}
-          hasFeedback
-        >
-          <Input />
-        </Form.Item> */}
 
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
