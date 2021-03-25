@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./articles.css";
 import { Menu } from "antd";
 import { Button } from "antd";
@@ -76,14 +76,10 @@ const Articles: React.FC<catProps> = ({ articles, state }: catProps) => {
       <div className="right">
         {/* This is dynamically loaded based on what is selected */}
         <div>
-          <h1>
-            {articleTitle}
-          </h1>
+          <h1>{articleTitle}</h1>
         </div>
         <div>
-          <span>
-            {articleText}
-          </span>
+          <span>{articleText}</span>
         </div>
       </div>
     </div>

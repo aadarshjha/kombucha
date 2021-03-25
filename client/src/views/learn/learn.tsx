@@ -152,7 +152,10 @@ const fetchCategories = () => {
 const fetchArticles = (elementCategory: string, elementDifficulty: string) => {
   const returnedArticles: Array<backendData> = [];
   dataFromBackend.map((element) => {
-    if (element.category == elementCategory && element.difficulty == elementDifficulty) {
+    if (
+      element.category == elementCategory &&
+      element.difficulty == elementDifficulty
+    ) {
       returnedArticles.push(element);
     }
   });
@@ -164,7 +167,13 @@ const userView = (viewState: stateObject) => {
   //const articles = fetchArticles("Bacteria");
   if (viewState.isLearning) {
     return (
-      <Articles articles={fetchArticles(viewState.articleCategory, viewState.articleDifficulty)} state={viewState}/>
+      <Articles
+        articles={fetchArticles(
+          viewState.articleCategory,
+          viewState.articleDifficulty
+        )}
+        state={viewState}
+      />
     );
   } else {
     return (
@@ -213,7 +222,7 @@ const Learn: React.FC<Record<string, never>> = () => {
     articleCategory: articleCategory,
     setarticleCategory: setarticleCategory,
     articleDifficulty: articleDifficulty,
-    setarticleDifficulty: setarticleDifficulty
+    setarticleDifficulty: setarticleDifficulty,
   };
   const returnedView = userView(viewState);
   return <div>{returnedView}</div>;
