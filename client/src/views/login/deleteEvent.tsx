@@ -40,21 +40,32 @@ const tailFormItemLayout = {
   },
 };
 
-const AddEvent: React.FC<Record<string, never>> = () => {
+const DeleteEvent: React.FC<Record<string, never>> = () => {
   const [form] = Form.useForm();
   const onFinish = (values: any) => {
-    axios
-      .put("http://localhost:5000/events/create", {
-        title: values.header,
-        imageString: "testFile",
-        body: values.body,
-      })
-      .then((_response) => {
-        alert("Reponse Saved!");
-      })
-      .catch((_err) => {
-        alert("Something Went Wrong!");
-      });
+    // get and then delete:
+    const title = values.header;
+    let id: string;
+    let data;
+    axios.get("http://localhost:5000/events").then((res) => {
+      let deleteID;
+      const data = res.data;
+
+      for (const element of data) {
+        if (element.title === title) {
+          axios
+            .delete(`http://localhost:5000/events/${element._id}/delete`)
+            .then((res) => {
+              alert("Deleted!");
+              return;
+            })
+            .catch((err) => {
+              alert("Something Went Wrong!");
+              return;
+            });
+        }
+      }
+    });
   };
 
   return (
@@ -84,45 +95,9 @@ const AddEvent: React.FC<Record<string, never>> = () => {
           <Input />
         </Form.Item>
 
-        {/* an image upload will go here */}
-        <Form.Item label="Dragger">
-          <Form.Item
-            name="file"
-            valuePropName="fileList"
-            getValueFromEvent={normFile}
-            noStyle
-          >
-            <Upload.Dragger name="files" action="/upload.do">
-              <p className="ant-upload-drag-icon">
-                <InboxOutlined />
-              </p>
-              <p className="ant-upload-text">
-                Click or drag file to this area to upload
-              </p>
-              <p className="ant-upload-hint">
-                Support for a single or bulk upload.
-              </p>
-            </Upload.Dragger>
-          </Form.Item>
-        </Form.Item>
-
-        <Form.Item
-          name="body"
-          label="Body"
-          rules={[
-            {
-              required: true,
-              message: "Enter Events Body",
-            },
-          ]}
-          hasFeedback
-        >
-          <TextArea rows={4} />
-        </Form.Item>
-
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
-            Submit Event
+            Delete Event
           </Button>
         </Form.Item>
       </Form>
@@ -130,4 +105,4 @@ const AddEvent: React.FC<Record<string, never>> = () => {
   );
 };
 
-export default AddEvent;
+export default DeleteEvent;
