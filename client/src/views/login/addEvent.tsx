@@ -3,7 +3,26 @@ import React from "react";
 // import { Menu, Dropdown, Button } from "antd";
 import "antd/dist/antd.css";
 import "./options.css";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Upload, message  } from "antd";
+import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
+
+const props = {
+    name: 'file',
+    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+    headers: {
+      authorization: 'authorization-text',
+    },
+    onChange(info: any) {
+      if (info.file.status !== 'uploading') {
+        console.log(info.file, info.fileList);
+      }
+      if (info.file.status === 'done') {
+        message.success(`${info.file.name} file uploaded successfully`);
+      } else if (info.file.status === 'error') {
+        message.error(`${info.file.name} file upload failed.`);
+      }
+    },
+  };
 
 const { TextArea } = Input;
 
@@ -34,7 +53,9 @@ const AddEvent: React.FC<Record<string, never>> = () => {
   const [form] = Form.useForm();
 
   const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
+    // console.log("Received values of form: ", values);
+    // PUT REQUEST HERE: 
+
   };
 
   return (
@@ -80,6 +101,18 @@ const AddEvent: React.FC<Record<string, never>> = () => {
           <TextArea rows={4} />
         </Form.Item>
 
+        <Form.Item label="Dragger">
+        <Form.Item name="dragger" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
+          <Upload.Dragger name="files" action="/upload.do">
+            <p className="ant-upload-drag-icon">
+              <InboxOutlined />
+            </p>
+            <p className="ant-upload-text">Click or drag file to this area to upload</p>
+            <p className="ant-upload-hint">Support for a single or bulk upload.</p>
+          </Upload.Dragger>
+        </Form.Item>
+      </Form.Item>
+
         {/* <Form.Item
           name="category"
           label="Category"
@@ -96,7 +129,7 @@ const AddEvent: React.FC<Record<string, never>> = () => {
 
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
-            Submit Article
+            Submit Event
           </Button>
         </Form.Item>
       </Form>
