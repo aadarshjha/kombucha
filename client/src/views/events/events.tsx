@@ -2,19 +2,17 @@ import React, { useState, useEffect } from "react";
 import Logo from "../../components/Logo";
 import { Card } from "antd";
 import "./events.css";
-import axios from 'axios';
+import axios from "axios";
 
 const { Meta } = Card;
-
 
 const Events: React.FC<Record<string, never>> = () => {
   const [eventData, setEvents] = useState([]);
 
   useEffect(() => {
     axios.get("http://localhost:5000/events").then((res) => {
-      setEvents(res.data)
-      // console.log
-    })
+      setEvents(res.data);
+    });
   }, []);
   return (
     <div className="centeredCards">
