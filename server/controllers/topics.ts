@@ -2,12 +2,12 @@
 import Express from "express";
 // import models
 import Topic from "../models/topic";
+import Article from "../models/article";
 // import Article from "../models/article";
 
 // export const createGet = (req, res, next) => {};
 
-//TODO: MODEL THIS AFTER THE EVENTS HANDLERS BECAUSE ERROR HANDLING DOESN'T EXIST RIGHT NOW
-
+//TODO: Handle delete with articles.
 interface controller {
   (
     req: Express.Request,
@@ -20,29 +20,80 @@ export const list: controller = (_req, res, next) => {
   Topic.find({}, "name").exec((err: Error, topicNames: string[]) => {
     if (err) {
       next(err);
+      res.send(`Failed to get topics. Please contact the boys.\n${err}\n`);
     }
     res.json(topicNames);
   });
 };
 
 export const create: controller = async (req, res, next) => {
-  const topic = new Topic({
-    name: req.body.name,
-  });
-  await topic.save((err: Error) => {
+  try {
+    // Only create new topic if the name doesn't exist already
+    if (await Topic.findOne({ name: req.body.name })) {
+      res.send(`Topic named ${req.body.name} already exists.\n`);
+    } else {
+      await Topic.create({
+        name: req.body.name,
+      });
+      res.send(`Successfully created new topic: ${req.body.name}\n`);
+    }
+  } catch (err) {
     next(err);
-  });
+    res.send(
+      `Creating new topic failed. Maybe check to see that all fields are included.\n${err}`
+    );
+  }
+};
 
-  res.send(`Successfully created new topic: ${req.body.name}\n`);
+export const remove: controller = async (req, res, next) => {
+  try {
+    // Remove all articles associated with the topic
+    await Article.deleteMany({ topic: req.params.id });
+  } catch (err) {
+    next(err);
+    res.send(
+      `Failed to delete all articles associated with topic with id: ${req.params.id}. Check to see that id is correct. Topic has not been deleted.\n${err}\n`
+    );
+  }
+  try {
+    // Remove the topic itself
+    const deletedTopic = await Topic.findByIdAndDelete(req.params.id);
+    res.send(
+      `Successfully deleted topic titled ${deletedTopic.name} and underlying articles.\n`
+    );
+  } catch (err) {
+    next(err);
+    res.send(
+      `Articles deleted successfully but deleting topic failed. Maybe check that you got the ID right.\n${err}\n`
+    );
+  }
 };
 
 export const update: controller = async (req, res, next) => {
-  const oldName = req.params.name;
-  const newName = req.body.name;
-  Topic.findOneAndUpdate({ name: oldName }, { name: newName }).exec(
-    (_: string, err: Error) => {
-      next(err);
-    }
-  );
-  res.send(`Successfully updated topic '${oldName}' to '${newName}'`);
+  try {
+    const updatedTopic = await Topic.findByIdAndUpdate(req.params.id, {
+      $set: req.body,
+    });
+    res.send(`Successfully updated event with ID: ${updatedTopic._id}\n`);
+  } catch (err) {
+    next(err);
+    res.send(
+      `Updating topic failed. Maybe check that you got the ID and topic fields right.\n${err}\n`
+    );
+  }
+};
+
+export const articles: controller = async (req, res, next) => {
+  Article.find({ topic: req.params.id })
+    .populate("author", "name")
+    .populate("topic", "name")
+    .exec((err: Error, articles: unknown[]) => {
+      if (err) {
+        next(err);
+        res.send(
+          `Failed to get the articles of this topic. Please contact the boys.\n${err}\n`
+        );
+      }
+      res.json(articles);
+    });
 };

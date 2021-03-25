@@ -9,10 +9,11 @@ Possibly useful things:
 */
 
 const ArticleSchema = new Schema({
-  title: { type: String, required: true },
-  author: { type: Schema.Types.ObjectId, ref: "Author", required: true },
-  dateUpdated: { type: Date, required: true },
-  topic: { type: Schema.Types.ObjectId, ref: "Topic", required: true },
+    title: { type: String, required: true },
+    author: { type: Schema.Types.ObjectId, ref: "Author", required: true },
+    dateUpdated: { type: Date, required: true },
+    topic: { type: Schema.Types.ObjectId, ref: "Topic", required: true },
+    content: { type: String, required: true }
 });
 
 // TODO: virtuals

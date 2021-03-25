@@ -15,6 +15,9 @@ export const list: controller = (_req, res, next) => {
   Event.find({}).exec((err: Error, events: unknown[]) => {
     if (err) {
       next(err);
+      res.send(
+        `Getting the list of events failed. Please contact the boys.\n${err}\n`
+      );
     }
     res.json(events);
   });
@@ -36,7 +39,7 @@ export const create: controller = async (req, res, next) => {
   } catch (err) {
     next(err);
     res.send(
-      "Creating new event failed. Maybe check to see that all fields are included.\n"
+      `Creating new event failed. Maybe check to see that all fields are included.\n${err}\n`
     );
   }
 };
@@ -47,7 +50,9 @@ export const remove: controller = async (req, res, next) => {
     res.send(`Successfully deleted event titled ${deletedEvent.title}\n`);
   } catch (err) {
     next(err);
-    res.send("Deleting event failed. Maybe check that you got the ID right.\n");
+    res.send(
+      `Deleting event failed. Maybe check that you got the ID right.\n${err}\n`
+    );
   }
 };
 
@@ -60,7 +65,7 @@ export const update: controller = async (req, res, next) => {
   } catch (err) {
     next(err);
     res.send(
-      "Updating event failed. Maybe check that you got the ID and event fields right.\n"
+      `Updating event failed. Maybe check that you got the ID and event fields right.\n${err}\n`
     );
   }
 };
