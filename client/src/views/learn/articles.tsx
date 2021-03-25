@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./articles.css";
-import { Button, Menu } from "antd";
+import { Menu } from "antd";
+import { Button } from "antd";
 
 const { SubMenu } = Menu;
 
@@ -14,6 +15,10 @@ type backendData = {
 type stateObject = {
   isLearning: boolean;
   setLearning: any;
+  articleCategory: string;
+  setarticleCategory: any;
+  articleDifficulty: string;
+  setarticleDifficulty: any;
 };
 
 type catProps = {
