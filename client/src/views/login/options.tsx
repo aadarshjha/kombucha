@@ -7,14 +7,23 @@ import "./options.css";
 import UpdateArticle from "./updateArticle";
 import NewArticle from "./newArticle";
 import DeleteArticle from "./deleteArticle";
+import AddEvent from "./addEvent";
+import DeleteEvent from "./deleteEvent";
+import UpdateEvent from "./updateEvent";
 
 const updateView = (updatedView: string) => {
   if (updatedView == "new") {
     return <NewArticle />;
   } else if (updatedView == "update") {
     return <UpdateArticle />;
-  } else {
+  } else if (updatedView == "delete") {
     return <DeleteArticle />;
+  } else if (updatedView == "addEvent") {
+    return <AddEvent />;
+  } else if (updatedView == "deleteEvent") {
+    return <DeleteEvent />;
+  } else if (updatedView == "updateEvent") {
+    return <UpdateEvent />;
   }
 };
 
@@ -49,6 +58,36 @@ const Options: React.FC<Record<string, never>> = () => {
       >
         <a target="_blank" rel="noopener noreferrer">
           Delete Article
+        </a>
+      </Menu.Item>
+
+      <Menu.Item
+        onClick={() => {
+          updateForm("addEvent");
+        }}
+      >
+        <a target="_blank" rel="noopener noreferrer">
+          Add Event
+        </a>
+      </Menu.Item>
+
+      <Menu.Item
+        onClick={() => {
+          updateForm("deleteEvent");
+        }}
+      >
+        <a target="_blank" rel="noopener noreferrer">
+          Delete Event
+        </a>
+      </Menu.Item>
+
+      <Menu.Item
+        onClick={() => {
+          updateForm("updateEvent");
+        }}
+      >
+        <a target="_blank" rel="noopener noreferrer">
+          Update Event
         </a>
       </Menu.Item>
     </Menu>
