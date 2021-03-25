@@ -9,6 +9,10 @@ import { Button } from "antd";
 type stateObject = {
   isLearning: boolean;
   setLearning: any;
+  articleCategory: string;
+  setarticleCategory: any;
+  articleDifficulty: string;
+  setarticleDifficulty: any;
 };
 
 type backendData = {
@@ -20,104 +24,107 @@ type backendData = {
 
 const dataFromBackend: Array<backendData> = [
   {
-    header: "Biology Yeet",
+    header: "Bacteria Easy 1",
     body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "Bacteria Easy 1 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "easy",
     category: "Bacteria",
   },
   {
-    header: "This is some smart text",
+    header: "Bacteria Easy 2",
     body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "Bacteria Easy 2 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "easy",
     category: "Bacteria",
   },
   {
-    header: "Spongebob",
+    header: "Virus Easy 1 -- This is the title of the article",
     body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "Virus Easy 1 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "easy",
     category: "Viruses",
   },
   {
-    header: "Yo This is cool",
+    header: "Fungi Easy 1 -- This is the title of the article",
     body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "Fungi 1 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "easy",
     category: "Fungi",
   },
   {
-    header: "What happens when",
+    header: "HM Medium 1 -- This is the title of the article",
     body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "HM 1 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "medium",
     category: "Human Microbiome",
   },
   {
-    header: "Good day - sza",
+    header: "Dybiosis Medium 1 -- This is the title of the article",
     body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "Dybiosis 1 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "medium",
     category: "Dybiosis",
   },
   {
-    header: "im listening to music",
+    header: "DAWM Medium 1 -- This is the title of the article",
     body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "DAWM 1 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "medium",
     category: "Diseases Associated With The Microbiome",
   },
   {
-    header: "i need to clean my room",
+    header: "CR Hard 1 -- This is the title of the article",
     body:
-      "yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "CR Hard 1 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "hard",
     category: "Current Research",
   },
   {
-    header: "nice state cool",
+    header: "Metagenomics Hard 1 -- This is the title of the article",
     body:
-      "yeet this is some smart tPROGRAMMINGase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "Metagenomics Hard 1 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "hard",
     category: "Metagenomics",
   },
   {
-    header: "very very cool",
+    header: "Bacteria Hard 1 -- This is the title of the article",
     body:
-      "yeet thCOOOL what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "Bacteria Hard 1 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "hard",
     category: "Bacteria",
   },
   {
-    header: "cool, cool, cool",
+    header: "Bacteria Hard 2 -- This is the title of the article",
     body:
-      "yeet this is sBRUHHHHHH i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "Bacteria Hard 2 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "hard",
     category: "Bacteria",
   },
   {
-    header: "communicty",
+    header: "Bacteria Hard 3 -- This is the title of the article",
     body:
-      "yeet this is some smart te ASDF;KLDS FASD FK not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
+      "Bacteria Hard 3 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "hard",
     category: "Bacteria",
   },
   {
-    header: "bruh moment",
-    body: "YEEETT.",
+    header: "Bacteria Hard 4 -- This is the title of the article",
+    body:
+      "Bacteria Hard 4 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "hard",
     category: "Bacteria",
   },
   {
-    header: "yeet yeet yeet",
-    body: "Jha",
+    header: "Bacteria Hard 5 -- This is the title of the article",
+    body:
+      "Bacteria Hard 5 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "hard",
     category: "Bacteria",
   },
   {
-    header: "am i cool yet",
-    body: "aadarsh ",
+    header: "Bacteria Hard 6 -- This is the title of the article",
+    body:
+      "Bacteria Hard 6 -- yeet this is some smart text from VUMS that is really smart idk what to write becuase i do not know anything about micribiologyyeetet here i ssomemore text i like some text etc etc yuh this is even more text lets go herere more text yeet.",
     difficulty: "hard",
     category: "Bacteria",
   },
@@ -143,10 +150,10 @@ const fetchCategories = () => {
   };
 };
 
-const fetchArticles = () => {
+const fetchArticles = (elementCategory: string, elementDifficulty: string) => {
   const returnedArticles: Array<backendData> = [];
   dataFromBackend.map((element) => {
-    if (element.category == "Bacteria") {
+    if (element.category == elementCategory && element.difficulty == elementDifficulty) {
       returnedArticles.push(element);
     }
   });
@@ -155,11 +162,21 @@ const fetchArticles = () => {
 
 const userView = (viewState: stateObject) => {
   const data = fetchCategories();
-  const articles = fetchArticles();
+  //const articles = fetchArticles("Bacteria");
   if (viewState.isLearning) {
     return (
       <div>
-        <Articles articles={articles} state={viewState} />
+        <div>
+          <Articles articles={fetchArticles(viewState.articleCategory, viewState.articleDifficulty)} />
+          {/* <ArticleDisplay /> */}
+        </div>
+        <Button
+          onClick={() => {
+            viewState.setLearning(!viewState.isLearning);
+          }}
+        >
+          Back
+        </Button>
       </div>
     );
   } else {
@@ -168,7 +185,6 @@ const userView = (viewState: stateObject) => {
         <Logo page="Learn With VUMS" />
         <div className="categories">
           {/* spread the state when we click the button */}
-
           {/* easy */}
           <Category
             difficulty={"easy"}
@@ -188,13 +204,13 @@ const userView = (viewState: stateObject) => {
             state={viewState}
           />
         </div>
-        <Button
+        {/* <Button
           onClick={() => {
             viewState.setLearning(!viewState.isLearning);
           }}
         >
-          {/* Toggle View */}
-        </Button>
+          Toggle View
+        </Button> */}
       </div>
     );
   }
@@ -202,9 +218,15 @@ const userView = (viewState: stateObject) => {
 
 const Learn: React.FC<Record<string, never>> = () => {
   const [isLearning, setLearning] = useState(false);
+  const [articleCategory, setarticleCategory] = useState("Bacteria");
+  const [articleDifficulty, setarticleDifficulty] = useState("Easy");
   const viewState: stateObject = {
     isLearning: isLearning,
     setLearning: setLearning,
+    articleCategory: articleCategory,
+    setarticleCategory: setarticleCategory,
+    articleDifficulty: articleDifficulty,
+    setarticleDifficulty: setarticleDifficulty
   };
   const returnedView = userView(viewState);
   return <div>{returnedView}</div>;
