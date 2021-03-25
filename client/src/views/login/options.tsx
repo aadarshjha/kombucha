@@ -9,6 +9,7 @@ import NewArticle from "./newArticle";
 import DeleteArticle from "./deleteArticle";
 import AddEvent from "./addEvent";
 import DeleteEvent from "./deleteEvent";
+import UpdateEvent from "./updateEvent";
 
 const updateView = (updatedView: string) => {
   if (updatedView == "new") {
@@ -21,6 +22,8 @@ const updateView = (updatedView: string) => {
     return <AddEvent />;
   } else if (updatedView == "deleteEvent") {
     return <DeleteEvent />;
+  } else if (updatedView == "updateEvent") {
+    return <UpdateEvent />;
   }
 };
 
@@ -75,6 +78,16 @@ const Options: React.FC<Record<string, never>> = () => {
       >
         <a target="_blank" rel="noopener noreferrer">
           Delete Event
+        </a>
+      </Menu.Item>
+
+      <Menu.Item
+        onClick={() => {
+          updateForm("updateEvent");
+        }}
+      >
+        <a target="_blank" rel="noopener noreferrer">
+          Update Event
         </a>
       </Menu.Item>
     </Menu>
