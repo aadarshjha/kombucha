@@ -20,6 +20,7 @@ export const list: controller = (_req, res, next) => {
     .exec((err: Error, articles: unknown[]) => {
       if (err) {
         next(err);
+        res.send("Failed to get list of articles. Please contact the boys.");
       }
       res.json(articles);
     });
@@ -43,7 +44,7 @@ export const create: controller = async (req, res, next) => {
   } catch (err) {
     next(err);
     res.send(
-      "Creating new article failed. Maybe check to see that all fields are included.\n"
+      `Creating new article failed. Maybe check to see that all fields are included.\n${err}\n`
     );
   }
 };
@@ -55,7 +56,7 @@ export const remove: controller = async (req, res, next) => {
   } catch (err) {
     next(err);
     res.send(
-      "Deleting article failed. Maybe check that you got the ID right.\n"
+      `Deleting article failed. Maybe check that you got the ID right.\n${err}\n`
     );
   }
 };
@@ -69,7 +70,7 @@ export const update: controller = async (req, res, next) => {
   } catch (err) {
     next(err);
     res.send(
-      "Updating article failed. Maybe check that you got the ID and title fields right.\n"
+      `Updating article failed. Maybe check that you got the ID and title fields right.\n${err}\n`
     );
   }
 };
@@ -83,7 +84,7 @@ export const getArticle: controller = async (req, res, next) => {
   } catch (err) {
     next(err);
     res.send(
-      "Getting article failed. Maybe check that you got the ID field right.\n"
+      `Getting article failed. Maybe check that you got the ID field right.\n${err}\n`
     );
   }
 };

@@ -1,12 +1,10 @@
 import express from "express";
 // controller modules
 import * as topicController from "../controllers/topics";
-import * as  articleController from "../controllers/articles";
+import * as articleController from "../controllers/articles";
 import * as authorController from "../controllers/authors";
 
 const learnRouter = express.Router();
-
-// TODO: implement lol
 
 /* TOPIC ROUTES */
 
@@ -16,12 +14,11 @@ learnRouter.put("/topic/create", topicController.create);
 // DELETE request to delete topic
 learnRouter.delete("/topic/:id/delete", topicController.remove);
 
-
 // PATCH request to update topic
 learnRouter.patch("/topic/:id/update", topicController.update);
 
-// // GET all articles in topic
-// learnRouter.get("/topic/:id", topicController.contentsGet);
+// GET all articles in topic
+learnRouter.get("/topic/:id", topicController.articles);
 
 //GET request for all topics
 learnRouter.get("/topics", topicController.list);
@@ -55,7 +52,7 @@ learnRouter.delete("/author/:id/delete", authorController.remove);
 learnRouter.patch("/author/:id/update", authorController.update);
 
 // GET all articles in author
-// learnRouter.get("/author/:id", authorController.contentsGet);
+learnRouter.get("/author/:id", authorController.articles);
 
 //GET request for all authors
 learnRouter.get("/authors", authorController.list);
