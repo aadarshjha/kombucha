@@ -42,7 +42,7 @@ const Articles: React.FC<catProps> = ({ articles, state }: catProps) => {
         <Menu
           onClick={handleClick}
           style={{ width: 256 }}
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={["0"]}
           defaultOpenKeys={["sub4"]}
           mode="inline"
         >
