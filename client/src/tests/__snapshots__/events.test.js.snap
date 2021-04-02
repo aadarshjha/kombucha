@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches events page snapshot 1`] = `
+<div
+  className="centeredCards"
+>
+  <div
+    className="centered"
+  >
+    <img
+      alt="VUMS Logo"
+      className="vumslogo"
+      src="vums.png"
+    />
+    <h1>
+      Events With VUMS
+    </h1>
+  </div>
+</div>
+`;
