@@ -25,23 +25,25 @@ it("renders the correct title of the page", () => {
     expect(div.querySelector('h1').textContent).toBe("Events With VUMS")
 });
 
+it("loads a default card for testing pruposes", () => {
+    const div = document.createElement("div");
+    ReactDOM.render(<Events />, div); 
+    expect(div.querySelector('.ant-card')).toBeTruthy()
+});
+
+it("loads the correct testing event title", () => {
+    const div = document.createElement("div");
+    ReactDOM.render(<Events />, div); 
+    expect(div.querySelector('.ant-card-meta-title').textContent).toBe("This is a Test Card That Will Be Removed From Production")
+});
+
+it("loads the correct testing event description", () => {
+    const div = document.createElement("div");
+    ReactDOM.render(<Events />, div); 
+    expect(div.querySelector('.ant-card-meta-description').textContent).toBe("This is a simple test card for the purpose of demonstration for JEST testing in react. It will be removed!")
+});
 it("matches events page snapshot", () => {
     const tree = renderer.create(<Events />).toJSON();
     expect(tree).toMatchSnapshot(); 
 })
 
-it("loads a default card for testing pruposes", () => {
-    
-})
-
-
-// it("renders the VUMS logo correctly", () => {
-//     const {getLogo} = render(<Logo page="Events With VUMS"/>);
-//     console.log(getLogo)
-//     // expect(getLogo('h1')).toHaveTextContent("Events With VUMS");
-// });
-
-// it("renders an example card properly", () => {
-//     const {getCardById} = 
-// });
-// it("renders")
