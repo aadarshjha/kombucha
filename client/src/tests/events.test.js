@@ -13,10 +13,27 @@ it("renders events.tsx without crashing", () => {
     ReactDOM.unmountComponentAtNode(div);
 });
 
+it("renders the VUMS logo", () => {
+    const div = document.createElement("div");
+    ReactDOM.render(<Events />, div); 
+    expect(div.querySelector(".vumslogo")).toBeTruthy();
+})
+
+it("renders the correct title of the page", () => {
+    const div = document.createElement("div");
+    ReactDOM.render(<Events />, div); 
+    expect(div.querySelector('h1').textContent).toBe("Events With VUMS")
+});
+
 it("matches events page snapshot", () => {
     const tree = renderer.create(<Events />).toJSON();
     expect(tree).toMatchSnapshot(); 
 })
+
+it("loads a default card for testing pruposes", () => {
+    
+})
+
 
 // it("renders the VUMS logo correctly", () => {
 //     const {getLogo} = render(<Logo page="Events With VUMS"/>);

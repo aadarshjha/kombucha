@@ -30,6 +30,13 @@ const Events: React.FC<Record<string, never>> = () => {
           </Card>
         );
       })}
+      <Card
+        hoverable
+        style={{ width: "40%", marginBottom: "10px" }}
+        cover={<img alt="test image" src={"test.jpg"} />}
+      >
+        <Meta title={"test"} description={"yeet"} />
+      </Card>
     </div>
   );
 };
