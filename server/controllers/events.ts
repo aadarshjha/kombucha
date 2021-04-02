@@ -1,8 +1,8 @@
 import Event from "../models/events";
-// import mongoose from "mongoose";
-
 import Express from "express";
-// import { CallbackError } from "mongoose";
+
+// defines the typescript definition of controllers
+// requests and responses. 
 interface controller {
   (
     req: Express.Request,
@@ -11,18 +11,20 @@ interface controller {
   ): void;
 }
 
+// lists all events. 
 export const list: controller = (_req, res, next) => {
   Event.find({}).exec((err: Error, events: unknown[]) => {
     if (err) {
       next(err);
       res.send(
-        `Getting the list of events failed. Please contact the boys.\n${err}\n`
+        `Getting the list of events failed.`
       );
     }
     res.json(events);
   });
 };
 
+// creates a new event. 
 export const create: controller = async (req, res, next) => {
   try {
     // Only create new event if the title doesn't exist already
@@ -44,6 +46,7 @@ export const create: controller = async (req, res, next) => {
   }
 };
 
+// removes an event. 
 export const remove: controller = async (req, res, next) => {
   try {
     const deletedEvent = await Event.findByIdAndDelete(req.params.id);
@@ -56,6 +59,7 @@ export const remove: controller = async (req, res, next) => {
   }
 };
 
+// updates an event. 
 export const update: controller = async (req, res, next) => {
   try {
     const updatedEvent = await Event.findByIdAndUpdate(req.params.id, {
@@ -69,45 +73,3 @@ export const update: controller = async (req, res, next) => {
     );
   }
 };
-// export const deleteGet = async (req: any, res: any) => {
-//   const { id } = req.params;
-
-//   if (!mongoose.Types.ObjectId.isValid(id))
-//     return res.status(404).send(`No post with id: ${id}`);
-//   const event = await Event.findById(id);
-//   res.json(event);
-// };
-
-// export const deletePost = async (req: any, res: any) => {
-//   const { id } = req.params;
-
-//   if (!mongoose.Types.ObjectId.isValid(id))
-//     return res.status(404).send(`No post with id: ${id}`);
-
-//   await Event.findByIdAndRemove(id);
-
-//   res.json({ message: "Post deleted successfully." });
-// };
-
-// export const updateGet = async (req: any, res: any) => {
-//   const { id } = req.params;
-
-//   if (!mongoose.Types.ObjectId.isValid(id))
-//     return res.status(404).send(`No post with id: ${id}`);
-//   const event = await Event.findById(id);
-//   res.json(event);
-// };
-
-// export const updatePost = async (req: any, res: any) => {
-//   const { id } = req.params;
-//   const { title, image, body } = req.body;
-
-//   if (!mongoose.Types.ObjectId.isValid(id))
-//     return res.status(404).send(`No post with id: ${id}`);
-
-//   const updatedEvent = { title, image, body };
-
-//   await Event.findByIdAndUpdate(id, updatedEvent, { new: true });
-
-//   res.json(updatedEvent);
-// };

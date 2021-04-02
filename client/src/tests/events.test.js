@@ -1,10 +1,6 @@
 // Test the Events component
-import { getByTestId } from "@testing-library/react";
-import React from "react";
 import ReactDOM from "react-dom";
-import { render } from "react-dom";
 import Events from "../views/events/events";
-import Logo from "../components/Logo";
 import renderer from "react-test-renderer";
 
 it("renders events.tsx without crashing", () => {

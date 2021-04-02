@@ -1,10 +1,8 @@
-// import async from "async";
 import Express from "express";
-// import models
 import Article from "../models/article";
 
-// export const createGet = (req, res, next) => {};
-
+// defines the typescript definition of controllers
+// requests and responses. 
 interface controller {
   (
     req: Express.Request,
@@ -13,6 +11,7 @@ interface controller {
   ): void;
 }
 
+// defines a controller by which we list all articles. 
 export const list: controller = (_req, res, next) => {
   Article.find({})
     .populate("author", "name")
@@ -20,15 +19,15 @@ export const list: controller = (_req, res, next) => {
     .exec((err: Error, articles: unknown[]) => {
       if (err) {
         next(err);
-        res.send("Failed to get list of articles. Please contact the boys.");
+        res.send("Failed to get list of articles.");
       }
       res.json(articles);
     });
 };
 
+// defines a controller by which we create an article. 
 export const create: controller = async (req, res, next) => {
   try {
-    // Only create new topic if the name doesn't exist already
     if (await Article.findOne({ name: req.body.title })) {
       res.send(`Topic named ${req.body.title} already exists.\n`);
     } else {
@@ -49,6 +48,7 @@ export const create: controller = async (req, res, next) => {
   }
 };
 
+// Defines a controller by which we remove an article. 
 export const remove: controller = async (req, res, next) => {
   try {
     const deletedArticle = await Article.findByIdAndDelete(req.params.id);
@@ -61,6 +61,7 @@ export const remove: controller = async (req, res, next) => {
   }
 };
 
+// Defines a controller by which we update an article by ID. 
 export const update: controller = async (req, res, next) => {
   try {
     const updatedArticle = await Article.findByIdAndUpdate(req.params.id, {
@@ -75,6 +76,7 @@ export const update: controller = async (req, res, next) => {
   }
 };
 
+// defines a controller by which we get a particular article by ID
 export const getArticle: controller = async (req, res, next) => {
   try {
     const article = await Article.findById(req.params.id)
