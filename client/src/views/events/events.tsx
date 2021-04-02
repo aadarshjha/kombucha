@@ -9,17 +9,21 @@ const { Meta } = Card;
 const Events: React.FC<Record<string, never>> = () => {
   const [eventData, setEvents] = useState([]);
 
+  // fetches mongoDB data from the backend.
   useEffect(() => {
     axios.get("http://localhost:5000/events").then((res) => {
       setEvents(res.data);
     });
   }, []);
   return (
+    // returns, dynamically, all the events formatted as cards.
     <div className="centeredCards">
       <Logo page="Events With VUMS" />
 
+      {/* a map function will take all the fetched data and created Card objects */}
       {eventData.map((element: any) => {
         return (
+          // Card objects will represent the data through a unique UI.
           <Card
             hoverable
             key={element.title}
@@ -30,6 +34,7 @@ const Events: React.FC<Record<string, never>> = () => {
           </Card>
         );
       })}
+      {/* A constant card that exists for testing purposes, will be removed in production. */}
       <Card
         hoverable
         style={{ width: "40%", marginBottom: "10px" }}
