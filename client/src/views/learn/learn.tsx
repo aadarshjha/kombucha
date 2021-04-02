@@ -27,7 +27,7 @@ type backendData = {
 // Please disregard lines 25 - 398 from the total line count. 
 const dataFromBackend: Array<backendData> = mockData;
 
-const fetchCategories = () => {
+export const fetchCategories = () => {
   const easy: Array<backendData> = [];
   const medium: Array<backendData> = [];
   const hard: Array<backendData> = [];
@@ -47,7 +47,7 @@ const fetchCategories = () => {
   };
 };
 
-const fetchArticles = (elementCategory: string, elementDifficulty: string) => {
+export const fetchArticles = (elementCategory: string, elementDifficulty: string) => {
   const returnedArticles: Array<backendData> = [];
   dataFromBackend.map((element) => {
     if (
@@ -62,8 +62,8 @@ const fetchArticles = (elementCategory: string, elementDifficulty: string) => {
 
 const userView = (viewState: stateObject) => {
   const data = fetchCategories();
-  //const articles = fetchArticles("Bacteria");
   if (viewState.isLearning) {
+    console.log(fetchArticles(viewState.articleCategory, viewState.articleDifficulty))
     return (
       <Articles
         articles={fetchArticles(
