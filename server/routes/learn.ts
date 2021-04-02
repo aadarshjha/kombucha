@@ -7,6 +7,7 @@ import * as authorController from "../controllers/authors";
 const learnRouter = express.Router();
 
 /* TOPIC ROUTES */
+// Defines all routes relating to topics critical for the learn page. 
 
 // PUT request for creating new topic
 learnRouter.put("/topic/create", topicController.create);
@@ -41,6 +42,7 @@ learnRouter.get("/article/:id", articleController.getArticle);
 learnRouter.get("/articles", articleController.list);
 
 // /* AUTHOR ROUTES */
+// Defines the structure and the routes for the authors page. 
 
 // PUT request for creating new author
 learnRouter.put("/author/create", authorController.create);

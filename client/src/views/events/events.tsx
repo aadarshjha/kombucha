@@ -11,6 +11,8 @@ const Events: React.FC<Record<string, never>> = () => {
 
   // fetches mongoDB data from the backend.
   useEffect(() => {
+    // localhost is the server which we use in development
+    // we will use heroku services in deployment.
     axios.get("http://localhost:5000/events").then((res) => {
       setEvents(res.data);
     });
@@ -41,6 +43,7 @@ const Events: React.FC<Record<string, never>> = () => {
         cover={<img alt="test image" src={"test.jpg"} />}
       >
         <Meta
+          // these are all test titles and test decriptions.
           title={"This is a Test Card That Will Be Removed From Production"}
           description={
             "This is a simple test card for the purpose of demonstration for JEST testing in react. It will be removed!"

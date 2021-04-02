@@ -31,6 +31,8 @@ export const create: controller = async (req, res, next) => {
     if (await Article.findOne({ name: req.body.title })) {
       res.send(`Topic named ${req.body.title} already exists.\n`);
     } else {
+      // requires title, author, body
+      // date updated, topic, and content from the user
       await Article.create({
         title: req.body.title,
         author: req.body.author,
