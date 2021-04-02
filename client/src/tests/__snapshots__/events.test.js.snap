@@ -16,5 +16,46 @@ exports[`matches events page snapshot 1`] = `
       Events With VUMS
     </h1>
   </div>
+  <div
+    className="ant-card ant-card-bordered ant-card-hoverable"
+    style={
+      Object {
+        "marginBottom": "10px",
+        "width": "40%",
+      }
+    }
+  >
+    <div
+      className="ant-card-cover"
+    >
+      <img
+        alt="test image"
+        src="test.jpg"
+      />
+    </div>
+    <div
+      className="ant-card-body"
+      style={Object {}}
+    >
+      <div
+        className="ant-card-meta"
+      >
+        <div
+          className="ant-card-meta-detail"
+        >
+          <div
+            className="ant-card-meta-title"
+          >
+            This is a Test Card That Will Be Removed From Production
+          </div>
+          <div
+            className="ant-card-meta-description"
+          >
+            This is a simple test card for the purpose of demonstration for JEST testing in react. It will be removed!
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 `;

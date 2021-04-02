@@ -35,7 +35,7 @@ const Events: React.FC<Record<string, never>> = () => {
         style={{ width: "40%", marginBottom: "10px" }}
         cover={<img alt="test image" src={"test.jpg"} />}
       >
-        <Meta title={"test"} description={"yeet"} />
+        <Meta title={"This is a Test Card That Will Be Removed From Production"} description={"This is a simple test card for the purpose of demonstration for JEST testing in react. It will be removed!"} />
       </Card>
     </div>
   );
