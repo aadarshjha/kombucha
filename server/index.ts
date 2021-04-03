@@ -5,17 +5,19 @@ import dotenv from "dotenv";
 
 import eventRouter from "./routes/events";
 import learnRouter from "./routes/learn";
-// import router as learnRouter from "./routes/learnRouter";
 
+// using express to support our backend. 
 const app = express();
 dotenv.config();
 
 app.use(cors());
 app.use(express.json());
 
+// hosts on port 5000
 const PORT = process.env.PORT || 5000;
 const CONNECTION_URL: string = process.env.CONNECTION_URL as string;
 
+// connecting to the DB. 
 mongoose
   .connect(CONNECTION_URL, {
     useNewUrlParser: true,
@@ -29,13 +31,8 @@ mongoose
 mongoose.set("useFindAndModify", false);
 
 const db = mongoose.connection;
+
+// using routing defined in the routes/ folder. 
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
-
 app.use("/events", eventRouter);
-
-// app.use("/", indexRouter);
 app.use("/learn", learnRouter);
-
-// TODO: implement if necessary. Otherwise everything goes into indexRouter.
-
-// app.use('/about', aboutRouter);
