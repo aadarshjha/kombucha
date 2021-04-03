@@ -2,7 +2,7 @@ import Event from "../models/events";
 import Express from "express";
 
 // defines the typescript definition of controllers
-// requests and responses. 
+// requests and responses.
 interface controller {
   (
     req: Express.Request,
@@ -11,20 +11,18 @@ interface controller {
   ): void;
 }
 
-// lists all events. 
+// lists all events.
 export const list: controller = (_req, res, next) => {
   Event.find({}).exec((err: Error, events: unknown[]) => {
     if (err) {
       next(err);
-      res.send(
-        `Getting the list of events failed.`
-      );
+      res.send(`Getting the list of events failed.`);
     }
     res.json(events);
   });
 };
 
-// creates a new event. 
+// creates a new event.
 export const create: controller = async (req, res, next) => {
   try {
     // Only create new event if the title doesn't exist already
@@ -33,7 +31,7 @@ export const create: controller = async (req, res, next) => {
     } else {
       await Event.create({
         title: req.body.title,
-        image: req.body.imageString,
+        image: req.body.image,
         body: req.body.body,
       });
       res.send(`Successfully created new event: ${req.body.title}\n`);
@@ -46,7 +44,7 @@ export const create: controller = async (req, res, next) => {
   }
 };
 
-// removes an event. 
+// removes an event.
 export const remove: controller = async (req, res, next) => {
   try {
     const deletedEvent = await Event.findByIdAndDelete(req.params.id);
@@ -59,7 +57,7 @@ export const remove: controller = async (req, res, next) => {
   }
 };
 
-// updates an event. 
+// updates an event.
 export const update: controller = async (req, res, next) => {
   try {
     const updatedEvent = await Event.findByIdAndUpdate(req.params.id, {

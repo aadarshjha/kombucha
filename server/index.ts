@@ -14,7 +14,14 @@ app.use(cors());
 app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
-const CONNECTION_URL: string = process.env.CONNECTION_URL as string;
+let CONNECTION_URL: string;
+
+if (process.env.NODE_ENV === "test") {
+  CONNECTION_URL = process.env.TEST_CONNECTION_URL as string;
+} else {
+  CONNECTION_URL = process.env.CONNECTION_URL as string;
+}
+console.log(`Connection URL: ${CONNECTION_URL}`);
 
 mongoose
   .connect(CONNECTION_URL, {
