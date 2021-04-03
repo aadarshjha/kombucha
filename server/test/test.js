@@ -6,8 +6,7 @@ const chai = require("chai");
 const expect = chai.expect;
 
 /*
-INCLUDES testing for all CRUD for events, Create for learn
-
+INCLUDES testing for all CRUD for events, learn
 */
 
 const PORT = process.env.PORT || 5000;
