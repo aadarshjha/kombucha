@@ -102,22 +102,22 @@ const userView = (viewState: stateObject) => {
             state={viewState}
           />
         </div>
-        {/* <Button
-          onClick={() => {
-            viewState.setLearning(!viewState.isLearning);
-          }}
-        >
-          Toggle View
-        </Button> */}
       </div>
     );
   }
 };
 
 const Learn: React.FC<Record<string, never>> = () => {
+  // is learning will see if the user clicks on the category
   const [isLearning, setLearning] = useState(false);
+
+  // article category will be the current category that the user clicks.
   const [articleCategory, setarticleCategory] = useState("Bacteria");
+
+  // article difficulty will be the difficulty that the user clicks on.
   const [articleDifficulty, setarticleDifficulty] = useState("Easy");
+
+  // complex state dictates the users actions.
   const viewState: stateObject = {
     isLearning: isLearning,
     setLearning: setLearning,
