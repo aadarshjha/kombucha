@@ -1,8 +1,8 @@
 import React from "react";
 import { Button } from "antd";
-import Articles from "./articles";
 
-// or import types. FIXME in a optimzation / re write.
+// defines the backend data that is
+// recieved on the front end.
 type backendData = {
   header: string;
   body: string;
@@ -10,6 +10,8 @@ type backendData = {
   category: string;
 };
 
+// defines all the states that are used in the UI
+// using react useState()
 type stateObject = {
   isLearning: boolean;
   setLearning: any;
@@ -19,13 +21,16 @@ type stateObject = {
   setarticleDifficulty: any;
 };
 
+// defines the type for categories.
 type catProps = {
   difficulty: string;
   categories: Array<backendData>;
   state: stateObject;
 };
 
-const fetchUniqueCategories = (list: Array<backendData>) => {
+// a function that fetches unique categories given data of
+// type backendData.
+export const fetchUniqueCategories = (list: Array<backendData>) => {
   const uniqueList: Array<string> = [];
   list.forEach((element) => {
     if (!uniqueList.includes(element.category)) {
@@ -35,10 +40,6 @@ const fetchUniqueCategories = (list: Array<backendData>) => {
   return uniqueList;
 };
 
-// const clickHandler = (e: any) => {
-//   console.log(e);
-// }
-
 const Category: React.FC<catProps> = ({
   difficulty,
   categories,
@@ -46,18 +47,9 @@ const Category: React.FC<catProps> = ({
 }: catProps) => {
   const uniqueList = fetchUniqueCategories(categories);
 
-  const fetchArticles = (list: Array<backendData>, elementCategory: string) => {
-    const returnedArticles: Array<backendData> = [];
-    list.map((element) => {
-      if (element.category == elementCategory) {
-        returnedArticles.push(element);
-      }
-    });
-    return returnedArticles;
-  };
-
   return (
-    //   we can demonstrate all easy, medium, hard categories
+    // general html code that dynamically computes articles
+    // across easy, medium, and hard given a source of data.
     <div className="highLevel">
       <h1>{difficulty[0].toUpperCase() + difficulty.substr(1)}</h1>
       <div className="boxLevel">

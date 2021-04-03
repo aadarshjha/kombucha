@@ -1,13 +1,9 @@
-// import async from "async";
 import Express from "express";
-// import models
 import Topic from "../models/topic";
 import Article from "../models/article";
-// import Article from "../models/article";
 
-// export const createGet = (req, res, next) => {};
-
-//TODO: Handle delete with articles.
+// defines the typescript definition of controllers
+// requests and responses. 
 interface controller {
   (
     req: Express.Request,
@@ -16,16 +12,18 @@ interface controller {
   ): void;
 }
 
+// lists all the educational topics. 
 export const list: controller = (_req, res, next) => {
   Topic.find({}, "name").exec((err: Error, topicNames: string[]) => {
     if (err) {
       next(err);
-      res.send(`Failed to get topics. Please contact the boys.\n${err}\n`);
+      res.send(`Failed to get topics.`);
     }
     res.json(topicNames);
   });
 };
 
+// creates a new topic. 
 export const create: controller = async (req, res, next) => {
   try {
     // Only create new topic if the name doesn't exist already
@@ -45,6 +43,7 @@ export const create: controller = async (req, res, next) => {
   }
 };
 
+// removes a particular topics and associated articles. 
 export const remove: controller = async (req, res, next) => {
   try {
     // Remove all articles associated with the topic
@@ -69,6 +68,7 @@ export const remove: controller = async (req, res, next) => {
   }
 };
 
+// updates a particular topic
 export const update: controller = async (req, res, next) => {
   try {
     const updatedTopic = await Topic.findByIdAndUpdate(req.params.id, {
@@ -83,6 +83,7 @@ export const update: controller = async (req, res, next) => {
   }
 };
 
+// gets all articles of a topic. 
 export const articles: controller = async (req, res, next) => {
   Article.find({ topic: req.params.id })
     .populate("author", "name")

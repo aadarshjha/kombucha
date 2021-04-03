@@ -1,13 +1,9 @@
-// import async from "async";
 import Express from "express";
-// import models
 import Author from "../models/author";
 import Article from "../models/article";
 
-// export const createGet = (req, res, next) => {};
-
-//TODO: Handle delete with articles.
-
+// defines the typescript definition of controllers
+// requests and responses. 
 interface controller {
   (
     req: Express.Request,
@@ -16,16 +12,18 @@ interface controller {
   ): void;
 }
 
+// lists all authors. 
 export const list: controller = (_req, res, next) => {
   Author.find({}).exec((err: Error, authors: unknown[]) => {
     if (err) {
       next(err);
-      res.send("Getting list of authors failed. Please contact the boys.");
+      res.send("Getting list of authors failed.");
     }
     res.json(authors);
   });
 };
 
+// creates a new author.
 export const create: controller = async (req, res, next) => {
   try {
     // Only create new topic if the name doesn't exist already
@@ -47,6 +45,7 @@ export const create: controller = async (req, res, next) => {
   }
 };
 
+// removes a particular author, and all articles associated with that particular author.
 export const remove: controller = async (req, res, next) => {
   try {
     // Remove all articles associated with the topic
@@ -71,6 +70,7 @@ export const remove: controller = async (req, res, next) => {
   }
 };
 
+// updates a particular author. 
 export const update: controller = async (req, res, next) => {
   try {
     const updatedAuthor = await Author.findByIdAndUpdate(req.params.id, {
@@ -85,6 +85,7 @@ export const update: controller = async (req, res, next) => {
   }
 };
 
+// finds all articles of a particular author. 
 export const articles: controller = async (req, res, next) => {
   Article.find({ author: req.params.id })
     .populate("author", "name")
