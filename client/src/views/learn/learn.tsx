@@ -7,7 +7,6 @@ import Articles from "./articles";
 import { Button } from "antd";
 import mockData from "./mockData.json";
 
-
 type stateObject = {
   isLearning: boolean;
   setLearning: any;
@@ -24,7 +23,7 @@ type backendData = {
   category: string;
 };
 
-// Please disregard lines 25 - 398 from the total line count. 
+// Please disregard lines 25 - 398 from the total line count.
 const dataFromBackend: Array<backendData> = mockData;
 
 export const fetchCategories = () => {
@@ -47,7 +46,10 @@ export const fetchCategories = () => {
   };
 };
 
-export const fetchArticles = (elementCategory: string, elementDifficulty: string) => {
+export const fetchArticles = (
+  elementCategory: string,
+  elementDifficulty: string
+) => {
   const returnedArticles: Array<backendData> = [];
   dataFromBackend.map((element) => {
     if (
@@ -63,7 +65,9 @@ export const fetchArticles = (elementCategory: string, elementDifficulty: string
 const userView = (viewState: stateObject) => {
   const data = fetchCategories();
   if (viewState.isLearning) {
-    console.log(fetchArticles(viewState.articleCategory, viewState.articleDifficulty))
+    console.log(
+      fetchArticles(viewState.articleCategory, viewState.articleDifficulty)
+    );
     return (
       <Articles
         articles={fetchArticles(
