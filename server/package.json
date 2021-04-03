@@ -6,7 +6,7 @@
   "scripts": {
     "watch": "tsc -w",
     "dev": "ts-node-dev ./index.ts",
-    "test": "concurrently -k -s first \"NODE_ENV=test ts-node ./index.ts \" \"wait-on http://localhost:5000/ && mocha ./test/test.ts\""
+    "test": "concurrently -k -s first \"NODE_ENV=test ts-node ./index.ts \" \"wait-on http://localhost:5000/events && mocha ./test/test.js\""
   },
   "author": "",
   "license": "ISC",
