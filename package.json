@@ -7,7 +7,8 @@
     "start": "concurrently \"cd client && npm start\" \"cd server && npm start\"",
     "test": "echo \"No tests besides linting as of yet.\"",
     "format": "prettier --write **/*.ts **/*.tsx **/*.js",
-    "pretest": "eslint --ext .ts --ext .js --ext .tsx ."
+    "pretest": "eslint --ext .ts --ext .js --ext .tsx .",
+    "install-deep": "npm i && cd client && npm i && cd ../server && npm i"
   },
   "repository": {
     "type": "git",
