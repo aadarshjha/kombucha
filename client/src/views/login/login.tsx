@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import Logo from "../../components/Logo";
 import { Form, Input, Button, Checkbox } from "antd";
-import NavBar from "../../components/NavBar";
 import Options from "./options";
 import "antd/dist/antd.css";
 
@@ -15,6 +14,10 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
 
+const middleLayout = {
+  wrapperCol: { offset: 14, span: 16 },
+};
+
 const onFinish = (values: any) => {
   console.log("Success:", values);
 };
@@ -23,12 +26,11 @@ const onFinishFailed = (errorInfo: any) => {
   console.log("Failed:", errorInfo);
 };
 
-const renderView = (signedIn: boolean, setSignIn: any) => {
+const renderView = (signedIn: boolean, setSignIn: any, signUp: boolean, setSignUp: any) => {
   if (signedIn) {
     return (
       <div>
         <Logo page="Admin Update Page"></Logo>
-        {/* <NavBar /> */}
         <Options />
         <Button
           onClick={() => {
@@ -86,12 +88,21 @@ const renderView = (signedIn: boolean, setSignIn: any) => {
               <Checkbox>Remember me</Checkbox>
             </Form.Item>
 
-            <Form.Item {...tailLayout}>
+            <Form.Item {...middleLayout}>
               <Button type="primary" htmlType="submit">
-                Submit
+                Sign-in
               </Button>
             </Form.Item>
           </Form>
+
+          <Button type="link"
+            onClick={() => {
+              setSignUp(!signUp);
+            }}
+          >
+            Don&apos;t have an account? Sign-up!
+          </Button>
+
           <Button
             onClick={() => {
               setSignIn(!signedIn);
@@ -105,9 +116,106 @@ const renderView = (signedIn: boolean, setSignIn: any) => {
   }
 };
 
+const signUpView = (signUp: boolean, setSignUp: any) => {
+  return (
+    <div>
+      <Logo page="Sign-up To VUMS"></Logo>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+            position: "relative",
+            left: "-60px",
+            paddingTop: "40px",
+          }}
+        >
+          <Form
+            {...layout}
+            name="basic"
+            initialValues={{ remember: true }}
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
+            style={{ width: "400px" }}
+          >
+            <Form.Item
+              label="Username"
+              name="username"
+              rules={[
+                { required: true, message: "Please input your username!" },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+
+            <Form.Item  
+              label="Password"
+              name="password"
+              rules={[
+                { required: true, message: "Please input your password!" },
+              ]}
+            >
+              <Input.Password />
+            </Form.Item>
+
+            <Form.Item
+              name="confirm"
+              label="Confirm Password"
+              dependencies={['password']}
+              hasFeedback
+              rules={[
+                {
+                  required: true,
+                  message: 'Please confirm your password!',
+                },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || getFieldValue('password') === value) {
+                      return Promise.resolve();
+                    }
+
+                    return Promise.reject(new Error('The two passwords that you entered do not match!'));
+                  },
+                }),
+              ]}
+            >
+              <Input.Password />
+            </Form.Item>
+
+            <Form.Item  
+              label="Token"
+              name="Token"
+              rules={[
+                { required: true, message: "Enter Token!" },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+
+            <Form.Item {...middleLayout}>
+              <Button type="primary" htmlType="submit">
+                Register
+              </Button>
+            </Form.Item>
+          </Form>
+
+          <Button
+            onClick={() => {
+              setSignUp(!signUp);
+            }}
+          >
+            Toggle View
+          </Button>
+        </div>
+      </div>
+  )
+};
+
 const Login: React.FC<Record<string, never>> = () => {
   const [signedIn, setSignIn] = useState(false);
-  const curView = renderView(signedIn, setSignIn);
+  const [signUp, setSignUp] = useState(false);
+  const curView = signUp ? signUpView(signUp, setSignUp) : renderView(signedIn, setSignIn, signUp, setSignUp);
 
   return <div>{curView}</div>;
 };
