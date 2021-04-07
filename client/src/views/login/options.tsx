@@ -10,9 +10,16 @@ import DeleteArticle from "./deleteArticle";
 import AddEvent from "./addEvent";
 import DeleteEvent from "./deleteEvent";
 import UpdateEvent from "./updateEvent";
+import AddAuthor from "./addAuthor";
 
 const updateView = (updatedView: string) => {
-  if (updatedView == "new") {
+  if (updatedView == "newAuthor") {
+    return <AddAuthor />
+  } else if (updatedView == "updateAuthor") {
+    console.log("here")
+  } else if (updatedView == "deleteAuthor") {
+    console.log("here")
+  } else if (updatedView == "new") {
     return <NewArticle />;
   } else if (updatedView == "update") {
     return <UpdateArticle />;
@@ -33,6 +40,15 @@ const Options: React.FC<Record<string, never>> = () => {
 
   const menu = (
     <Menu>
+      <Menu.Item
+        onClick={() => {
+          updateForm("newAuthor");
+        }}
+      >
+        <a target="_blank" rel="noopener noreferrer">
+          New Author
+        </a>
+      </Menu.Item>
       <Menu.Item
         onClick={() => {
           updateForm("new");
