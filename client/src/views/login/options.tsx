@@ -52,6 +52,15 @@ const Options: React.FC<Record<string, never>> = () => {
       </Menu.Item>
       <Menu.Item
         onClick={() => {
+          updateForm("updateAuthor");
+        }}
+      >
+        <a target="_blank" rel="noopener noreferrer">
+          Update Author
+        </a>
+      </Menu.Item>
+      <Menu.Item
+        onClick={() => {
           updateForm("new");
         }}
       >

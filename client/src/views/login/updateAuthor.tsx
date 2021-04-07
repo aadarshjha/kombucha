@@ -29,11 +29,24 @@ const tailFormItemLayout = {
   },
 };
 
+// learnRouter.patch("/author/:id/update", authorController.update);
+
 const UpdateAuthor: React.FC<Record<string, never>> = () => {
   const [form] = Form.useForm();
+  let id: string;
   const onFinish = (values: any) => {
-    axios
-      .put("http://localhost:5000/learn/author/create", {
+    // associate an ID: 
+    const name = values.name;
+    axios.get("http://localhost:5000/learn/authors").then((res) => {
+      const iteratedData = res.data; 
+      for (const element of iteratedData) {
+        if (element.name == name) {
+          id = element._id;
+        }
+      }
+    }).then(() => {
+      axios
+      .put("http://localhost:5000/learn/author/" + id + "/update", {
         name: values.name,
         year: values.year,
         majors: values.majors.split(',')
@@ -44,6 +57,7 @@ const UpdateAuthor: React.FC<Record<string, never>> = () => {
       .catch((_err) => {
         alert("Something Went Wrong!");
       });
+    });
   };
 
   return (
@@ -73,8 +87,21 @@ const UpdateAuthor: React.FC<Record<string, never>> = () => {
           <Input />
         </Form.Item>
         <Form.Item
+          name="name"
+          label="Update Author Name"
+          rules={[
+            {
+              required: true,
+              message: "Update Author Name",
+            },
+          ]}
+          hasFeedback
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
           name="year"
-          label="Author Graduating Year"
+          label="Update Author Graduating Year"
           rules={[
             {
               required: true,
@@ -87,7 +114,7 @@ const UpdateAuthor: React.FC<Record<string, never>> = () => {
         </Form.Item>
         <Form.Item
           name="majors"
-          label="Author Majors (Seperate Via Commas)"
+          label="Update Author Majors (Seperate Via Commas)"
           rules={[
             {
               required: true,
@@ -100,7 +127,7 @@ const UpdateAuthor: React.FC<Record<string, never>> = () => {
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
-            Submit Author
+            Update Author
           </Button>
         </Form.Item>
       </Form>
