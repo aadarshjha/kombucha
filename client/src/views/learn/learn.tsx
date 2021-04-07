@@ -120,9 +120,9 @@ const renderScreen = (stateCur: any) => {
 
   if (stateCur.isLoading) {
     return (
-      <h1>
-        Loading...
-      </h1>
+      <div className="test">
+        <Logo page="Learn With VUMS" />
+      </div>
     )
   } else {
     return returnedView;
