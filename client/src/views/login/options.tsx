@@ -63,7 +63,7 @@ const Options: React.FC<Record<string, never>> = () => {
 
       <Menu.Item
         onClick={() => {
-          updateForm("updateAuthor");
+          updateForm("deleteAuthor");
         }}
       >
         <a target="_blank" rel="noopener noreferrer">

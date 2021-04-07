@@ -44,6 +44,7 @@ const DeleteAuthor: React.FC<Record<string, never>> = () => {
             id = element._id;
           }
         }
+        console.log(id)
         if (id == null) {
           // throw error
           throw "No User Found"
