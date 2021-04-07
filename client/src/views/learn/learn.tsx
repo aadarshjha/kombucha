@@ -28,12 +28,21 @@ type backendData = {
 };
 
 // Please disregard lines 25 - 398 from the total line count.
-axios.get('localhost:5000/learn/articles').then((response) => {
-  console.log(response.data)
-})
+// axios.get().then((response) => {
+//   console.log(response.data)
+// })
 const dataFromBackend: Array<any> = mockData;
 
-export const fetchCategories = () => {
+const test = async () => {
+  console.log("HERE")
+  const articles = await axios.get('localhost:5000/learn/articles').then((res) => {
+    console.log(res.data)
+  })
+}
+
+export const fetchCategories = async () => {
+  // we fetch article data: 
+  // const articles = await axios.get('localhost:5000/learn/articles')
   const easy: Array<backendData> = [];
   const medium: Array<backendData> = [];
   const hard: Array<backendData> = [];
@@ -118,14 +127,16 @@ const userView = (viewState: stateObject) => {
 
 const Learn: React.FC<Record<string, never>> = () => {
 
-  useEffect(() => {
-    // localhost is the server which we use in development
-    // we will use heroku services in deployment.
-    axios.get("http://localhost:5000/learn/articles").then((res) => {
-      // setEvents(res.data);
-      console.log(res.data)
-    });
-  }, []);
+  test()
+
+  // useEffect(() => {
+  //   // localhost is the server which we use in development
+  //   // we will use heroku services in deployment.
+  //   axios.get("http://localhost:5000/learn/articles").then((res) => {
+  //     // setEvents(res.data);
+  //     console.log(res.data)
+  //   });
+  // }, []);
 
 
   // is learning will see if the user clicks on the category
