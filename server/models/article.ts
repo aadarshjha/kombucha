@@ -8,7 +8,8 @@ const ArticleSchema = new Schema({
     author: { type: Schema.Types.ObjectId, ref: "Author", required: true },
     dateUpdated: { type: Date, required: true },
     topic: { type: Schema.Types.ObjectId, ref: "Topic", required: true },
-    content: { type: String, required: true }
+    content: { type: String, required: true },
+    difficulty: { type: String, required: true }
 });
 
 export default mongoose.model("Article", ArticleSchema);

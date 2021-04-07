@@ -39,6 +39,7 @@ export const create: controller = async (req, res, next) => {
         dateUpdated: req.body.dateUpdated,
         topic: req.body.topic,
         content: req.body.content,
+        difficulty: req.body.difficulty
       });
       res.send(`Successfully created new article: ${req.body.title}\n`);
     }

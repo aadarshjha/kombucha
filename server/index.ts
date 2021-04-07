@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 import eventRouter from "./routes/events";
 import learnRouter from "./routes/learn";
 
-// using express to support our backend. 
+// using express to support our backend.
 const app = express();
 dotenv.config();
 
@@ -24,7 +24,7 @@ if (process.env.NODE_ENV === "test") {
 }
 console.log(`Connection URL: ${CONNECTION_URL}`);
 
-// connecting to the DB. 
+// connecting to the DB.
 mongoose
   .connect(CONNECTION_URL, {
     useNewUrlParser: true,
@@ -39,7 +39,7 @@ mongoose.set("useFindAndModify", false);
 
 const db = mongoose.connection;
 
-// using routing defined in the routes/ folder. 
+// using routing defined in the routes/ folder.
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 app.use("/events", eventRouter);
 app.use("/learn", learnRouter);

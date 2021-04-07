@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./articles.css";
 import { Menu } from "antd";
 import { Button } from "antd";
+import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 
 const { SubMenu } = Menu;
 
@@ -22,18 +23,18 @@ type stateObject = {
 };
 
 type catProps = {
-  articles: Array<backendData>;
+  articles: any;
   state: stateObject;
 };
 
 const Articles: React.FC<catProps> = ({ articles, state }: catProps) => {
-  const [articleTitle, setArticleTitle] = useState(articles[0].header);
-  const [articleText, setArticleText] = useState(articles[0].body);
+  console.log(articles);
+  const [articleTitle, setArticleTitle] = useState(articles[0].title);
+  const [articleText, setArticleText] = useState(articles[0].content);
 
   const handleClick = (e: any) => {
-    console.log("click", e);
-    setArticleTitle(articles[e.key].header);
-    setArticleText(articles[e.key].body);
+    setArticleTitle(articles[e.key].title);
+    setArticleText(articles[e.key].content);
   };
 
   return (
@@ -47,8 +48,8 @@ const Articles: React.FC<catProps> = ({ articles, state }: catProps) => {
           mode="inline"
         >
           <SubMenu key="sub4" title="Articles">
-            {articles.map((element, i) => {
-              return <Menu.Item key={i}>{element.header}</Menu.Item>;
+            {articles.map((element: any, i: number) => {
+              return <Menu.Item key={i}>{element.title}</Menu.Item>;
             })}
           </SubMenu>
         </Menu>
@@ -62,7 +63,7 @@ const Articles: React.FC<catProps> = ({ articles, state }: catProps) => {
         >
           <Button
             onClick={() => {
-              state.setLearning(!state.isLearning);
+              state.setLearning(false);
             }}
           >
             Back
