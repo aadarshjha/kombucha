@@ -20,7 +20,13 @@ const updateView = (updatedView: string) => {
   } else if (updatedView == "updateAuthor") {
     return <UpdateAuthor />;
   } else if (updatedView == "deleteAuthor") {
-    return <DeleteAuthor />
+    return <DeleteAuthor />;
+  } else if (updatedView == "newTopic") {
+    console.log(3)
+  } else if (updatedView == "updateTopic") {
+    console.log(1)
+  } else if (updatedView == "deleteTopic") {
+    console.log(2)
   } else if (updatedView == "new") {
     return <NewArticle />;
   } else if (updatedView == "update") {
@@ -70,6 +76,39 @@ const Options: React.FC<Record<string, never>> = () => {
           Delete Author
         </a>
       </Menu.Item>
+
+
+      <Menu.Item
+        onClick={() => {
+          updateForm("newTopic");
+        }}
+      >
+        <a target="_blank" rel="noopener noreferrer">
+          New Topic
+        </a>
+      </Menu.Item>
+
+      <Menu.Item
+        onClick={() => {
+          updateForm("updateTopic");
+        }}
+      >
+        <a target="_blank" rel="noopener noreferrer">
+          Update Topic
+        </a>
+      </Menu.Item>
+
+      <Menu.Item
+        onClick={() => {
+          updateForm("deleteTopic");
+        }}
+      >
+        <a target="_blank" rel="noopener noreferrer">
+          Delete Topic
+        </a>
+      </Menu.Item>
+
+  
 
       <Menu.Item
         onClick={() => {

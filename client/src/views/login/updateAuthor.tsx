@@ -46,7 +46,7 @@ const UpdateAuthor: React.FC<Record<string, never>> = () => {
         }
         if (id == null) {
           // throw error
-          throw "No User Found"
+          throw "No User Found";
         }
       })
       .then(() => {
@@ -62,11 +62,12 @@ const UpdateAuthor: React.FC<Record<string, never>> = () => {
             alert("Author Updated!");
           })
           .catch((_err) => {
-            console.log(_err)
+            console.log(_err);
             alert("Something Went Wrong!");
           });
-      }).catch((err) => {
-        alert(err)
+      })
+      .catch((err) => {
+        alert(err);
       });
   };
 

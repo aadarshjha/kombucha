@@ -44,10 +44,10 @@ const DeleteAuthor: React.FC<Record<string, never>> = () => {
             id = element._id;
           }
         }
-        console.log(id)
+        console.log(id);
         if (id == null) {
           // throw error
-          throw "No User Found"
+          throw "No User Found";
         }
       })
       .then(() => {
@@ -59,11 +59,12 @@ const DeleteAuthor: React.FC<Record<string, never>> = () => {
             alert("Author Deleted!");
           })
           .catch((_err) => {
-            console.log(_err)
+            console.log(_err);
             alert("Something Went Wrong!");
           });
-      }).catch((err) => {
-        alert(err)
+      })
+      .catch((err) => {
+        alert(err);
       });
   };
 
@@ -93,7 +94,7 @@ const DeleteAuthor: React.FC<Record<string, never>> = () => {
         >
           <Input />
         </Form.Item>
-      
+
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
             Update Author

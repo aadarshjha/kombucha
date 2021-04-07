@@ -50,20 +50,6 @@ const NewArticle: React.FC<Record<string, never>> = () => {
         }}
         scrollToFirstError
       >
-        {/* <Form.Item
-          name="article"
-          label="Article"
-          rules={[
-            {
-              required: true,
-              message: "Enter Article ID",
-            },
-          ]}
-          hasFeedback
-        >
-          <Input />
-        </Form.Item> */}
-
         <Form.Item
           name="header"
           label="Title"
