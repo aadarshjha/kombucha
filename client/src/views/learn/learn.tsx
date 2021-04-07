@@ -11,7 +11,7 @@ import axios from "axios";
 let fetchedData: Array<backendData>;
 let byCategory: any;
 let seperatedArticles: any;
-let returnedView: JSX.Element; 
+let returnedView: JSX.Element;
 let viewState: stateObject;
 
 type stateObject = {
@@ -121,12 +121,11 @@ const renderScreen = (stateCur: any) => {
       </div>
     );
   } else {
-    return userView(fetchedData, viewState)
+    return userView(fetchedData, viewState);
   }
 };
 
 const Learn: React.FC<Record<string, never>> = () => {
-  
   // isLoading state for fetching data
   const [isLoading, setLoading] = useState(true);
 
@@ -165,7 +164,7 @@ const Learn: React.FC<Record<string, never>> = () => {
       console.log(err);
     });
 
-  return <>{renderScreen({ isLoading, setLoading, isLearning})}</>;
+  return <>{renderScreen({ isLoading, setLoading, isLearning })}</>;
 };
 
 export default Learn;

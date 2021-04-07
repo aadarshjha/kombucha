@@ -28,10 +28,9 @@ type catProps = {
 };
 
 const Articles: React.FC<catProps> = ({ articles, state }: catProps) => {
-  console.log(articles)
+  console.log(articles);
   const [articleTitle, setArticleTitle] = useState(articles[0].title);
   const [articleText, setArticleText] = useState(articles[0].content);
-
 
   const handleClick = (e: any) => {
     setArticleTitle(articles[e.key].title);
