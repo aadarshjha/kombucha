@@ -61,7 +61,6 @@ export const fetchArticles = (
 ) => {
   const returnedArticles: Array<backendData> = [];
   dataFromBackend.map((element) => {
-    console.log(element.topic.name)
     if (
       element.topic.name == elementCategory &&
       element.difficulty == elementDifficulty
@@ -74,7 +73,6 @@ export const fetchArticles = (
 
 const userView = (fetchedData: any, viewState: stateObject) => {
   const data = fetchCategories(fetchedData);
-  console.log(data.easy)
   if (viewState.isLearning) {
     return (
       <Articles
@@ -117,22 +115,20 @@ const userView = (fetchedData: any, viewState: stateObject) => {
 };
 
 const renderScreen = (stateCur: any) => {
-
   if (stateCur.isLoading) {
     return (
       <div className="test">
         <Logo page="Learn With VUMS" />
       </div>
-    )
+    );
   } else {
     return returnedView;
   }
-}
+};
 
 const Learn: React.FC<Record<string, never>> = () => {
-
   // isLoading state for fetching data
-  const [isLoading, setLoading] = useState(true); 
+  const [isLoading, setLoading] = useState(true);
 
   // is learning will see if the user clicks on the category
   const [isLearning, setLearning] = useState(false);
@@ -168,11 +164,7 @@ const Learn: React.FC<Record<string, never>> = () => {
       console.log(err);
     });
 
-  return (
-    <>
-      {renderScreen({isLoading, setLoading})}
-    </>
-  )
+  return <>{renderScreen({ isLoading, setLoading })}</>;
 };
 
 export default Learn;

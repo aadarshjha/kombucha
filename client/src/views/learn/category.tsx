@@ -4,10 +4,13 @@ import { Button } from "antd";
 // defines the backend data that is
 // recieved on the front end.
 type backendData = {
-  header: string;
-  body: string;
+  author: any;
+  content: string;
+  dateUpdated: string;
   difficulty: string;
-  category: string;
+  title: string;
+  topic: any;
+  id: string;
 };
 
 // defines all the states that are used in the UI
@@ -32,9 +35,10 @@ type catProps = {
 // type backendData.
 export const fetchUniqueCategories = (list: Array<backendData>) => {
   const uniqueList: Array<string> = [];
+
   list.forEach((element) => {
-    if (!uniqueList.includes(element.category)) {
-      uniqueList.push(element.category);
+    if (!uniqueList.includes(element.topic.name)) {
+      uniqueList.push(element.topic.name);
     }
   });
   return uniqueList;
@@ -45,6 +49,7 @@ const Category: React.FC<catProps> = ({
   categories,
   state,
 }: catProps) => {
+  // console.log(categories)
   const uniqueList = fetchUniqueCategories(categories);
 
   return (
