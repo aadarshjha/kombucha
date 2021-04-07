@@ -35,21 +35,20 @@ const UpdateAuthor: React.FC<Record<string, never>> = () => {
   const onFinish = (values: any) => {
     // associate an ID:
     const name = values.name;
-    console.log(name)
+    console.log(name);
     axios
       .get("http://localhost:5000/learn/topics")
       .then((res) => {
         const iteratedData = res.data;
-        console.log(iteratedData)
+        console.log(iteratedData);
         for (const element of iteratedData) {
-          
           if (element.name == name) {
-              console.log(element.name)
-              console.log(name)
+            console.log(element.name);
+            console.log(name);
             id = element._id;
           }
         }
-        console.log(id)
+        console.log(id);
         if (id == null) {
           // throw error
           throw "No Topic Found";

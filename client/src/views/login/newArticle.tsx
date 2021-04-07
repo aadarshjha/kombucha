@@ -4,6 +4,8 @@ import React from "react";
 import "antd/dist/antd.css";
 import "./options.css";
 import { Form, Input, Button } from "antd";
+import axios from "axios";
+import moment from "moment";
 
 const { TextArea } = Input;
 
@@ -33,8 +35,62 @@ const tailFormItemLayout = {
 const NewArticle: React.FC<Record<string, never>> = () => {
   const [form] = Form.useForm();
 
+  let author_id: string;
+  let topic_id: string;
+
   const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
+    axios
+      .get("http://localhost:5000/learn/authors")
+      .then((res) => {
+        const name = values.author;
+        const iteratedData = res.data;
+        for (const element of iteratedData) {
+          if (element.name == name) {
+            author_id = element._id;
+          }
+        }
+        if (author_id == null) {
+          // throw error
+          throw "No User Found";
+        }
+      })
+      .then(() => {
+        axios
+        .get("http://localhost:5000/learn/topics")
+        .then((res) => {
+          const name = values.topic;
+          const iteratedData = res.data;
+          for (const element of iteratedData) {
+            if (element.name == name) {
+              topic_id = element._id;
+            }
+          }
+          if (topic_id == null) {
+            // throw error
+            throw "No Topic Found";
+          }
+        });
+      })
+      .then(() => {
+        console.log(">>>>");
+        console.log(author_id);
+        console.log(topic_id);
+        axios
+          .put("http://localhost:5000/learn/article/create", {
+            title: values.title,
+            author: author_id,
+            dateUpdated: moment().format("MM/DD/YYYY"),
+            topic: topic_id,
+            content: values.content,
+            difficulty: values.difficulty,
+          })
+          .then((_response) => {
+            alert("Author Saved!");
+          })
+          .catch((_err) => {
+            alert("Something Went Wrong!");
+          });
+      });
   };
 
   return (
@@ -51,7 +107,7 @@ const NewArticle: React.FC<Record<string, never>> = () => {
         scrollToFirstError
       >
         <Form.Item
-          name="header"
+          name="title"
           label="Title"
           rules={[
             {
@@ -65,12 +121,40 @@ const NewArticle: React.FC<Record<string, never>> = () => {
         </Form.Item>
 
         <Form.Item
-          name="body"
-          label="Body"
+          name="author"
+          label="Author"
           rules={[
             {
               required: true,
-              message: "Enter Article Body",
+              message: "Enter Article Author",
+            },
+          ]}
+          hasFeedback
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          name="topic"
+          label="Topic"
+          rules={[
+            {
+              required: true,
+              message: "Topic",
+            },
+          ]}
+          hasFeedback
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          name="content"
+          label="Content"
+          rules={[
+            {
+              required: true,
+              message: "Content",
             },
           ]}
           hasFeedback
@@ -79,12 +163,12 @@ const NewArticle: React.FC<Record<string, never>> = () => {
         </Form.Item>
 
         <Form.Item
-          name="category"
-          label="Category"
+          name="difficulty"
+          label="Difficulty"
           rules={[
             {
               required: true,
-              message: "Category",
+              message: "Difficulty",
             },
           ]}
           hasFeedback
