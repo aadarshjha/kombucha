@@ -64,7 +64,7 @@ const Articles: React.FC<catProps> = ({ articles, state }: catProps) => {
         >
           <Button
             onClick={() => {
-              state.setLearning(!state.isLearning);
+              state.setLearning(false);
             }}
           >
             Back

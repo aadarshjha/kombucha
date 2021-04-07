@@ -73,7 +73,6 @@ export const fetchArticles = (
 const userView = (fetchedData: any, viewState: stateObject) => {
   const data = fetchCategories(fetchedData);
   if (viewState.isLearning) {
-    console.log("here!!!")
     return (
       <Articles
         articles={fetchArticles(
@@ -121,13 +120,9 @@ const renderScreen = (stateCur: any) => {
         <Logo page="Learn With VUMS" />
       </div>
     );
-  } else if (stateCur.isLearning) {
-    console.log("here1232131")
+  } else {
     return userView(fetchedData, viewState)
-  } else if (!stateCur.isLoading || !stateCur.isLearning) {
-    console.log("here???")
-    return returnedView;
-  } 
+  }
 };
 
 const Learn: React.FC<Record<string, never>> = () => {

@@ -71,7 +71,7 @@ const Category: React.FC<catProps> = ({
                   // console.log(difficulty)
                   state.setarticleCategory(element);
                   state.setarticleDifficulty(difficulty);
-                  state.setLearning(!state.isLearning);
+                  state.setLearning(true);
                 }}
               >
                 {element}
