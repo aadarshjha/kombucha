@@ -50,16 +50,12 @@ const DeleteAuthor: React.FC<Record<string, never>> = () => {
         }
       })
       .then(() => {
-        const URL = "http://localhost:5000/learn/author/" + id + "/update";
+        const URL = "http://localhost:5000/learn/author/" + id + "/delete";
         // console.log(URL)
         axios
-          .patch(URL, {
-            name: values.updateName,
-            year: values.updateYear,
-            majors: values.updateMajors.split(","),
-          })
+          .delete(URL)
           .then((_response) => {
-            alert("Author Updated!");
+            alert("Author Deleted!");
           })
           .catch((_err) => {
             console.log(_err)
@@ -96,45 +92,7 @@ const DeleteAuthor: React.FC<Record<string, never>> = () => {
         >
           <Input />
         </Form.Item>
-        <Form.Item
-          name="updateName"
-          label="Update Author Name"
-          rules={[
-            {
-              required: true,
-              message: "Update Author Name",
-            },
-          ]}
-          hasFeedback
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          name="updateYear"
-          label="Update Author Graduating Year"
-          rules={[
-            {
-              required: true,
-              message: "Enter Author Graduating Year",
-            },
-          ]}
-          hasFeedback
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          name="updateMajors"
-          label="Update Author Majors (Seperate Via Commas)"
-          rules={[
-            {
-              required: true,
-              message: "Enter Author Majors",
-            },
-          ]}
-          hasFeedback
-        >
-          <Input />
-        </Form.Item>
+      
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
             Update Author

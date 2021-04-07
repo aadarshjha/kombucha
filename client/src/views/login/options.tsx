@@ -12,6 +12,7 @@ import DeleteEvent from "./deleteEvent";
 import UpdateEvent from "./updateEvent";
 import AddAuthor from "./addAuthor";
 import UpdateAuthor from "./updateAuthor";
+import DeleteAuthor from "./deleteAuthor";
 
 const updateView = (updatedView: string) => {
   if (updatedView == "newAuthor") {
@@ -59,6 +60,17 @@ const Options: React.FC<Record<string, never>> = () => {
           Update Author
         </a>
       </Menu.Item>
+
+      <Menu.Item
+        onClick={() => {
+          updateForm("updateAuthor");
+        }}
+      >
+        <a target="_blank" rel="noopener noreferrer">
+          Delete Author
+        </a>
+      </Menu.Item>
+
       <Menu.Item
         onClick={() => {
           updateForm("new");
