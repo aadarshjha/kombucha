@@ -24,7 +24,7 @@ type stateObject = {
 // defines the type for categories.
 type catProps = {
   difficulty: string;
-  categories: Array<backendData>;
+  categories: any;
   state: stateObject;
 };
 

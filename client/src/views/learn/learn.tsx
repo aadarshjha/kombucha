@@ -8,6 +8,11 @@ import { Button } from "antd";
 import mockData from "./mockData.json";
 import axios from "axios";
 
+let fetchedData: Array<backendData>;
+let byCategory: any;
+let seperatedArticles: any;
+let returnedView: JSX.Element;
+
 type stateObject = {
   isLearning: boolean;
   setLearning: any;
@@ -27,21 +32,8 @@ type backendData = {
   id: string;
 };
 
-// Please disregard lines 25 - 398 from the total line count.
-// axios.get().then((response) => {
-//   console.log(response.data)
-// })
-const dataFromBackend: Array<any> = mockData;
-
-const test = async () => {
-  console.log("HERE")
-  const articles = await axios.get('localhost:5000/learn/articles').then((res) => {
-    console.log(res.data)
-  })
-}
-
-export const fetchCategories = async () => {
-  // we fetch article data: 
+export const fetchCategories = (dataFromBackend: Array<backendData>) => {
+  // we fetch article data:
   // const articles = await axios.get('localhost:5000/learn/articles')
   const easy: Array<backendData> = [];
   const medium: Array<backendData> = [];
@@ -64,12 +56,14 @@ export const fetchCategories = async () => {
 
 export const fetchArticles = (
   elementCategory: string,
-  elementDifficulty: string
+  elementDifficulty: string,
+  dataFromBackend: Array<backendData>
 ) => {
   const returnedArticles: Array<backendData> = [];
   dataFromBackend.map((element) => {
+    console.log(element.topic.name)
     if (
-      element.category == elementCategory &&
+      element.topic.name == elementCategory &&
       element.difficulty == elementDifficulty
     ) {
       returnedArticles.push(element);
@@ -78,22 +72,19 @@ export const fetchArticles = (
   return returnedArticles;
 };
 
-const userView = (viewState: stateObject) => {
-  const data = fetchCategories();
+const userView = (fetchedData: any, viewState: stateObject) => {
+  const data = fetchCategories(fetchedData);
+  console.log(data.easy)
   if (viewState.isLearning) {
-    console.log(
-      fetchArticles(viewState.articleCategory, viewState.articleDifficulty)
-    );
     return (
-      // <Articles
-      //   articles={fetchArticles(
-      //     viewState.articleCategory,
-      //     viewState.articleDifficulty
-      //   )}
-      //   state={viewState}
-      // />
-      <>
-      </>
+      <Articles
+        articles={fetchArticles(
+          viewState.articleCategory,
+          viewState.articleDifficulty,
+          fetchedData
+        )}
+        state={viewState}
+      />
     );
   } else {
     return (
@@ -102,42 +93,46 @@ const userView = (viewState: stateObject) => {
         <div className="categories">
           {/* spread the state when we click the button */}
           {/* easy */}
-          {/* <Category
+          <Category
             difficulty={"easy"}
             categories={data.easy}
             state={viewState}
-          /> */}
+          />
           {/* medium */}
-          {/* <Category
+          <Category
             difficulty={"medium"}
             categories={data.medium}
             state={viewState}
-          /> */}
+          />
           {/* hard */}
-          {/* <Category
+          <Category
             difficulty={"hard"}
             categories={data.hard}
             state={viewState}
-          /> */}
+          />
         </div>
       </div>
     );
   }
 };
 
+const renderScreen = (stateCur: any) => {
+
+  if (stateCur.isLoading) {
+    return (
+      <h1>
+        Loading...
+      </h1>
+    )
+  } else {
+    return returnedView;
+  }
+}
+
 const Learn: React.FC<Record<string, never>> = () => {
 
-  test()
-
-  // useEffect(() => {
-  //   // localhost is the server which we use in development
-  //   // we will use heroku services in deployment.
-  //   axios.get("http://localhost:5000/learn/articles").then((res) => {
-  //     // setEvents(res.data);
-  //     console.log(res.data)
-  //   });
-  // }, []);
-
+  // isLoading state for fetching data
+  const [isLoading, setLoading] = useState(true); 
 
   // is learning will see if the user clicks on the category
   const [isLearning, setLearning] = useState(false);
@@ -157,8 +152,27 @@ const Learn: React.FC<Record<string, never>> = () => {
     articleDifficulty: articleDifficulty,
     setarticleDifficulty: setarticleDifficulty,
   };
-  const returnedView = userView(viewState);
-  return <div>{returnedView}</div>;
+
+  axios
+    .get("http://localhost:5000/learn/articles")
+    .then((response) => {
+      // call all the functions to filter the data.
+      fetchedData = response.data;
+      byCategory = fetchCategories(fetchedData);
+      seperatedArticles = fetchArticles("Bacteria", "easy", fetchedData);
+      returnedView = userView(fetchedData, viewState);
+
+      setLoading(false);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  return (
+    <>
+      {renderScreen({isLoading, setLoading})}
+    </>
+  )
 };
 
 export default Learn;

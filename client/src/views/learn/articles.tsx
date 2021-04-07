@@ -22,7 +22,7 @@ type stateObject = {
 };
 
 type catProps = {
-  articles: Array<backendData>;
+  articles: any;
   state: stateObject;
 };
 
@@ -47,7 +47,7 @@ const Articles: React.FC<catProps> = ({ articles, state }: catProps) => {
           mode="inline"
         >
           <SubMenu key="sub4" title="Articles">
-            {articles.map((element, i) => {
+            {articles.map((element: any, i: number) => {
               return <Menu.Item key={i}>{element.header}</Menu.Item>;
             })}
           </SubMenu>
