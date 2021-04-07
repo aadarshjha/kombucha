@@ -14,6 +14,7 @@ import AddAuthor from "./addAuthor";
 import UpdateAuthor from "./updateAuthor";
 import DeleteAuthor from "./deleteAuthor";
 import AddTopic from "./addTopic";
+import UpdateTopic from "./updateTopic";
 
 const updateView = (updatedView: string) => {
   if (updatedView == "newAuthor") {
@@ -25,9 +26,9 @@ const updateView = (updatedView: string) => {
   } else if (updatedView == "newTopic") {
     return <AddTopic />;
   } else if (updatedView == "updateTopic") {
-    console.log(1)
+    return <UpdateTopic />;
   } else if (updatedView == "deleteTopic") {
-    console.log(2)
+    console.log(2);
   } else if (updatedView == "new") {
     return <NewArticle />;
   } else if (updatedView == "update") {
@@ -78,7 +79,6 @@ const Options: React.FC<Record<string, never>> = () => {
         </a>
       </Menu.Item>
 
-
       <Menu.Item
         onClick={() => {
           updateForm("newTopic");
@@ -108,8 +108,6 @@ const Options: React.FC<Record<string, never>> = () => {
           Delete Topic
         </a>
       </Menu.Item>
-
-  
 
       <Menu.Item
         onClick={() => {

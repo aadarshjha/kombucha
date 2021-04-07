@@ -34,7 +34,7 @@ const AddTopic: React.FC<Record<string, never>> = () => {
   const onFinish = (values: any) => {
     axios
       .put("http://localhost:5000/learn/topic/create", {
-        name: values.name
+        name: values.name,
       })
       .then((_response) => {
         alert("Topic Saved!");
