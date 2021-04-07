@@ -13,6 +13,7 @@ import UpdateEvent from "./updateEvent";
 import AddAuthor from "./addAuthor";
 import UpdateAuthor from "./updateAuthor";
 import DeleteAuthor from "./deleteAuthor";
+import AddTopic from "./addTopic";
 
 const updateView = (updatedView: string) => {
   if (updatedView == "newAuthor") {
@@ -22,7 +23,7 @@ const updateView = (updatedView: string) => {
   } else if (updatedView == "deleteAuthor") {
     return <DeleteAuthor />;
   } else if (updatedView == "newTopic") {
-    console.log(3)
+    return <AddTopic />;
   } else if (updatedView == "updateTopic") {
     console.log(1)
   } else if (updatedView == "deleteTopic") {
