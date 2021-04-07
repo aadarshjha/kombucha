@@ -19,7 +19,7 @@ const updateView = (updatedView: string) => {
   } else if (updatedView == "updateAuthor") {
     return <UpdateAuthor />;
   } else if (updatedView == "deleteAuthor") {
-    console.log("here");
+    return <DeleteAuthor />
   } else if (updatedView == "new") {
     return <NewArticle />;
   } else if (updatedView == "update") {
