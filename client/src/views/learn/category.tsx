@@ -50,6 +50,7 @@ const Category: React.FC<catProps> = ({
   state,
 }: catProps) => {
   const uniqueList = fetchUniqueCategories(categories);
+  // console.log(uniqueList)
 
   return (
     // general html code that dynamically computes articles
@@ -58,12 +59,16 @@ const Category: React.FC<catProps> = ({
       <h1>{difficulty[0].toUpperCase() + difficulty.substr(1)}</h1>
       <div className="boxLevel">
         {uniqueList.map((element) => {
+          // console.log(element)
+          // console.log(difficulty)
           return (
             <div key={element} className="box">
               <Button
                 type="primary"
                 className="buttonPadding"
                 onClick={() => {
+                  // console.log(element)
+                  // console.log(difficulty)
                   state.setarticleCategory(element);
                   state.setarticleDifficulty(difficulty);
                   state.setLearning(!state.isLearning);

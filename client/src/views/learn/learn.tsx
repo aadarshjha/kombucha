@@ -11,7 +11,8 @@ import axios from "axios";
 let fetchedData: Array<backendData>;
 let byCategory: any;
 let seperatedArticles: any;
-let returnedView: JSX.Element;
+let returnedView: JSX.Element; 
+let viewState: stateObject;
 
 type stateObject = {
   isLearning: boolean;
@@ -33,8 +34,6 @@ type backendData = {
 };
 
 export const fetchCategories = (dataFromBackend: Array<backendData>) => {
-  // we fetch article data:
-  // const articles = await axios.get('localhost:5000/learn/articles')
   const easy: Array<backendData> = [];
   const medium: Array<backendData> = [];
   const hard: Array<backendData> = [];
@@ -74,6 +73,7 @@ export const fetchArticles = (
 const userView = (fetchedData: any, viewState: stateObject) => {
   const data = fetchCategories(fetchedData);
   if (viewState.isLearning) {
+    console.log("here!!!")
     return (
       <Articles
         articles={fetchArticles(
@@ -121,26 +121,33 @@ const renderScreen = (stateCur: any) => {
         <Logo page="Learn With VUMS" />
       </div>
     );
-  } else {
+  } else if (stateCur.isLearning) {
+    console.log("here1232131")
+    return userView(fetchedData, viewState)
+  } else if (!stateCur.isLoading || !stateCur.isLearning) {
+    console.log("here???")
     return returnedView;
-  }
+  } 
 };
 
 const Learn: React.FC<Record<string, never>> = () => {
+  
   // isLoading state for fetching data
   const [isLoading, setLoading] = useState(true);
 
   // is learning will see if the user clicks on the category
   const [isLearning, setLearning] = useState(false);
 
+  // console.log(isLearning)
+
   // article category will be the current category that the user clicks.
-  const [articleCategory, setarticleCategory] = useState("Bacteria");
+  const [articleCategory, setarticleCategory] = useState("");
 
   // article difficulty will be the difficulty that the user clicks on.
-  const [articleDifficulty, setarticleDifficulty] = useState("Easy");
+  const [articleDifficulty, setarticleDifficulty] = useState("");
 
   // complex state dictates the users actions.
-  const viewState: stateObject = {
+  viewState = {
     isLearning: isLearning,
     setLearning: setLearning,
     articleCategory: articleCategory,
@@ -157,14 +164,13 @@ const Learn: React.FC<Record<string, never>> = () => {
       byCategory = fetchCategories(fetchedData);
       seperatedArticles = fetchArticles("Bacteria", "easy", fetchedData);
       returnedView = userView(fetchedData, viewState);
-
       setLoading(false);
     })
     .catch((err) => {
       console.log(err);
     });
 
-  return <>{renderScreen({ isLoading, setLoading })}</>;
+  return <>{renderScreen({ isLoading, setLoading, isLearning})}</>;
 };
 
 export default Learn;
