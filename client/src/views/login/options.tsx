@@ -11,12 +11,13 @@ import AddEvent from "./addEvent";
 import DeleteEvent from "./deleteEvent";
 import UpdateEvent from "./updateEvent";
 import AddAuthor from "./addAuthor";
+import UpdateAuthor from "./updateAuthor";
 
 const updateView = (updatedView: string) => {
   if (updatedView == "newAuthor") {
     return <AddAuthor />
   } else if (updatedView == "updateAuthor") {
-    console.log("here")
+    return <UpdateAuthor />
   } else if (updatedView == "deleteAuthor") {
     console.log("here")
   } else if (updatedView == "new") {
@@ -36,7 +37,7 @@ const updateView = (updatedView: string) => {
 
 const Options: React.FC<Record<string, never>> = () => {
   // tells us which option were on:
-  const [form, updateForm] = useState("new");
+  const [form, updateForm] = useState("newAuthor");
 
   const menu = (
     <Menu>
