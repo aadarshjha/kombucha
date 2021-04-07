@@ -49,7 +49,6 @@ const Category: React.FC<catProps> = ({
   categories,
   state,
 }: catProps) => {
-  // console.log(categories)
   const uniqueList = fetchUniqueCategories(categories);
 
   return (
