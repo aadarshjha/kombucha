@@ -29,35 +29,45 @@ const tailFormItemLayout = {
   },
 };
 
-// learnRouter.patch("/author/:id/update", authorController.update);
-
 const UpdateAuthor: React.FC<Record<string, never>> = () => {
   const [form] = Form.useForm();
   let id: string;
   const onFinish = (values: any) => {
-    // associate an ID: 
+    // associate an ID:
     const name = values.name;
-    axios.get("http://localhost:5000/learn/authors").then((res) => {
-      const iteratedData = res.data; 
-      for (const element of iteratedData) {
-        if (element.name == name) {
-          id = element._id;
+    axios
+      .get("http://localhost:5000/learn/authors")
+      .then((res) => {
+        const iteratedData = res.data;
+        for (const element of iteratedData) {
+          if (element.name == name) {
+            id = element._id;
+          }
         }
-      }
-    }).then(() => {
-      axios
-      .put("http://localhost:5000/learn/author/" + id + "/update", {
-        name: values.name,
-        year: values.year,
-        majors: values.majors.split(',')
+        if (id == null) {
+          // throw error
+          throw "No User Found"
+        }
       })
-      .then((_response) => {
-        alert("Author Saved!");
-      })
-      .catch((_err) => {
-        alert("Something Went Wrong!");
+      .then(() => {
+        const URL = "http://localhost:5000/learn/author/" + id + "/update";
+        // console.log(URL)
+        axios
+          .patch(URL, {
+            name: values.updateName,
+            year: values.updateYear,
+            majors: values.updateMajors.split(","),
+          })
+          .then((_response) => {
+            alert("Author Updated!");
+          })
+          .catch((_err) => {
+            console.log(_err)
+            alert("Something Went Wrong!");
+          });
+      }).catch((err) => {
+        alert(err)
       });
-    });
   };
 
   return (
@@ -87,7 +97,7 @@ const UpdateAuthor: React.FC<Record<string, never>> = () => {
           <Input />
         </Form.Item>
         <Form.Item
-          name="name"
+          name="updateName"
           label="Update Author Name"
           rules={[
             {
@@ -100,7 +110,7 @@ const UpdateAuthor: React.FC<Record<string, never>> = () => {
           <Input />
         </Form.Item>
         <Form.Item
-          name="year"
+          name="updateYear"
           label="Update Author Graduating Year"
           rules={[
             {
@@ -113,7 +123,7 @@ const UpdateAuthor: React.FC<Record<string, never>> = () => {
           <Input />
         </Form.Item>
         <Form.Item
-          name="majors"
+          name="updateMajors"
           label="Update Author Majors (Seperate Via Commas)"
           rules={[
             {

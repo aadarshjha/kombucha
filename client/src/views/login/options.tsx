@@ -15,11 +15,11 @@ import UpdateAuthor from "./updateAuthor";
 
 const updateView = (updatedView: string) => {
   if (updatedView == "newAuthor") {
-    return <AddAuthor />
+    return <AddAuthor />;
   } else if (updatedView == "updateAuthor") {
-    return <UpdateAuthor />
+    return <UpdateAuthor />;
   } else if (updatedView == "deleteAuthor") {
-    console.log("here")
+    console.log("here");
   } else if (updatedView == "new") {
     return <NewArticle />;
   } else if (updatedView == "update") {

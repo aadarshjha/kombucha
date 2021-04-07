@@ -6,7 +6,6 @@ import "./options.css";
 import { Form, Input, Button, Upload, message, Alert } from "antd";
 import axios from "axios";
 
-
 const formItemLayout = {
   labelCol: {
     xs: { span: 24 },
@@ -37,7 +36,7 @@ const AddAuthor: React.FC<Record<string, never>> = () => {
       .put("http://localhost:5000/learn/author/create", {
         name: values.name,
         year: values.year,
-        majors: values.majors.split(',')
+        majors: values.majors.split(","),
       })
       .then((_response) => {
         alert("Author Saved!");
