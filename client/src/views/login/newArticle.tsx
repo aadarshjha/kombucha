@@ -56,41 +56,42 @@ const NewArticle: React.FC<Record<string, never>> = () => {
       })
       .then(() => {
         axios
-        .get("http://localhost:5000/learn/topics")
-        .then((res) => {
-          const name = values.topic;
-          const iteratedData = res.data;
-          for (const element of iteratedData) {
-            if (element.name == name) {
-              topic_id = element._id;
+          .get("http://localhost:5000/learn/topics")
+          .then((res) => {
+            const name = values.topic;
+            const iteratedData = res.data;
+            for (const element of iteratedData) {
+              if (element.name == name) {
+                topic_id = element._id;
+              }
             }
-          }
-          if (topic_id == null) {
-            // throw error
-            throw "No Topic Found";
-          }
-        });
+            if (topic_id == null) {
+              // throw error
+              throw "No Topic Found";
+            }
+          })
+          .then(() => {
+            axios
+              .put("http://localhost:5000/learn/article/create", {
+                title: values.title,
+                author: author_id,
+                dateUpdated: moment().format("MM/DD/YYYY"),
+                topic: topic_id,
+                content: values.content,
+                difficulty: values.difficulty,
+              })
+              .then((_response) => {
+                alert("Article Saved!");
+              })
+              .catch((_err) => {
+                alert("Something Went Wrong!");
+              });
+          }).catch((err)=> {
+            alert("Cannot Find Topic");
+          })
+      }).catch((err) => {
+        alert("Cannot Find Author!");
       })
-      .then(() => {
-        console.log(">>>>");
-        console.log(author_id);
-        console.log(topic_id);
-        axios
-          .put("http://localhost:5000/learn/article/create", {
-            title: values.title,
-            author: author_id,
-            dateUpdated: moment().format("MM/DD/YYYY"),
-            topic: topic_id,
-            content: values.content,
-            difficulty: values.difficulty,
-          })
-          .then((_response) => {
-            alert("Author Saved!");
-          })
-          .catch((_err) => {
-            alert("Something Went Wrong!");
-          });
-      });
   };
 
   return (
