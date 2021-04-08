@@ -7,9 +7,7 @@ import { Form, Input, Button } from "antd";
 import axios from "axios";
 import moment from "moment";
 
-
-
-// // Defines a controller by which we update an article by ID. 
+// // Defines a controller by which we update an article by ID.
 // export const update: controller = async (req, res, next) => {
 //   try {
 //     const updatedArticle = await Article.findByIdAndUpdate(req.params.id, {
@@ -54,65 +52,59 @@ const tailFormItemLayout = {
 const UpdateArticle: React.FC<Record<string, never>> = () => {
   const [form] = Form.useForm();
 
-  let author_id: string;
-  let topic_id: string;
+  let article_id: string;
 
-  // predicated off the idea that we have unique titles. 
-  const onFinish = (values: any) => {
-    axios
-      .get("http://localhost:5000/learn/articles")
-      .then((res) => {
-        const name = values.author;
-        const iteratedData = res.data;
-        for (const element of iteratedData) {
-          if (element.name == name) {
-            author_id = element._id;
-          }
-        }
-        if (author_id == null) {
-          // throw error
-          throw "No User Found";
-        }
-      })
-      .then(() => {
-        axios
-          .get("http://localhost:5000/learn/topics")
-          .then((res) => {
-            const name = values.topic;
-            const iteratedData = res.data;
-            for (const element of iteratedData) {
-              if (element.name == name) {
-                topic_id = element._id;
-              }
-            }
-            if (topic_id == null) {
-              // throw error
-              throw "No Topic Found";
-            }
-          })
-          .then(() => {
-            axios
-              .put("http://localhost:5000/learn/article/create", {
-                title: values.title,
-                author: author_id,
-                dateUpdated: moment().format("MM/DD/YYYY"),
-                topic: topic_id,
-                content: values.content,
-                difficulty: values.difficulty,
-              })
-              .then((_response) => {
-                alert("Article Saved!");
-              })
-              .catch((_err) => {
-                alert("Something Went Wrong!");
-              });
-          }).catch((err)=> {
-            alert("Cannot Find Topic");
-          })
-      }).catch((err) => {
-        alert("Cannot Find Author!");
-      })
-  };
+  // const fetchAuthor = () => {
+  //   axios
+  //     .get()
+  // }
+
+  // const fetchTopic = () => {
+  //   axios
+  //     .get()
+  // }
+
+  // // predicated off the idea that we have unique titles.
+  // const onFinish = (values: any) => {
+  //   axios
+  //     .get("http://localhost:5000/learn/articles")
+  //     .then((res) => {
+  //       const name = values.title;
+  //       const iteratedData = res.data;
+  //       for (const element of iteratedData) {
+  //         if (element.title == name) {
+  //           article_id = element._id;
+  //         }
+  //       }
+  //       if (article_id == null) {
+  //         // throw error
+  //         throw "No Article Found";
+  //       }
+  //     })
+  //     .then(()=> {
+
+  //       axios
+  //         .patch("", {
+  //           title: values.newTitle,
+  //           // get the author id
+  //           author: fetchAuthor(),
+  //           // todays date.
+  //           dateUpdated: moment().format("MM/DD/YYYY"),
+  //           // get the topic id
+  //           topic: fetchTopic(),
+  //           content: values.newContent,
+  //           difficulty: values.newDifficulty,
+  //         })
+  //         .then(()=> {
+
+  //         })
+  //         .catch((err) => {
+
+  //         })
+  //     })
+  //     .catch((err) => {
+  //       alert("Cannot find Article!")
+  //     });
 
   return (
     <div className="centeredForm">
@@ -120,7 +112,9 @@ const UpdateArticle: React.FC<Record<string, never>> = () => {
         {...formItemLayout}
         form={form}
         name="register"
-        onFinish={onFinish}
+        onFinish={() => {
+          console.log(1);
+        }}
         initialValues={{
           residence: ["zhejiang", "hangzhou", "xihu"],
           prefix: "86",

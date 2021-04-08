@@ -86,12 +86,14 @@ const NewArticle: React.FC<Record<string, never>> = () => {
               .catch((_err) => {
                 alert("Something Went Wrong!");
               });
-          }).catch((err)=> {
-            alert("Cannot Find Topic");
           })
-      }).catch((err) => {
-        alert("Cannot Find Author!");
+          .catch((err) => {
+            alert("Cannot Find Topic");
+          });
       })
+      .catch((err) => {
+        alert("Cannot Find Author!");
+      });
   };
 
   return (

@@ -5,6 +5,7 @@ import "antd/dist/antd.css";
 import "./options.css";
 
 import { Form, Input, Button } from "antd";
+import axios from "axios";
 
 const { TextArea } = Input;
 
@@ -35,7 +36,43 @@ const DeleteArticle: React.FC<Record<string, never>> = () => {
   const [form] = Form.useForm();
 
   const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
+    // first we fetch the article ID based on title
+    let article_id: string;
+    axios
+      .get("http://localhost:5000/learn/articles")
+      .then((res) => {
+        const iteratedData = res.data;
+        const title = values.title;
+        console.log(iteratedData);
+        for (const element of iteratedData) {
+          console.log(element);
+          if (element.title == title) {
+            article_id = element._id;
+          }
+        }
+        if (article_id == null) {
+          // throw error
+          throw "No Article Found";
+        }
+      })
+      .then(() => {
+        const URL =
+          "http://localhost:5000/learn/article/" + article_id + "/delete";
+        console.log(URL);
+        // now we delete
+        axios
+          .delete(URL)
+          .then((_res) => {
+            console.log(_res);
+            alert(_res.data);
+          })
+          .catch((err) => {
+            alert(err);
+          });
+      })
+      .catch((err) => {
+        alert(err);
+      });
   };
 
   return (
@@ -52,12 +89,12 @@ const DeleteArticle: React.FC<Record<string, never>> = () => {
         scrollToFirstError
       >
         <Form.Item
-          name="article"
+          name="title"
           label="Article Name"
           rules={[
             {
               required: true,
-              message: "Enter Article Name",
+              message: "Enter Article Title",
             },
           ]}
           hasFeedback
@@ -66,7 +103,7 @@ const DeleteArticle: React.FC<Record<string, never>> = () => {
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
-            Submit Article
+            Delete Article
           </Button>
         </Form.Item>
       </Form>

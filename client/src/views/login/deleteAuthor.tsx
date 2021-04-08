@@ -56,7 +56,7 @@ const DeleteAuthor: React.FC<Record<string, never>> = () => {
         axios
           .delete(URL)
           .then((_response) => {
-            alert("Author Deleted!");
+            alert(_response);
           })
           .catch((_err) => {
             console.log(_err);
