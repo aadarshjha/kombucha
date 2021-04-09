@@ -43,9 +43,8 @@ const DeleteArticle: React.FC<Record<string, never>> = () => {
       .then((res) => {
         const iteratedData = res.data;
         const title = values.title;
-        console.log(iteratedData);
+
         for (const element of iteratedData) {
-          console.log(element);
           if (element.title == title) {
             article_id = element._id;
           }
@@ -58,13 +57,11 @@ const DeleteArticle: React.FC<Record<string, never>> = () => {
       .then(() => {
         const URL =
           "http://localhost:5000/learn/article/" + article_id + "/delete";
-        console.log(URL);
         // now we delete
         axios
           .delete(URL)
           .then((_res) => {
-            console.log(_res);
-            alert(_res.data);
+            alert("Article Deleted!");
           })
           .catch((err) => {
             alert(err);

@@ -44,7 +44,6 @@ const DeleteAuthor: React.FC<Record<string, never>> = () => {
             id = element._id;
           }
         }
-        console.log(id);
         if (id == null) {
           // throw error
           throw "No User Found";
@@ -56,7 +55,7 @@ const DeleteAuthor: React.FC<Record<string, never>> = () => {
         axios
           .delete(URL)
           .then((_response) => {
-            alert(_response);
+            alert("Author Deleted!");
           })
           .catch((_err) => {
             console.log(_err);
