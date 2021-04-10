@@ -1,13 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
-import { DownOutlined } from "@ant-design/icons";
+import React from "react";
+// import { Menu, Dropdown, Button } from "antd";
 import "antd/dist/antd.css";
 import "./options.css";
-
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Upload, message, Alert } from "antd";
 import axios from "axios";
-
-const { TextArea } = Input;
 
 const formItemLayout = {
   labelCol: {
@@ -32,39 +29,44 @@ const tailFormItemLayout = {
   },
 };
 
-const DeleteArticle: React.FC<Record<string, never>> = () => {
+const UpdateAuthor: React.FC<Record<string, never>> = () => {
   const [form] = Form.useForm();
-
+  let id: string;
   const onFinish = (values: any) => {
-    // first we fetch the article ID based on title
-    let article_id: string;
+    // associate an ID:
+    const name = values.name;
+    console.log(name);
     axios
-      .get("http://localhost:5000/learn/articles")
+      .get("http://localhost:5000/learn/topics")
       .then((res) => {
         const iteratedData = res.data;
-        const title = values.title;
-
+        console.log(iteratedData);
         for (const element of iteratedData) {
-          if (element.title == title) {
-            article_id = element._id;
+          if (element.name == name) {
+            console.log(element.name);
+            console.log(name);
+            id = element._id;
           }
         }
-        if (article_id == null) {
+        console.log(id);
+        if (id == null) {
           // throw error
-          throw "No Article Found";
+          throw "No Topic Found";
         }
       })
       .then(() => {
-        const URL =
-          "http://localhost:5000/learn/article/" + article_id + "/delete";
-        // now we delete
+        const URL = "http://localhost:5000/learn/topic/" + id + "/update";
+        // console.log(URL)
         axios
-          .delete(URL)
-          .then((_res) => {
-            alert("Article Deleted!");
+          .patch(URL, {
+            name: values.updateName,
           })
-          .catch((err) => {
-            alert(err);
+          .then((_response) => {
+            alert("Topic Updated!");
+          })
+          .catch((_err) => {
+            console.log(_err);
+            alert("Something Went Wrong!");
           });
       })
       .catch((err) => {
@@ -86,21 +88,35 @@ const DeleteArticle: React.FC<Record<string, never>> = () => {
         scrollToFirstError
       >
         <Form.Item
-          name="title"
-          label="Article Name"
+          name="name"
+          label="Topic Name"
           rules={[
             {
               required: true,
-              message: "Enter Article Title",
+              message: "Enter Topic Name",
             },
           ]}
           hasFeedback
         >
           <Input />
         </Form.Item>
+        <Form.Item
+          name="updateName"
+          label="Update Topic Name"
+          rules={[
+            {
+              required: true,
+              message: "Update Topic Name",
+            },
+          ]}
+          hasFeedback
+        >
+          <Input />
+        </Form.Item>
+
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
-            Delete Article
+            Update Topic
           </Button>
         </Form.Item>
       </Form>
@@ -108,4 +124,4 @@ const DeleteArticle: React.FC<Record<string, never>> = () => {
   );
 };
 
-export default DeleteArticle;
+export default UpdateAuthor;

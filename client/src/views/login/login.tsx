@@ -32,7 +32,7 @@ const renderView = (signedIn: boolean, setSignIn: any) => {
         <Options />
         <Button
           onClick={() => {
-            setSignIn(!signedIn);
+            setSignIn(true);
           }}
         >
           Toggle View
@@ -106,7 +106,7 @@ const renderView = (signedIn: boolean, setSignIn: any) => {
 };
 
 const Login: React.FC<Record<string, never>> = () => {
-  const [signedIn, setSignIn] = useState(false);
+  const [signedIn, setSignIn] = useState(true);
   const curView = renderView(signedIn, setSignIn);
 
   return <div>{curView}</div>;

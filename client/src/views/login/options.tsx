@@ -10,9 +10,30 @@ import DeleteArticle from "./deleteArticle";
 import AddEvent from "./addEvent";
 import DeleteEvent from "./deleteEvent";
 import UpdateEvent from "./updateEvent";
+import AddAuthor from "./addAuthor";
+import UpdateAuthor from "./updateAuthor";
+import DeleteAuthor from "./deleteAuthor";
+import AddTopic from "./addTopic";
+import UpdateTopic from "./updateTopic";
+import DeleteTopic from "./deleteTopic";
+import SummaryStats from "./summaryStats";
 
 const updateView = (updatedView: string) => {
-  if (updatedView == "new") {
+  if (updatedView == "newAuthor") {
+    return <AddAuthor />;
+  } else if (updatedView == "stats") {
+    return <SummaryStats />;
+  } else if (updatedView == "updateAuthor") {
+    return <UpdateAuthor />;
+  } else if (updatedView == "deleteAuthor") {
+    return <DeleteAuthor />;
+  } else if (updatedView == "newTopic") {
+    return <AddTopic />;
+  } else if (updatedView == "updateTopic") {
+    return <UpdateTopic />;
+  } else if (updatedView == "deleteTopic") {
+    return <DeleteTopic />;
+  } else if (updatedView == "new") {
     return <NewArticle />;
   } else if (updatedView == "update") {
     return <UpdateArticle />;
@@ -29,10 +50,78 @@ const updateView = (updatedView: string) => {
 
 const Options: React.FC<Record<string, never>> = () => {
   // tells us which option were on:
-  const [form, updateForm] = useState("new");
+  const [form, updateForm] = useState("stats");
 
   const menu = (
-    <Menu>
+    <Menu mode="horizontal">
+      <Menu.Item
+        onClick={() => {
+          updateForm("stats");
+        }}
+      >
+        <a target="_blank" rel="noopener noreferrer">
+          Stats
+        </a>
+      </Menu.Item>
+      <Menu.Item
+        onClick={() => {
+          updateForm("newAuthor");
+        }}
+      >
+        <a target="_blank" rel="noopener noreferrer">
+          New Author
+        </a>
+      </Menu.Item>
+      <Menu.Item
+        onClick={() => {
+          updateForm("updateAuthor");
+        }}
+      >
+        <a target="_blank" rel="noopener noreferrer">
+          Update Author
+        </a>
+      </Menu.Item>
+
+      <Menu.Item
+        onClick={() => {
+          updateForm("deleteAuthor");
+        }}
+      >
+        <a target="_blank" rel="noopener noreferrer">
+          Delete Author
+        </a>
+      </Menu.Item>
+
+      <Menu.Item
+        onClick={() => {
+          updateForm("newTopic");
+        }}
+      >
+        <a target="_blank" rel="noopener noreferrer">
+          New Topic
+        </a>
+      </Menu.Item>
+
+      <Menu.Item
+        onClick={() => {
+          updateForm("updateTopic");
+        }}
+      >
+        <a target="_blank" rel="noopener noreferrer">
+          Update Topic
+        </a>
+      </Menu.Item>
+
+      <Menu.Item
+        onClick={() => {
+          updateForm("deleteTopic");
+        }}
+      >
+        <a target="_blank" rel="noopener noreferrer">
+          Delete Topic
+        </a>
+      </Menu.Item>
+
       <Menu.Item
         onClick={() => {
           updateForm("new");
@@ -97,11 +186,7 @@ const Options: React.FC<Record<string, never>> = () => {
 
   return (
     <div className="centered">
-      <Dropdown overlay={menu}>
-        <Button>
-          Options <DownOutlined />
-        </Button>
-      </Dropdown>
+      {menu}
       {updatedView}
     </div>
   );

@@ -3,15 +3,8 @@ import React from "react";
 // import { Menu, Dropdown, Button } from "antd";
 import "antd/dist/antd.css";
 import "./options.css";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Upload, message, Alert } from "antd";
 import axios from "axios";
-import moment from "moment";
-
-// we just get the title of the article
-// and the updated content
-// we also update the date of the article.
-
-const { TextArea } = Input;
 
 const formItemLayout = {
   labelCol: {
@@ -36,51 +29,47 @@ const tailFormItemLayout = {
   },
 };
 
-const UpdateArticle: React.FC<Record<string, never>> = () => {
+const UpdateAuthor: React.FC<Record<string, never>> = () => {
   const [form] = Form.useForm();
-
-  let article_id: string;
-
+  let id: string;
   const onFinish = (values: any) => {
+    // associate an ID:
+    const name = values.name;
     axios
-      .get("http://localhost:5000/learn/articles")
+      .get("http://localhost:5000/learn/authors")
       .then((res) => {
-        const name = values.title;
         const iteratedData = res.data;
         for (const element of iteratedData) {
-          if (element.title == name) {
-            article_id = element._id;
+          if (element.name == name) {
+            id = element._id;
           }
         }
-        if (article_id == null) {
+        if (id == null) {
           // throw error
-          throw "No Article Found";
+          throw "No User Found";
         }
       })
       .then(() => {
-        // const URL = learnRouter.patch("/article/:id/update", articleController.update);
-        const URL =
-          "http://localhost:5000/learn/article/" + article_id + "/update";
+        const URL = "http://localhost:5000/learn/author/" + id + "/update";
         console.log(URL);
         axios
           .patch(URL, {
-            dateUpdated: moment().format("MM/DD/YYYY"),
-            content: values.content,
+            name: values.updateName,
+            year: values.updateYear,
+            majors: values.updateMajors.split(","),
           })
-          .then((res) => {
-            alert("Article Updated!");
+          .then((_response) => {
+            alert("Author Updated!");
           })
-          .catch((err) => {
-            console.log(err);
-            alert("Could not update article!");
+          .catch((_err) => {
+            console.log(_err);
+            alert("Something Went Wrong!");
           });
       })
       .catch((err) => {
-        alert("Cannot find Article!");
+        alert(err);
       });
   };
-
-  // predicated off the idea that we have unique titles.
 
   return (
     <div className="centeredForm">
@@ -96,36 +85,60 @@ const UpdateArticle: React.FC<Record<string, never>> = () => {
         scrollToFirstError
       >
         <Form.Item
-          name="title"
-          label="Title"
+          name="name"
+          label="Author Name"
           rules={[
             {
               required: true,
-              message: "Enter Article Title",
+              message: "Enter Author Name",
             },
           ]}
           hasFeedback
         >
           <Input />
         </Form.Item>
-
         <Form.Item
-          name="content"
-          label="Content"
+          name="updateName"
+          label="Update Author Name"
           rules={[
             {
               required: true,
-              message: "Content",
+              message: "Update Author Name",
             },
           ]}
           hasFeedback
         >
-          <TextArea rows={4} />
+          <Input />
         </Form.Item>
-
+        <Form.Item
+          name="updateYear"
+          label="Update Author Graduating Year"
+          rules={[
+            {
+              required: true,
+              message: "Enter Author Graduating Year",
+            },
+          ]}
+          hasFeedback
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          name="updateMajors"
+          label="Update Author Majors (Seperate Via Commas)"
+          rules={[
+            {
+              required: true,
+              message: "Enter Author Majors",
+            },
+          ]}
+          hasFeedback
+        >
+          <Input />
+        </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
-            Submit Article
+            Update Author
           </Button>
         </Form.Item>
       </Form>
@@ -133,4 +146,4 @@ const UpdateArticle: React.FC<Record<string, never>> = () => {
   );
 };
 
-export default UpdateArticle;
+export default UpdateAuthor;

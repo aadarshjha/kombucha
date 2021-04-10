@@ -1,13 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
-import { DownOutlined } from "@ant-design/icons";
+import React from "react";
+// import { Menu, Dropdown, Button } from "antd";
 import "antd/dist/antd.css";
 import "./options.css";
-
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Upload, message, Alert } from "antd";
 import axios from "axios";
-
-const { TextArea } = Input;
 
 const formItemLayout = {
   labelCol: {
@@ -32,39 +29,37 @@ const tailFormItemLayout = {
   },
 };
 
-const DeleteArticle: React.FC<Record<string, never>> = () => {
+const DeleteAuthor: React.FC<Record<string, never>> = () => {
   const [form] = Form.useForm();
-
+  let id: string;
   const onFinish = (values: any) => {
-    // first we fetch the article ID based on title
-    let article_id: string;
+    // associate an ID:
+    const name = values.name;
     axios
-      .get("http://localhost:5000/learn/articles")
+      .get("http://localhost:5000/learn/authors")
       .then((res) => {
         const iteratedData = res.data;
-        const title = values.title;
-
         for (const element of iteratedData) {
-          if (element.title == title) {
-            article_id = element._id;
+          if (element.name == name) {
+            id = element._id;
           }
         }
-        if (article_id == null) {
+        if (id == null) {
           // throw error
-          throw "No Article Found";
+          throw "No User Found";
         }
       })
       .then(() => {
-        const URL =
-          "http://localhost:5000/learn/article/" + article_id + "/delete";
-        // now we delete
+        const URL = "http://localhost:5000/learn/author/" + id + "/delete";
+        // console.log(URL)
         axios
           .delete(URL)
-          .then((_res) => {
-            alert("Article Deleted!");
+          .then((_response) => {
+            alert("Author Deleted!");
           })
-          .catch((err) => {
-            alert(err);
+          .catch((_err) => {
+            console.log(_err);
+            alert("Something Went Wrong!");
           });
       })
       .catch((err) => {
@@ -86,21 +81,22 @@ const DeleteArticle: React.FC<Record<string, never>> = () => {
         scrollToFirstError
       >
         <Form.Item
-          name="title"
-          label="Article Name"
+          name="name"
+          label="Author Name"
           rules={[
             {
               required: true,
-              message: "Enter Article Title",
+              message: "Enter Author Name",
             },
           ]}
           hasFeedback
         >
           <Input />
         </Form.Item>
+
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
-            Delete Article
+            Update Author
           </Button>
         </Form.Item>
       </Form>
@@ -108,4 +104,4 @@ const DeleteArticle: React.FC<Record<string, never>> = () => {
   );
 };
 
-export default DeleteArticle;
+export default DeleteAuthor;
