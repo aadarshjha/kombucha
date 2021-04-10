@@ -7,22 +7,10 @@ import { Form, Input, Button } from "antd";
 import axios from "axios";
 import moment from "moment";
 
-// // Defines a controller by which we update an article by ID.
-// export const update: controller = async (req, res, next) => {
-//   try {
-//     const updatedArticle = await Article.findByIdAndUpdate(req.params.id, {
-//       $set: req.body,
-//     });
-//     res.send(`Successfully updated article with ID: ${updatedArticle._id}\n`);
-//   } catch (err) {
-//     next(err);
-//     res.send(
-//       `Updating article failed. Maybe check that you got the ID and title fields right.\n${err}\n`
-//     );
-//   }
-// };
+// we just get the title of the article
+// and the updated content
+// we also update the date of the article. 
 
-// learnRouter.patch("/article/:id/update", articleController.update);
 
 const { TextArea } = Input;
 
@@ -54,57 +42,42 @@ const UpdateArticle: React.FC<Record<string, never>> = () => {
 
   let article_id: string;
 
-  // const fetchAuthor = () => {
-  //   axios
-  //     .get()
-  // }
+  const onFinish = (values: any) => {
+    axios
+      .get("http://localhost:5000/learn/articles")
+      .then((res) => {
+        const name = values.title;
+        const iteratedData = res.data;
+        for (const element of iteratedData) {
+          if (element.title == name) {
+            article_id = element._id;
+          }
+        }
+        if (article_id == null) {
+          // throw error
+          throw "No Article Found";
+        }
+      })
+      .then(()=> {
+        // const URL = learnRouter.patch("/article/:id/update", articleController.update);
+        const URL = "/learn/article/" + article_id + "/update";
+        console.log(URL)
+        axios
+          .patch(URL, {
+            dateUpdated: moment().format("MM/DD/YYYY"),
+            content: values.content
+          }).then((res) => {
+            alert("Article Updated!")
+          }).catch((err) => {
+            console.log(err)
+            alert("Could not update article!"); 
+          });
+      })
+      .catch((err) => {
+        alert("Cannot find Article!")
+      })}; 
 
-  // const fetchTopic = () => {
-  //   axios
-  //     .get()
-  // }
-
-  // // predicated off the idea that we have unique titles.
-  // const onFinish = (values: any) => {
-  //   axios
-  //     .get("http://localhost:5000/learn/articles")
-  //     .then((res) => {
-  //       const name = values.title;
-  //       const iteratedData = res.data;
-  //       for (const element of iteratedData) {
-  //         if (element.title == name) {
-  //           article_id = element._id;
-  //         }
-  //       }
-  //       if (article_id == null) {
-  //         // throw error
-  //         throw "No Article Found";
-  //       }
-  //     })
-  //     .then(()=> {
-
-  //       axios
-  //         .patch("", {
-  //           title: values.newTitle,
-  //           // get the author id
-  //           author: fetchAuthor(),
-  //           // todays date.
-  //           dateUpdated: moment().format("MM/DD/YYYY"),
-  //           // get the topic id
-  //           topic: fetchTopic(),
-  //           content: values.newContent,
-  //           difficulty: values.newDifficulty,
-  //         })
-  //         .then(()=> {
-
-  //         })
-  //         .catch((err) => {
-
-  //         })
-  //     })
-  //     .catch((err) => {
-  //       alert("Cannot find Article!")
-  //     });
+  // predicated off the idea that we have unique titles.
 
   return (
     <div className="centeredForm">
@@ -112,9 +85,7 @@ const UpdateArticle: React.FC<Record<string, never>> = () => {
         {...formItemLayout}
         form={form}
         name="register"
-        onFinish={() => {
-          console.log(1);
-        }}
+        onFinish={onFinish}
         initialValues={{
           residence: ["zhejiang", "hangzhou", "xihu"],
           prefix: "86",
@@ -136,34 +107,6 @@ const UpdateArticle: React.FC<Record<string, never>> = () => {
         </Form.Item>
 
         <Form.Item
-          name="author"
-          label="Author"
-          rules={[
-            {
-              required: true,
-              message: "Enter Article Author",
-            },
-          ]}
-          hasFeedback
-        >
-          <Input />
-        </Form.Item>
-
-        <Form.Item
-          name="topic"
-          label="Topic"
-          rules={[
-            {
-              required: true,
-              message: "Topic",
-            },
-          ]}
-          hasFeedback
-        >
-          <Input />
-        </Form.Item>
-
-        <Form.Item
           name="content"
           label="Content"
           rules={[
@@ -177,19 +120,6 @@ const UpdateArticle: React.FC<Record<string, never>> = () => {
           <TextArea rows={4} />
         </Form.Item>
 
-        <Form.Item
-          name="difficulty"
-          label="Difficulty"
-          rules={[
-            {
-              required: true,
-              message: "Difficulty",
-            },
-          ]}
-          hasFeedback
-        >
-          <Input />
-        </Form.Item>
 
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
