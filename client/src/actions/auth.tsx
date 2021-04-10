@@ -1,4 +1,4 @@
-const AUTH = 'AUTH';
+import { AUTH } from '../constants/actionTypes';
 import {signIn, signUp} from '../api/index';
 
 export const signin = (formData: any, router: any) => async (dispatch: any) => {
