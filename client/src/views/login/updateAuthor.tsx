@@ -51,7 +51,7 @@ const UpdateAuthor: React.FC<Record<string, never>> = () => {
       })
       .then(() => {
         const URL = "http://localhost:5000/learn/author/" + id + "/update";
-        // console.log(URL)
+        console.log(URL);
         axios
           .patch(URL, {
             name: values.updateName,

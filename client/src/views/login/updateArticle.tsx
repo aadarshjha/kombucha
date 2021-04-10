@@ -9,8 +9,7 @@ import moment from "moment";
 
 // we just get the title of the article
 // and the updated content
-// we also update the date of the article. 
-
+// we also update the date of the article.
 
 const { TextArea } = Input;
 
@@ -58,24 +57,28 @@ const UpdateArticle: React.FC<Record<string, never>> = () => {
           throw "No Article Found";
         }
       })
-      .then(()=> {
+      .then(() => {
         // const URL = learnRouter.patch("/article/:id/update", articleController.update);
-        const URL = "/learn/article/" + article_id + "/update";
-        console.log(URL)
+        const URL =
+          "http://localhost:5000/learn/article/" + article_id + "/update";
+        console.log(URL);
         axios
           .patch(URL, {
             dateUpdated: moment().format("MM/DD/YYYY"),
-            content: values.content
-          }).then((res) => {
-            alert("Article Updated!")
-          }).catch((err) => {
-            console.log(err)
-            alert("Could not update article!"); 
+            content: values.content,
+          })
+          .then((res) => {
+            alert("Article Updated!");
+          })
+          .catch((err) => {
+            console.log(err);
+            alert("Could not update article!");
           });
       })
       .catch((err) => {
-        alert("Cannot find Article!")
-      })}; 
+        alert("Cannot find Article!");
+      });
+  };
 
   // predicated off the idea that we have unique titles.
 
@@ -119,7 +122,6 @@ const UpdateArticle: React.FC<Record<string, never>> = () => {
         >
           <TextArea rows={4} />
         </Form.Item>
-
 
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
