@@ -50,7 +50,7 @@ const updateView = (updatedView: string) => {
 
 const Options: React.FC<Record<string, never>> = () => {
   // tells us which option were on:
-  const [form, updateForm] = useState("newAuthor");
+  const [form, updateForm] = useState("stats");
 
   const menu = (
     <Menu mode="horizontal">
