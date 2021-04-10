@@ -5,9 +5,9 @@ import User from "../models/user";
 
 const secret = 'test';
 
-export const signin = async (req, res) => {
+export const signin = async (req: any, res: any) => {
     const { email, password } = req.body;
-
+    
     try {
         const oldUser = await User.findOne({ email });
 
@@ -25,7 +25,7 @@ export const signin = async (req, res) => {
     }
 };
 
-export const signup = async (req, res) => {
+export const signup = async (req: any, res: any) => {
     const { email, password, firstName, lastName } = req.body;
 
     try {
