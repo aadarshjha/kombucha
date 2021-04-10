@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from 'react-redux';
+import { signin, signup } from '../../actions/auth';
+import { useHistory } from 'react-router-dom';
 import Logo from "../../components/Logo";
 import { Form, Input, Button, Checkbox } from "antd";
 import Options from "./options";
@@ -18,15 +21,21 @@ const middleLayout = {
   wrapperCol: { offset: 14, span: 16 },
 };
 
-const onFinish = (values: any) => {
-  console.log("Success:", values);
-};
-
 const onFinishFailed = (errorInfo: any) => {
   console.log("Failed:", errorInfo);
 };
 
 const renderView = (signedIn: boolean, setSignIn: any, signUp: boolean, setSignUp: any) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  //create function for submit
+  const handleSubmit = (e: any) => {
+    console.log("success", e);
+    //fetches authentication data from the backend
+    dispatch(signin(signedIn, history));
+  };
+
   if (signedIn) {
     return (
       <div>
@@ -60,7 +69,7 @@ const renderView = (signedIn: boolean, setSignIn: any, signUp: boolean, setSignU
             {...layout}
             name="basic"
             initialValues={{ remember: true }}
-            onFinish={onFinish}
+            onFinish={handleSubmit}
             onFinishFailed={onFinishFailed}
             style={{ width: "400px" }}
           >
@@ -82,10 +91,6 @@ const renderView = (signedIn: boolean, setSignIn: any, signUp: boolean, setSignU
               ]}
             >
               <Input.Password />
-            </Form.Item>
-
-            <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-              <Checkbox>Remember me</Checkbox>
             </Form.Item>
 
             <Form.Item {...middleLayout}>
@@ -117,6 +122,12 @@ const renderView = (signedIn: boolean, setSignIn: any, signUp: boolean, setSignU
 };
 
 const signUpView = (signUp: boolean, setSignUp: any) => {
+  //create function for submit
+  const handleSubmit = (e: any) => {
+    console.log("success", e);
+    //dispatch(signin(e, history));
+  };
+
   return (
     <div>
       <Logo page="Sign-up To VUMS"></Logo>
@@ -135,7 +146,7 @@ const signUpView = (signUp: boolean, setSignUp: any) => {
             {...layout}
             name="basic"
             initialValues={{ remember: true }}
-            onFinish={onFinish}
+            onFinish={handleSubmit}
             onFinishFailed={onFinishFailed}
             style={{ width: "400px" }}
           >
@@ -216,6 +227,7 @@ const Login: React.FC<Record<string, never>> = () => {
   const [signedIn, setSignIn] = useState(false);
   const [signUp, setSignUp] = useState(false);
   const curView = signUp ? signUpView(signUp, setSignUp) : renderView(signedIn, setSignIn, signUp, setSignUp);
+  const history = useHistory();
 
   return <div>{curView}</div>;
 };
