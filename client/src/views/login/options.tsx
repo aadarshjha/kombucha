@@ -16,10 +16,13 @@ import DeleteAuthor from "./deleteAuthor";
 import AddTopic from "./addTopic";
 import UpdateTopic from "./updateTopic";
 import DeleteTopic from "./deleteTopic";
+import SummaryStats from "./summaryStats";
 
 const updateView = (updatedView: string) => {
   if (updatedView == "newAuthor") {
     return <AddAuthor />;
+  } else if (updatedView == "stats") {
+    return <SummaryStats />;
   } else if (updatedView == "updateAuthor") {
     return <UpdateAuthor />;
   } else if (updatedView == "deleteAuthor") {
@@ -50,7 +53,16 @@ const Options: React.FC<Record<string, never>> = () => {
   const [form, updateForm] = useState("newAuthor");
 
   const menu = (
-    <Menu>
+    <Menu mode="horizontal">
+      <Menu.Item
+        onClick={() => {
+          updateForm("stats");
+        }}
+      >
+        <a target="_blank" rel="noopener noreferrer">
+          Stats
+        </a>
+      </Menu.Item>
       <Menu.Item
         onClick={() => {
           updateForm("newAuthor");
@@ -174,11 +186,7 @@ const Options: React.FC<Record<string, never>> = () => {
 
   return (
     <div className="centered">
-      <Dropdown overlay={menu}>
-        <Button>
-          Options <DownOutlined />
-        </Button>
-      </Dropdown>
+      {menu}
       {updatedView}
     </div>
   );
