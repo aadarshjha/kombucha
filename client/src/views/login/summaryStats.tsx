@@ -9,43 +9,54 @@ import {
   SmileOutlined,
   HighlightOutlined,
 } from "@ant-design/icons";
-import axios from 'axios'; 
+import axios from "axios";
 
-const articleURL = "http://localhost:5000/learn/articles"
-const authorsURL = "http://localhost:5000/learn/authors"
-const topicsURL = "http://localhost:5000/learn/topics"
-const eventsURL = "http://localhost:5000/events"
+const articleURL = "http://localhost:5000/learn/articles";
+const authorsURL = "http://localhost:5000/learn/authors";
+const topicsURL = "http://localhost:5000/learn/topics";
+const eventsURL = "http://localhost:5000/events";
 
 const SummaryStats: React.FC<Record<string, never>> = () => {
-  
-  const [numArticles, setNumArticles] = useState(0); 
-  const [numAuthors, setNumAuthors] = useState(0); 
-  const [numTopics, setNumTopics] = useState(0); 
-  const [numEvents, setNumEvents] = useState(0); 
+  const [numArticles, setNumArticles] = useState(0);
+  const [numAuthors, setNumAuthors] = useState(0);
+  const [numTopics, setNumTopics] = useState(0);
+  const [numEvents, setNumEvents] = useState(0);
 
-  axios.get(articleURL).then((res) => {
-    setNumArticles(res.data.length)
-  }).catch((err) => {
-    alert(err)
-  });
+  axios
+    .get(articleURL)
+    .then((res) => {
+      setNumArticles(res.data.length);
+    })
+    .catch((err) => {
+      alert(err);
+    });
 
-  axios.get(authorsURL).then((res) => {
-    setNumAuthors(res.data.length)
-  }).catch((err) => {
-    alert(err)
-  });
+  axios
+    .get(authorsURL)
+    .then((res) => {
+      setNumAuthors(res.data.length);
+    })
+    .catch((err) => {
+      alert(err);
+    });
 
-  axios.get(topicsURL).then((res) => {
-    setNumTopics(res.data.length)
-  }).catch((err) => {
-    alert(err)
-  });
+  axios
+    .get(topicsURL)
+    .then((res) => {
+      setNumTopics(res.data.length);
+    })
+    .catch((err) => {
+      alert(err);
+    });
 
-  axios.get(eventsURL).then((res) => {
-    setNumEvents(res.data.length)
-  }).catch((err) => {
-    alert(err)
-  });
+  axios
+    .get(eventsURL)
+    .then((res) => {
+      setNumEvents(res.data.length);
+    })
+    .catch((err) => {
+      alert(err);
+    });
 
   return (
     // this will basically summarize the statistics present in the article page
