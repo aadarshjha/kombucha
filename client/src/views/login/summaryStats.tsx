@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
 import "./options.css";
-import { Progress, Statistic } from "antd";
+import { Progress, Statistic, Typography, List } from "antd";
 import "./options.css";
 import {
   BookOutlined,
@@ -17,15 +17,31 @@ const topicsURL = "http://localhost:5000/learn/topics";
 const eventsURL = "http://localhost:5000/events";
 
 const SummaryStats: React.FC<Record<string, never>> = () => {
+  const [articlesList, setArticlesList] = useState([]);
   const [numArticles, setNumArticles] = useState(0);
   const [numAuthors, setNumAuthors] = useState(0);
   const [numTopics, setNumTopics] = useState(0);
   const [numEvents, setNumEvents] = useState(0);
 
+  useEffect(() => {
+    (async () => {
+      let result: any = await axios(articleURL);
+      result = result.data;
+      const newDataList = result.map((element: any) => {
+        return element.title;
+      });
+      setArticlesList(newDataList);
+    })();
+  }, []);
+
   axios
     .get(articleURL)
     .then((res) => {
-      setNumArticles(res.data.length);
+      const dataList = res.data;
+      setNumArticles(dataList.length);
+      console.log(res.data);
+
+      // setArticlesList(newDataList);
     })
     .catch((err) => {
       alert(err);
@@ -65,11 +81,17 @@ const SummaryStats: React.FC<Record<string, never>> = () => {
         width: "100%",
         display: "flex",
         justifyContent: "center",
-        alignContent: "enter",
+        alignContent: "center",
+        flexDirection: "row",
       }}
     >
       <div className={"statisticsFlex"}>
-        <div className={"left"}>
+        <div
+          className={"left"}
+          //  style={{
+          //   backgroundColor: "red"
+          // }}
+        >
           <div>
             <Statistic
               title="Number Of Articles Written"
@@ -102,6 +124,26 @@ const SummaryStats: React.FC<Record<string, never>> = () => {
               format={(percent) => `${percent} Events`}
             />
           </div>
+        </div>
+      </div>
+      <div
+        style={{
+          width: "50%",
+        }}
+      >
+        <h2>Current Articles</h2>
+        <div>
+          <List
+            header={<div>Header</div>}
+            footer={<div>Footer</div>}
+            bordered
+            dataSource={articlesList}
+            renderItem={(item) => (
+              <List.Item>
+                {item}
+              </List.Item>
+            )}
+          />
         </div>
       </div>
     </div>
