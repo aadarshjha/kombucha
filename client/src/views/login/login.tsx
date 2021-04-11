@@ -7,6 +7,7 @@ import Logo from "../../components/Logo";
 import { Form, Input, Button, Checkbox } from "antd";
 import Options from "./options";
 import "antd/dist/antd.css";
+import axios from "axios";
 
 // minimal styling.
 const layout = {
@@ -26,14 +27,21 @@ const onFinishFailed = (errorInfo: any) => {
 };
 
 const renderView = (signedIn: boolean, setSignIn: any, signUp: boolean, setSignUp: any) => {
-  const dispatch = useDispatch();
-  const history = useHistory();
 
   //create function for submit
-  const handleSubmit = (e: any) => {
-    console.log("success", e);
+  const handleSubmit = (formData: any) => {
+    //console.log(e);
     //fetches authentication data from the backend
-    dispatch(signin(signedIn, history));
+    axios({
+      method: 'post',
+      url: 'http://localhost:5000/user/signin',
+      data: formData
+    })
+    .then(function (response){
+      console.log(response.data);
+    });
+    //signin(formData);
+    
   };
 
   if (signedIn) {
