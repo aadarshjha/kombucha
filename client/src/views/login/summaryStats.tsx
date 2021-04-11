@@ -35,7 +35,7 @@ const SummaryStats: React.FC<Record<string, never>> = () => {
       let result: any = await axios(articleURL);
       let authorResult: any = await axios(authorsURL);
       let topicsResult: any = await axios(topicsURL);
-      topicsResult = topicsResult.data; 
+      topicsResult = topicsResult.data;
       result = result.data;
       authorResult = authorResult.data;
       const newDataList = result.map((element: any) => {
@@ -48,8 +48,8 @@ const SummaryStats: React.FC<Record<string, never>> = () => {
       });
 
       const newTopicList = topicsResult.map((element: any) => {
-        return element.name; 
-      })
+        return element.name;
+      });
 
       setArticlesList(newDataList);
       setAuthorsList(newAuthorList);
@@ -107,77 +107,62 @@ const SummaryStats: React.FC<Record<string, never>> = () => {
 
   return (
     // this will basically summarize the statistics present in the article page
-    <div
-      style={{
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        alignContent: "center",
-        flexDirection: "column",
-      }}
-    >
+    <div>
       <div className={"statisticsFlex"}>
-        <div
-          className={"left"}
-          //  style={{
-          //   backgroundColor: "red"
-          // }}
-        >
-          <div>
-            <Statistic
-              title="Number Of Articles Written"
-              value={numArticles}
-              prefix={<BookOutlined />}
-            />
-          </div>
-          <div>
-            <Statistic
-              title="Number Of Authors"
-              value={numAuthors}
-              prefix={<SmileOutlined />}
-            />
-          </div>
+        <div className={"left"}>
+          <Statistic
+            title="Number Of Articles Written"
+            value={numArticles}
+            prefix={<BookOutlined />}
+          />
 
-          <div>
-            <Statistic
-              title="Number Of Topics"
-              value={numTopics}
-              prefix={<HighlightOutlined />}
-            />
-          </div>
+          <Statistic
+            title="Number Of Authors"
+            value={numAuthors}
+            prefix={<SmileOutlined />}
+          />
+
+          <Statistic
+            title="Number Of Topics"
+            value={numTopics}
+            prefix={<HighlightOutlined />}
+          />
         </div>
+        <br/>
 
-        <div className={"right"}>
-          <div>
+
+        <div className={"progressBars"}>
+
             <Progress
               type="circle"
               percent={numEvents}
               format={(percent) => `${percent} Events`}
             />
-          </div>
-          <div>
+
+
             <Progress
               type="circle"
               percent={numDiff.easy}
               format={(percent) => `${percent} Easy`}
             />
-          </div>
-          <div>
+
+
             <Progress
               type="circle"
               percent={numDiff.medium}
               format={(percent) => `${percent} Medium`}
             />
-          </div>
-          <div>
+
             <Progress
               type="circle"
               percent={numDiff.hard}
               format={(percent) => `${percent} Difficult`}
             />
-          </div>
+
         </div>
       </div>
+      <br/>
+
       <div>
         <h2>Current Articles</h2>
         <div>
@@ -188,6 +173,9 @@ const SummaryStats: React.FC<Record<string, never>> = () => {
           />
         </div>
       </div>
+
+      <br/>
+      
 
       <div>
         <h2>Current Authors</h2>
@@ -200,6 +188,9 @@ const SummaryStats: React.FC<Record<string, never>> = () => {
         </div>
       </div>
 
+      <br/>
+
+
       <div>
         <h2>Current Topics</h2>
         <div>
@@ -210,6 +201,7 @@ const SummaryStats: React.FC<Record<string, never>> = () => {
           />
         </div>
       </div>
+      
     </div>
   );
 };
