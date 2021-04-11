@@ -18,6 +18,7 @@ const eventsURL = "http://localhost:5000/events";
 
 const SummaryStats: React.FC<Record<string, never>> = () => {
   const [articlesList, setArticlesList] = useState([]);
+  const [authorsList, setAuthorsList] = useState([]); 
   const [numArticles, setNumArticles] = useState(0);
   const [numAuthors, setNumAuthors] = useState(0);
   const [numTopics, setNumTopics] = useState(0);
@@ -26,11 +27,20 @@ const SummaryStats: React.FC<Record<string, never>> = () => {
   useEffect(() => {
     (async () => {
       let result: any = await axios(articleURL);
+      let authorResult: any = await axios(authorsURL);
       result = result.data;
+      authorResult = authorResult.data; 
       const newDataList = result.map((element: any) => {
         return element.title;
       });
+
+      // console.log(authors)
+      const newAuthorList = authorResult.map((element: any) => {
+        return element.name;
+      });
+
       setArticlesList(newDataList);
+      setAuthorsList(newAuthorList); 
     })();
   }, []);
 
@@ -82,7 +92,7 @@ const SummaryStats: React.FC<Record<string, never>> = () => {
         display: "flex",
         justifyContent: "center",
         alignContent: "center",
-        flexDirection: "row",
+        flexDirection: "column",
       }}
     >
       <div className={"statisticsFlex"}>
@@ -134,10 +144,27 @@ const SummaryStats: React.FC<Record<string, never>> = () => {
         <h2>Current Articles</h2>
         <div>
           <List
-            header={<div>Header</div>}
-            footer={<div>Footer</div>}
             bordered
             dataSource={articlesList}
+            renderItem={(item) => (
+              <List.Item>
+                {item}
+              </List.Item>
+            )}
+          />
+        </div>
+      </div>
+
+      <div
+        style={{
+          width: "50%",
+        }}
+      >
+        <h2>Current Authors</h2>
+        <div>
+          <List
+            bordered
+            dataSource={authorsList}
             renderItem={(item) => (
               <List.Item>
                 {item}
