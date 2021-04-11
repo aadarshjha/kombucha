@@ -128,40 +128,35 @@ const SummaryStats: React.FC<Record<string, never>> = () => {
             prefix={<HighlightOutlined />}
           />
         </div>
-        <br/>
-
+        <br />
 
         <div className={"progressBars"}>
+          <Progress
+            type="circle"
+            percent={numEvents}
+            format={(percent) => `${percent} Events`}
+          />
 
-            <Progress
-              type="circle"
-              percent={numEvents}
-              format={(percent) => `${percent} Events`}
-            />
+          <Progress
+            type="circle"
+            percent={numDiff.easy}
+            format={(percent) => `${percent} Easy`}
+          />
 
+          <Progress
+            type="circle"
+            percent={numDiff.medium}
+            format={(percent) => `${percent} Medium`}
+          />
 
-            <Progress
-              type="circle"
-              percent={numDiff.easy}
-              format={(percent) => `${percent} Easy`}
-            />
-
-
-            <Progress
-              type="circle"
-              percent={numDiff.medium}
-              format={(percent) => `${percent} Medium`}
-            />
-
-            <Progress
-              type="circle"
-              percent={numDiff.hard}
-              format={(percent) => `${percent} Difficult`}
-            />
-
+          <Progress
+            type="circle"
+            percent={numDiff.hard}
+            format={(percent) => `${percent} Difficult`}
+          />
         </div>
       </div>
-      <br/>
+      <br />
 
       <div>
         <h2>Current Articles</h2>
@@ -174,8 +169,7 @@ const SummaryStats: React.FC<Record<string, never>> = () => {
         </div>
       </div>
 
-      <br/>
-      
+      <br />
 
       <div>
         <h2>Current Authors</h2>
@@ -188,8 +182,7 @@ const SummaryStats: React.FC<Record<string, never>> = () => {
         </div>
       </div>
 
-      <br/>
-
+      <br />
 
       <div>
         <h2>Current Topics</h2>
@@ -201,7 +194,6 @@ const SummaryStats: React.FC<Record<string, never>> = () => {
           />
         </div>
       </div>
-      
     </div>
   );
 };
