@@ -131,9 +131,17 @@ const renderView = (signedIn: boolean, setSignIn: any, signUp: boolean, setSignU
 
 const signUpView = (signUp: boolean, setSignUp: any) => {
   //create function for submit
-  const handleSubmit = (e: any) => {
-    console.log("success", e);
+  const handleSubmit = (formData: any) => {
+    //console.log("success", e);
     //dispatch(signin(e, history));
+    axios({
+      method: 'post',
+      url: 'http://localhost:5000/user/signup',
+      data: formData
+    })
+    .then(function (response){
+      console.log(response.data);
+    });
   };
 
   return (
