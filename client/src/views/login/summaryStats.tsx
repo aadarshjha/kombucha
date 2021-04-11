@@ -18,7 +18,12 @@ const eventsURL = "http://localhost:5000/events";
 
 const SummaryStats: React.FC<Record<string, never>> = () => {
   const [articlesList, setArticlesList] = useState([]);
-  const [authorsList, setAuthorsList] = useState([]); 
+  const [numDiff, setNumDiff] = useState({
+    easy: 0,
+    medium: 0,
+    hard: 0,
+  });
+  const [authorsList, setAuthorsList] = useState([]);
   const [numArticles, setNumArticles] = useState(0);
   const [numAuthors, setNumAuthors] = useState(0);
   const [numTopics, setNumTopics] = useState(0);
@@ -29,7 +34,7 @@ const SummaryStats: React.FC<Record<string, never>> = () => {
       let result: any = await axios(articleURL);
       let authorResult: any = await axios(authorsURL);
       result = result.data;
-      authorResult = authorResult.data; 
+      authorResult = authorResult.data;
       const newDataList = result.map((element: any) => {
         return element.title;
       });
@@ -40,7 +45,18 @@ const SummaryStats: React.FC<Record<string, never>> = () => {
       });
 
       setArticlesList(newDataList);
-      setAuthorsList(newAuthorList); 
+      setAuthorsList(newAuthorList);
+
+      const difficultyObj: any = {
+        easy: 0,
+        medium: 0,
+        hard: 0,
+      };
+
+      result.forEach((element: any) => {
+        difficultyObj[element.difficulty]++;
+      });
+      setNumDiff({ ...difficultyObj });
     })();
   }, []);
 
@@ -49,9 +65,6 @@ const SummaryStats: React.FC<Record<string, never>> = () => {
     .then((res) => {
       const dataList = res.data;
       setNumArticles(dataList.length);
-      console.log(res.data);
-
-      // setArticlesList(newDataList);
     })
     .catch((err) => {
       alert(err);
@@ -134,42 +147,47 @@ const SummaryStats: React.FC<Record<string, never>> = () => {
               format={(percent) => `${percent} Events`}
             />
           </div>
+          <div>
+            <Progress
+              type="circle"
+              percent={numDiff.easy}
+              format={(percent) => `${percent} Easy`}
+            />
+          </div>
+          <div>
+            <Progress
+              type="circle"
+              percent={numDiff.medium}
+              format={(percent) => `${percent} Medium`}
+            />
+          </div>
+          <div>
+            <Progress
+              type="circle"
+              percent={numDiff.hard}
+              format={(percent) => `${percent} Difficult`}
+            />
+          </div>
         </div>
       </div>
-      <div
-        style={{
-          width: "50%",
-        }}
-      >
+      <div>
         <h2>Current Articles</h2>
         <div>
           <List
             bordered
             dataSource={articlesList}
-            renderItem={(item) => (
-              <List.Item>
-                {item}
-              </List.Item>
-            )}
+            renderItem={(item) => <List.Item>{item}</List.Item>}
           />
         </div>
       </div>
 
-      <div
-        style={{
-          width: "50%",
-        }}
-      >
+      <div>
         <h2>Current Authors</h2>
         <div>
           <List
             bordered
             dataSource={authorsList}
-            renderItem={(item) => (
-              <List.Item>
-                {item}
-              </List.Item>
-            )}
+            renderItem={(item) => <List.Item>{item}</List.Item>}
           />
         </div>
       </div>

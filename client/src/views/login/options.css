@@ -8,23 +8,24 @@
 }
 
 .statisticsFlex {
-  /* background-color: red; */
-  width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* flex-direction: col/; */
 }
 
 .left,
 .right {
   display: flex;
   flex-direction: row;
-  /* background-color: blue; */
   justify-content: center;
   align-items: center;
   flex-direction: center;
+}
+
+.right {
+  flex-direction: row;
+  background-color: red;
 }
 
 .left div,
