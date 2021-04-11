@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import User from "../models/user";
 
 const secret = 'test';
-const tokenValue = 'test';
+let tokenValue = 'test';
 
 interface controller {
     (
@@ -40,6 +40,8 @@ export const signup: controller = async (req: any, res: any) => {
     //console.log(req.body);
     //res.status(201).json({ result: username,password: password, token: Token });
     try {
+        // Need to get token from DB
+        
         if (tokenValue != Token) return res.status(400).json({ message: "Invalid Token"});
 
         const oldUser = await User.findOne({ username });
@@ -59,3 +61,23 @@ export const signup: controller = async (req: any, res: any) => {
         console.log(error);
     }
 };
+
+export const updateToken: controller = async (req: any, res: any) => {
+    const { oldToken, token } = req.body;
+    //console.log(req.body);
+    //res.status(201).json({ result: username,password: password, token: Token });
+    try {
+        let tokenValue = await User.findOne({ Username:'TokenValue' });
+
+        if (tokenValue.password != oldToken) return res.status(400).json({ message: "Invalid Old Token"});
+
+        await User.updateOne({ username: 'TokenValue' }, {$set: {password: token}} );
+
+        res.status(201).json({ message: "Token Updated"});
+    } catch (error) {
+        res.status(500).json({ message: "Something went wrong" });
+
+        console.log(error);
+    }
+};
+

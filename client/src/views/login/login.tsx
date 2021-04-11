@@ -39,10 +39,12 @@ const renderView = (signedIn: boolean, setSignIn: any, signUp: boolean, setSignU
     })
     .then(function (response){
       if (response.data != null) {
-        console.log(response.data)
+        //console.log("response");
         setSignIn(true);
+        localStorage.setItem('profile', JSON.stringify({ ...response.data }));
       }
     });
+    console.log(JSON.parse(localStorage.profile).token);
     //signin(formData);
     
   };
@@ -144,8 +146,8 @@ const signUpView = (signUp: boolean, setSignUp: any) => {
     })
     .then(function (response){
       if (response.data != null) {
-        console.log(response.data)
         setSignUp(false);
+        console.log(response.data)
       }
     });
   };
