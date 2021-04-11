@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./articles.css";
 import { Menu } from "antd";
 import { Button } from "antd";
-import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 
 const { SubMenu } = Menu;
 
@@ -39,7 +38,7 @@ const Articles: React.FC<catProps> = ({ articles, state }: catProps) => {
 
   return (
     <div className="flex">
-      <div className="left">
+      <div className="leftArt">
         <Menu
           onClick={handleClick}
           style={{ width: 256 }}
@@ -70,7 +69,13 @@ const Articles: React.FC<catProps> = ({ articles, state }: catProps) => {
           </Button>
         </div>
       </div>
-      <div className="right">
+      <div
+        className="rightArt"
+        style={{
+          paddingLeft: "10px",
+          paddingRight: "10px",
+        }}
+      >
         {/* This is dynamically loaded based on what is selected */}
         <div>
           <h1>{articleTitle}</h1>

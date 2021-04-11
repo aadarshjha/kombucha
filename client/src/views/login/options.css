@@ -1,5 +1,4 @@
 .centeredForm {
-  /* background-color: red; */
   padding-top: 20px;
   width: 50%;
   display: flex;
@@ -8,27 +7,30 @@
 }
 
 .statisticsFlex {
-  /* background-color: red; */
-  width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* flex-direction: col/; */
 }
 
-.left,
-.right {
+.left {
   display: flex;
   flex-direction: row;
-  /* background-color: blue; */
   justify-content: center;
   align-items: center;
-  flex-direction: center;
 }
 
-.left div,
-.right div {
+.left div {
   margin-right: 20px;
   margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.progressBars {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 }
