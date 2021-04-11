@@ -38,7 +38,7 @@ const renderView = (signedIn: boolean, setSignIn: any, signUp: boolean, setSignU
       data: formData
     })
     .then(function (response){
-      if (response.data.approved) {
+      if (response.data != null) {
         console.log(response.data)
         setSignIn(true);
       }
@@ -143,7 +143,7 @@ const signUpView = (signUp: boolean, setSignUp: any) => {
       data: formData
     })
     .then(function (response){
-      if (response.data.approved) {
+      if (response.data != null) {
         console.log(response.data)
         setSignUp(false);
       }
