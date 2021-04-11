@@ -38,7 +38,10 @@ const renderView = (signedIn: boolean, setSignIn: any, signUp: boolean, setSignU
       data: formData
     })
     .then(function (response){
-      console.log(response.data);
+      if (response.data.approved) {
+        console.log(response.data)
+        setSignIn(true);
+      }
     });
     //signin(formData);
     
@@ -140,7 +143,10 @@ const signUpView = (signUp: boolean, setSignUp: any) => {
       data: formData
     })
     .then(function (response){
-      console.log(response.data);
+      if (response.data.approved) {
+        console.log(response.data)
+        setSignUp(false);
+      }
     });
   };
 
@@ -232,7 +238,7 @@ const signUpView = (signUp: boolean, setSignUp: any) => {
               setSignUp(!signUp);
             }}
           >
-            Toggle View
+            Back to Sign In
           </Button>
         </div>
       </div>

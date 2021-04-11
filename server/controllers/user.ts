@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import User from "../models/user";
 
 const secret = 'test';
+const tokenValue = 'test';
 
 interface controller {
     (
@@ -28,29 +29,30 @@ export const signin: controller = async (req: any, res: any) => {
 
         const token = jwt.sign({ username: oldUser.username, id: oldUser._id }, secret, { expiresIn: "1h" });
 
-        res.status(200).json({ result: oldUser, token });
+        res.status(200).json({ result: oldUser, token, approved: true });
     } catch (err) {
         res.status(500).json({ message: "Something went wrong" });
     }
 };
 
-export const signup = async (req: any, res: any) => {
+export const signup: controller = async (req: any, res: any) => {
     const { username, password, Token } = req.body;
     //console.log(req.body);
     //res.status(201).json({ result: username,password: password, token: Token });
     try {
+        if (tokenValue != Token) return res.status(400).json({ message: "Invalid Token"});
+
         const oldUser = await User.findOne({ username });
 
         if (oldUser) return res.status(400).json({ message: "User already exists"});
 
-        //res.status(201).json({ result: username,password: password, token: Token });
         const hashedPassword = await bcrypt.hash(password, 12);
 
-        const result = await User.create({ username, password: hashedPassword, token: Token});
+        const result = await User.create({ username, password: hashedPassword});
 
         const token = jwt.sign({ username: result.username, id: result._id }, secret, { expiresIn: "1h" });
 
-        res.status(201).json({ result, token });
+        res.status(201).json({ result, token, approved: true });
     } catch (error) {
         res.status(500).json({ message: "Something went wrong" });
 
