@@ -24,6 +24,7 @@ const SummaryStats: React.FC<Record<string, never>> = () => {
     hard: 0,
   });
   const [authorsList, setAuthorsList] = useState([]);
+  const [topicsList, setTopicsList] = useState([]);
   const [numArticles, setNumArticles] = useState(0);
   const [numAuthors, setNumAuthors] = useState(0);
   const [numTopics, setNumTopics] = useState(0);
@@ -33,6 +34,8 @@ const SummaryStats: React.FC<Record<string, never>> = () => {
     (async () => {
       let result: any = await axios(articleURL);
       let authorResult: any = await axios(authorsURL);
+      let topicsResult: any = await axios(topicsURL);
+      topicsResult = topicsResult.data; 
       result = result.data;
       authorResult = authorResult.data;
       const newDataList = result.map((element: any) => {
@@ -44,8 +47,13 @@ const SummaryStats: React.FC<Record<string, never>> = () => {
         return element.name;
       });
 
+      const newTopicList = topicsResult.map((element: any) => {
+        return element.name; 
+      })
+
       setArticlesList(newDataList);
       setAuthorsList(newAuthorList);
+      setTopicsList(newTopicList);
 
       const difficultyObj: any = {
         easy: 0,
@@ -187,6 +195,17 @@ const SummaryStats: React.FC<Record<string, never>> = () => {
           <List
             bordered
             dataSource={authorsList}
+            renderItem={(item) => <List.Item>{item}</List.Item>}
+          />
+        </div>
+      </div>
+
+      <div>
+        <h2>Current Topics</h2>
+        <div>
+          <List
+            bordered
+            dataSource={topicsList}
             renderItem={(item) => <List.Item>{item}</List.Item>}
           />
         </div>
