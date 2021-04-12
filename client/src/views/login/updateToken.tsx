@@ -46,7 +46,6 @@ const UpdateToken: React.FC<Record<string, never>> = () => {
         onFinish={onFinish}
         scrollToFirstError
       >
-
         <Form.Item
           name="Old Token Value"
           label="Old Token Value"
