@@ -1,176 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`matches learn page snapshot 1`] = `
-<div>
+<div
+  className="test"
+>
   <div
-    className="test"
+    className="centered"
   >
-    <div
-      className="centered"
-    >
-      <img
-        alt="VUMS Logo"
-        className="vumslogo"
-        src="vums.png"
-      />
-      <h1>
-        Learn With VUMS
-      </h1>
-    </div>
-    <div
-      className="categories"
-    >
-      <div
-        className="highLevel"
-      >
-        <h1>
-          Easy
-        </h1>
-        <div
-          className="boxLevel"
-        >
-          <div
-            className="box"
-          >
-            <button
-              className="ant-btn ant-btn-primary buttonPadding"
-              onClick={[Function]}
-              type="button"
-            >
-              <span>
-                Bacteria
-              </span>
-            </button>
-          </div>
-          <div
-            className="box"
-          >
-            <button
-              className="ant-btn ant-btn-primary buttonPadding"
-              onClick={[Function]}
-              type="button"
-            >
-              <span>
-                Animals
-              </span>
-            </button>
-          </div>
-          <div
-            className="box"
-          >
-            <button
-              className="ant-btn ant-btn-primary buttonPadding"
-              onClick={[Function]}
-              type="button"
-            >
-              <span>
-                Microbiome
-              </span>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div
-        className="highLevel"
-      >
-        <h1>
-          Medium
-        </h1>
-        <div
-          className="boxLevel"
-        >
-          <div
-            className="box"
-          >
-            <button
-              className="ant-btn ant-btn-primary buttonPadding"
-              onClick={[Function]}
-              type="button"
-            >
-              <span>
-                Enviornment
-              </span>
-            </button>
-          </div>
-          <div
-            className="box"
-          >
-            <button
-              className="ant-btn ant-btn-primary buttonPadding"
-              onClick={[Function]}
-              type="button"
-            >
-              <span>
-                Biology
-              </span>
-            </button>
-          </div>
-          <div
-            className="box"
-          >
-            <button
-              className="ant-btn ant-btn-primary buttonPadding"
-              onClick={[Function]}
-              type="button"
-            >
-              <span>
-                Chemistry
-              </span>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div
-        className="highLevel"
-      >
-        <h1>
-          Hard
-        </h1>
-        <div
-          className="boxLevel"
-        >
-          <div
-            className="box"
-          >
-            <button
-              className="ant-btn ant-btn-primary buttonPadding"
-              onClick={[Function]}
-              type="button"
-            >
-              <span>
-                Bacteria
-              </span>
-            </button>
-          </div>
-          <div
-            className="box"
-          >
-            <button
-              className="ant-btn ant-btn-primary buttonPadding"
-              onClick={[Function]}
-              type="button"
-            >
-              <span>
-                Animals
-              </span>
-            </button>
-          </div>
-          <div
-            className="box"
-          >
-            <button
-              className="ant-btn ant-btn-primary buttonPadding"
-              onClick={[Function]}
-              type="button"
-            >
-              <span>
-                Research
-              </span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <img
+      alt="VUMS Logo"
+      className="vumslogo"
+      src="vums.png"
+    />
+    <h1>
+      Learn With VUMS
+    </h1>
   </div>
 </div>
 `;

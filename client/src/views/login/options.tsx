@@ -10,6 +10,7 @@ import DeleteArticle from "./deleteArticle";
 import AddEvent from "./addEvent";
 import DeleteEvent from "./deleteEvent";
 import UpdateEvent from "./updateEvent";
+import UpdateToken from "./updateToken";
 import AddAuthor from "./addAuthor";
 import UpdateAuthor from "./updateAuthor";
 import DeleteAuthor from "./deleteAuthor";
@@ -45,6 +46,8 @@ const updateView = (updatedView: string) => {
     return <DeleteEvent />;
   } else if (updatedView == "updateEvent") {
     return <UpdateEvent />;
+  } else if (updatedView == "updateToken") {
+    return <UpdateToken />;
   }
 };
 
@@ -177,6 +180,16 @@ const Options: React.FC<Record<string, never>> = () => {
       >
         <a target="_blank" rel="noopener noreferrer">
           Update Event
+        </a>
+      </Menu.Item>
+
+      <Menu.Item
+        onClick={() => {
+          updateForm("updateToken");
+        }}
+      >
+        <a target="_blank" rel="noopener noreferrer">
+          Update Token
         </a>
       </Menu.Item>
     </Menu>

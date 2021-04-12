@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 
 import eventRouter from "./routes/events";
 import learnRouter from "./routes/learn";
+import userRouter from "./routes/user";
 
 // using express to support our backend.
 const app = express();
@@ -43,3 +44,4 @@ const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 app.use("/events", eventRouter);
 app.use("/learn", learnRouter);
+app.use("/user", userRouter);
