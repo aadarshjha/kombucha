@@ -58,13 +58,13 @@ const renderView = (
       <div>
         <Logo page="Admin Update Page"></Logo>
         <Options />
-        <Button
+        {/* <Button
           onClick={() => {
             setSignIn(true);
           }}
         >
           Toggle View
-        </Button>
+        </Button> */}
       </div>
     );
   } else {
