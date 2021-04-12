@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./articles.css";
 import { Menu } from "antd";
 import { Button } from "antd";
+import ReactMarkdown from "react-markdown";
 
 const { SubMenu } = Menu;
 
@@ -22,23 +23,43 @@ type stateObject = {
 };
 
 type catProps = {
-  articles: Array<backendData>;
+  articles: any;
   state: stateObject;
 };
 
 const Articles: React.FC<catProps> = ({ articles, state }: catProps) => {
-  const [articleTitle, setArticleTitle] = useState(articles[0].header);
-  const [articleText, setArticleText] = useState(articles[0].body);
+  console.log(articles);
+  const [articleTitle, setArticleTitle] = useState(articles[0].title);
+  const [articleText, setArticleText] = useState(articles[0].content);
 
   const handleClick = (e: any) => {
-    console.log("click", e);
-    setArticleTitle(articles[e.key].header);
-    setArticleText(articles[e.key].body);
+    setArticleTitle(articles[e.key].title);
+    setArticleText(articles[e.key].content);
+  };
+
+  // handles breaklines:
+  const displayArticleTest = (text: string) => {
+    // let str: any;
+    // const splitString = text.split(" ");
+    // console.log(splitString)
+    // splitString.forEach((element: string) => {
+    //   console.log(element)
+    //   if (element == "<br/>") {
+    //     console.log("HER")
+    //     str += <br></br>
+    //   } else {
+    //     str += <p>element</p>;
+    //   }
+    // })
+    // // str = <span></span/
+    // console.log(str)
+    // return str;
+    return text;
   };
 
   return (
     <div className="flex">
-      <div className="left">
+      <div className="leftArt">
         <Menu
           onClick={handleClick}
           style={{ width: 256 }}
@@ -47,8 +68,8 @@ const Articles: React.FC<catProps> = ({ articles, state }: catProps) => {
           mode="inline"
         >
           <SubMenu key="sub4" title="Articles">
-            {articles.map((element, i) => {
-              return <Menu.Item key={i}>{element.header}</Menu.Item>;
+            {articles.map((element: any, i: number) => {
+              return <Menu.Item key={i}>{element.title}</Menu.Item>;
             })}
           </SubMenu>
         </Menu>
@@ -62,20 +83,26 @@ const Articles: React.FC<catProps> = ({ articles, state }: catProps) => {
         >
           <Button
             onClick={() => {
-              state.setLearning(!state.isLearning);
+              state.setLearning(false);
             }}
           >
             Back
           </Button>
         </div>
       </div>
-      <div className="right">
+      <div
+        className="rightArt"
+        style={{
+          paddingLeft: "25px",
+          paddingRight: "10px",
+        }}
+      >
         {/* This is dynamically loaded based on what is selected */}
         <div>
           <h1>{articleTitle}</h1>
         </div>
         <div>
-          <span>{articleText}</span>
+          <ReactMarkdown source={articleText} />
         </div>
       </div>
     </div>

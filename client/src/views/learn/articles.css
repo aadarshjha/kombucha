@@ -9,14 +9,14 @@
   flex-direction: row;
 }
 
-.left {
+.leftArt {
   height: 100%;
   width: 100%;
   flex: 0;
   padding: 0;
 }
 
-.right {
+.rightArt {
   height: 100%;
   width: 100%;
   flex: 3;

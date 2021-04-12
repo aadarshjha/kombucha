@@ -4,10 +4,13 @@ import { Button } from "antd";
 // defines the backend data that is
 // recieved on the front end.
 type backendData = {
-  header: string;
-  body: string;
+  author: any;
+  content: string;
+  dateUpdated: string;
   difficulty: string;
-  category: string;
+  title: string;
+  topic: any;
+  id: string;
 };
 
 // defines all the states that are used in the UI
@@ -24,7 +27,7 @@ type stateObject = {
 // defines the type for categories.
 type catProps = {
   difficulty: string;
-  categories: Array<backendData>;
+  categories: any;
   state: stateObject;
 };
 
@@ -32,9 +35,10 @@ type catProps = {
 // type backendData.
 export const fetchUniqueCategories = (list: Array<backendData>) => {
   const uniqueList: Array<string> = [];
+
   list.forEach((element) => {
-    if (!uniqueList.includes(element.category)) {
-      uniqueList.push(element.category);
+    if (!uniqueList.includes(element.topic.name)) {
+      uniqueList.push(element.topic.name);
     }
   });
   return uniqueList;
@@ -46,6 +50,7 @@ const Category: React.FC<catProps> = ({
   state,
 }: catProps) => {
   const uniqueList = fetchUniqueCategories(categories);
+  // console.log(uniqueList)
 
   return (
     // general html code that dynamically computes articles
@@ -54,15 +59,19 @@ const Category: React.FC<catProps> = ({
       <h1>{difficulty[0].toUpperCase() + difficulty.substr(1)}</h1>
       <div className="boxLevel">
         {uniqueList.map((element) => {
+          // console.log(element)
+          // console.log(difficulty)
           return (
             <div key={element} className="box">
               <Button
                 type="primary"
                 className="buttonPadding"
                 onClick={() => {
+                  // console.log(element)
+                  // console.log(difficulty)
                   state.setarticleCategory(element);
                   state.setarticleDifficulty(difficulty);
-                  state.setLearning(!state.isLearning);
+                  state.setLearning(true);
                 }}
               >
                 {element}

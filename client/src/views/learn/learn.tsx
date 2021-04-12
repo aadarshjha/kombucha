@@ -1,11 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../../components/Logo";
 import Category from "./category";
 import "./learn.css";
 import "./articles.css";
 import Articles from "./articles";
-import { Button } from "antd";
+
 import mockData from "./mockData.json";
+import axios from "axios";
+
+let fetchedData: Array<backendData>;
+let byCategory: any;
+let seperatedArticles: any;
+let returnedView: JSX.Element;
+let viewState: stateObject;
 
 type stateObject = {
   isLearning: boolean;
@@ -17,16 +24,16 @@ type stateObject = {
 };
 
 type backendData = {
-  header: string;
-  body: string;
+  author: any;
+  content: string;
+  dateUpdated: string;
   difficulty: string;
-  category: string;
+  title: string;
+  topic: any;
+  id: string;
 };
 
-// Please disregard lines 25 - 398 from the total line count.
-const dataFromBackend: Array<backendData> = mockData;
-
-export const fetchCategories = () => {
+export const fetchCategories = (dataFromBackend: Array<backendData>) => {
   const easy: Array<backendData> = [];
   const medium: Array<backendData> = [];
   const hard: Array<backendData> = [];
@@ -48,12 +55,13 @@ export const fetchCategories = () => {
 
 export const fetchArticles = (
   elementCategory: string,
-  elementDifficulty: string
+  elementDifficulty: string,
+  dataFromBackend: Array<backendData>
 ) => {
   const returnedArticles: Array<backendData> = [];
   dataFromBackend.map((element) => {
     if (
-      element.category == elementCategory &&
+      element.topic.name == elementCategory &&
       element.difficulty == elementDifficulty
     ) {
       returnedArticles.push(element);
@@ -62,17 +70,15 @@ export const fetchArticles = (
   return returnedArticles;
 };
 
-const userView = (viewState: stateObject) => {
-  const data = fetchCategories();
+const userView = (fetchedData: any, viewState: stateObject) => {
+  const data = fetchCategories(fetchedData);
   if (viewState.isLearning) {
-    console.log(
-      fetchArticles(viewState.articleCategory, viewState.articleDifficulty)
-    );
     return (
       <Articles
         articles={fetchArticles(
           viewState.articleCategory,
-          viewState.articleDifficulty
+          viewState.articleDifficulty,
+          fetchedData
         )}
         state={viewState}
       />
@@ -107,18 +113,35 @@ const userView = (viewState: stateObject) => {
   }
 };
 
+const renderScreen = (stateCur: any) => {
+  if (stateCur.isLoading) {
+    return (
+      <div className="test">
+        <Logo page="Learn With VUMS" />
+      </div>
+    );
+  } else {
+    return userView(fetchedData, viewState);
+  }
+};
+
 const Learn: React.FC<Record<string, never>> = () => {
+  // isLoading state for fetching data
+  const [isLoading, setLoading] = useState(true);
+
   // is learning will see if the user clicks on the category
   const [isLearning, setLearning] = useState(false);
 
+  // console.log(isLearning)
+
   // article category will be the current category that the user clicks.
-  const [articleCategory, setarticleCategory] = useState("Bacteria");
+  const [articleCategory, setarticleCategory] = useState("");
 
   // article difficulty will be the difficulty that the user clicks on.
-  const [articleDifficulty, setarticleDifficulty] = useState("Easy");
+  const [articleDifficulty, setarticleDifficulty] = useState("");
 
   // complex state dictates the users actions.
-  const viewState: stateObject = {
+  viewState = {
     isLearning: isLearning,
     setLearning: setLearning,
     articleCategory: articleCategory,
@@ -126,8 +149,22 @@ const Learn: React.FC<Record<string, never>> = () => {
     articleDifficulty: articleDifficulty,
     setarticleDifficulty: setarticleDifficulty,
   };
-  const returnedView = userView(viewState);
-  return <div>{returnedView}</div>;
+
+  axios
+    .get("http://localhost:5000/learn/articles")
+    .then((response) => {
+      // call all the functions to filter the data.
+      fetchedData = response.data;
+      byCategory = fetchCategories(fetchedData);
+      seperatedArticles = fetchArticles("Bacteria", "easy", fetchedData);
+      returnedView = userView(fetchedData, viewState);
+      setLoading(false);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  return <>{renderScreen({ isLoading, setLoading, isLearning })}</>;
 };
 
 export default Learn;
