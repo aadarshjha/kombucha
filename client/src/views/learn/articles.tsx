@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./articles.css";
 import { Menu } from "antd";
 import { Button } from "antd";
+import ReactMarkdown from "react-markdown";
 
 const { SubMenu } = Menu;
 
@@ -34,6 +35,26 @@ const Articles: React.FC<catProps> = ({ articles, state }: catProps) => {
   const handleClick = (e: any) => {
     setArticleTitle(articles[e.key].title);
     setArticleText(articles[e.key].content);
+  };
+
+  // handles breaklines:
+  const displayArticleTest = (text: string) => {
+    // let str: any;
+    // const splitString = text.split(" ");
+    // console.log(splitString)
+    // splitString.forEach((element: string) => {
+    //   console.log(element)
+    //   if (element == "<br/>") {
+    //     console.log("HER")
+    //     str += <br></br>
+    //   } else {
+    //     str += <p>element</p>;
+    //   }
+    // })
+    // // str = <span></span/
+    // console.log(str)
+    // return str;
+    return text;
   };
 
   return (
@@ -81,7 +102,7 @@ const Articles: React.FC<catProps> = ({ articles, state }: catProps) => {
           <h1>{articleTitle}</h1>
         </div>
         <div>
-          <span>{articleText}</span>
+          <ReactMarkdown source={articleText} />
         </div>
       </div>
     </div>
