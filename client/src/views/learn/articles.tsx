@@ -93,7 +93,7 @@ const Articles: React.FC<catProps> = ({ articles, state }: catProps) => {
       <div
         className="rightArt"
         style={{
-          paddingLeft: "10px",
+          paddingLeft: "25px",
           paddingRight: "10px",
         }}
       >
