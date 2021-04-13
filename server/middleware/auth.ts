@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
+import User from "../models/user";
 
-const secret = 'test';
+const secretUserName = 'secretValue';
 
 interface controller {
   (
@@ -14,20 +15,20 @@ interface controller {
 const auth: controller = async (req: any, _, next: any) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
-    console.log(token);
-    //const isCustomAuth = token.length < 500;
+    const isCustomAuth = token.length < 500;
 
-    //if (token && isCustomAuth) {      
-    let decodedData = jwt.verify(token, secret);
-    console.log(decodedData);
+    let decodedData;
 
-    //Need to update userID
-    //req.userId = decodedData.id;
-    // } else {
-    //   decodedData = jwt.decode(token);
+    const secret = await User.findOne({username: secretUserName});
 
-    //   req.userId = decodedData?.sub;
-    // }    
+    if (token && isCustomAuth) {      
+      decodedData = jwt.verify(token, secret.password);
+      req.userId = JSON.parse(JSON.stringify(decodedData)).id;
+    } else {
+      decodedData = jwt.decode(token);
+
+      req.userId = decodedData?.sub;
+    }
 
     next();
   } catch (error) {

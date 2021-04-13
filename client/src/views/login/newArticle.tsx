@@ -71,8 +71,19 @@ const NewArticle: React.FC<Record<string, never>> = () => {
             }
           })
           .then(() => {
-            axios
-              .put("http://localhost:5000/learn/article/create", {
+            const URL = "learn/article/create";
+            const API =  axios.create({ baseURL: 'http://localhost:5000/'});
+
+            API.interceptors.request.use((req) => {
+              if (localStorage.getItem('profile')){
+                req.headers.Authorization = `Bearer ${JSON.parse(localStorage.profile).token}`;
+              }
+
+              return req;
+            });
+
+            API
+              .put(URL, {
                 title: values.title,
                 author: author_id,
                 dateUpdated: moment().format("MM/DD/YYYY"),

@@ -32,8 +32,20 @@ const tailFormItemLayout = {
 const AddTopic: React.FC<Record<string, never>> = () => {
   const [form] = Form.useForm();
   const onFinish = (values: any) => {
-    axios
-      .put("http://localhost:5000/learn/topic/create", {
+
+    const URL = "learn/topic/create";
+    const API =  axios.create({ baseURL: 'http://localhost:5000/'});
+
+    API.interceptors.request.use((req) => {
+      if (localStorage.getItem('profile')){
+        req.headers.Authorization = `Bearer ${JSON.parse(localStorage.profile).token}`;
+      }
+
+      return req;
+    });
+
+    API
+      .put(URL, {
         name: values.name,
       })
       .then((_response) => {

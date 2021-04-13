@@ -39,7 +39,16 @@ const UpdateEvent: React.FC<Record<string, never>> = () => {
 
       for (const element of data) {
         if (element.title === title) {
-          axios
+          const API =  axios.create({ baseURL: ''});
+          API.interceptors.request.use((req) => {
+            if (localStorage.getItem('profile')){
+              req.headers.Authorization = `Bearer ${JSON.parse(localStorage.profile).token}`;
+            }
+  
+            return req;
+          });
+  
+          API
             .patch(`http://localhost:5000/events/${element._id}/update`, {
               body: values.body,
             })

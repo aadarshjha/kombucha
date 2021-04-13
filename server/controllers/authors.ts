@@ -24,18 +24,23 @@ export const list: controller = (_req, res, next) => {
 };
 
 // creates a new author.
-export const create: controller = async (req, res, next) => {
+export const create: controller = async (req: any, res: any, next: any) => {
+  if (!req.userId) {
+    res.send('User Unathenticated');
+  }
   try {
     // Only create new topic if the name doesn't exist already
     if (await Author.findOne({ name: req.body.name })) {
-      res.send(`Topic named ${req.body.name} already exists.\n`);
+      console.log("\n before res  \n"); 
+      res.send(`Author ${req.body.name} already exists.\n`);
     } else {
       await Author.create({
         name: req.body.name,
         year: req.body.year,
         majors: req.body.majors,
       });
-      res.send(`Successfully created new author: ${req.body.name}\n`);
+       
+      res.send(`Successfully created new author: ${req.body.name}\n`); 
     }
   } catch (err) {
     next(err);
@@ -46,7 +51,12 @@ export const create: controller = async (req, res, next) => {
 };
 
 // removes a particular author, and all articles associated with that particular author.
-export const remove: controller = async (req, res, next) => {
+export const remove: controller = async (req : any, res: any, next: any) => {
+
+  if (!req.userId) {
+    res.send('User Unathenticated');
+  }
+
   try {
     // Remove all articles associated with the topic
     await Article.deleteMany({ author: req.params.id });
@@ -71,7 +81,12 @@ export const remove: controller = async (req, res, next) => {
 };
 
 // updates a particular author. 
-export const update: controller = async (req, res, next) => {
+export const update: controller = async (req: any, res: any, next: any) => {
+
+  if (!req.userId) {
+    res.send('User Unathenticated');
+  }
+
   try {
     const updatedAuthor = await Author.findByIdAndUpdate(req.params.id, {
       $set: req.body,

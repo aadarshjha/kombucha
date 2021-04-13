@@ -48,9 +48,9 @@ const renderView = (
         }
       })
       .catch((err) => {
-        alert("Cannot Sign In!");
+        alert(err.response.data.message);
       });
-    console.log(JSON.parse(localStorage.profile).token);
+    //console.log(JSON.parse(localStorage.profile).token);
   };
 
   if (signedIn) {
@@ -164,6 +164,9 @@ const signUpView = (signUp: boolean, setSignUp: any) => {
         setSignUp(false);
         console.log(response.data);
       }
+    })
+    .catch((err) => {
+      alert(err.response.data.message);
     });
   };
 
