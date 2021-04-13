@@ -43,7 +43,7 @@ const UpdateArticle: React.FC<Record<string, never>> = () => {
 
   const onFinish = (values: any) => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}learn/articles`)
+      .get(`${process.env.REACT_APP_SERVER_URL}/learn/articles`)
       .then((res) => {
         const name = values.title;
         const iteratedData = res.data;
@@ -61,7 +61,7 @@ const UpdateArticle: React.FC<Record<string, never>> = () => {
         // const URL = learnRouter.patch("/article/:id/update", articleController.update);
         const URL = "learn/article/" + article_id + "/update";
         const API = axios.create({
-          baseURL: `${process.env.REACT_APP_SERVER_URL}`,
+          baseURL: `${process.env.REACT_APP_SERVER_URL}/`,
         });
 
         API.interceptors.request.use((req) => {

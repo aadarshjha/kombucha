@@ -34,7 +34,7 @@ const AddAuthor: React.FC<Record<string, never>> = () => {
   const onFinish = (values: any) => {
     const URL = "learn/author/create";
     const API = axios.create({
-      baseURL: `${process.env.REACT_APP_SERVER_URL}`,
+      baseURL: `${process.env.REACT_APP_SERVER_URL}/`,
     });
 
     API.interceptors.request.use((req) => {

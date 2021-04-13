@@ -34,7 +34,7 @@ const AddTopic: React.FC<Record<string, never>> = () => {
   const onFinish = (values: any) => {
     const URL = "learn/topic/create";
     const API = axios.create({
-      baseURL: `${process.env.REACT_APP_SERVER_URL}`,
+      baseURL: `${process.env.REACT_APP_SERVER_URL}/`,
     });
 
     API.interceptors.request.use((req) => {

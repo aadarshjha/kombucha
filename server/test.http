@@ -1,4 +1,4 @@
-POST ${process.env.REACT_APP_SERVER_URL}events/create
+POST ${process.env.REACT_APP_SERVER_URL}/events/create
 content-type: application/json
 
 {

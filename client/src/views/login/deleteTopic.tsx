@@ -37,7 +37,7 @@ const DeleteTopic: React.FC<Record<string, never>> = () => {
     const name = values.name;
     console.log(name);
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}learn/topics`)
+      .get(`${process.env.REACT_APP_SERVER_URL}/learn/topics`)
       .then((res) => {
         const iteratedData = res.data;
         console.log(iteratedData);
@@ -56,7 +56,7 @@ const DeleteTopic: React.FC<Record<string, never>> = () => {
       .then(() => {
         const URL = "learn/topic/" + id + "/delete";
         const API = axios.create({
-          baseURL: `${process.env.REACT_APP_SERVER_URL}`,
+          baseURL: `${process.env.REACT_APP_SERVER_URL}/`,
         });
 
         API.interceptors.request.use((req) => {

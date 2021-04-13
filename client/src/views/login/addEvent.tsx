@@ -46,7 +46,7 @@ const AddEvent: React.FC<Record<string, never>> = () => {
     console.log(values);
     const URL = "events/create";
     const API = axios.create({
-      baseURL: `${process.env.REACT_APP_SERVER_URL}`,
+      baseURL: `${process.env.REACT_APP_SERVER_URL}/`,
     });
 
     API.interceptors.request.use((req) => {
