@@ -11,10 +11,10 @@ import {
 } from "@ant-design/icons";
 import axios from "axios";
 
-const articleURL = "http://localhost:5000/learn/articles";
-const authorsURL = "http://localhost:5000/learn/authors";
-const topicsURL = "http://localhost:5000/learn/topics";
-const eventsURL = "http://localhost:5000/events";
+const articleURL = `${process.env.SERVER_URL}learn/articles`;
+const authorsURL = `${process.env.SERVER_URL}learn/authors`;
+const topicsURL = `${process.env.SERVER_URL}learn/topics`;
+const eventsURL = `${process.env.SERVER_URL}events`;
 
 const SummaryStats: React.FC<Record<string, never>> = () => {
   const [articlesList, setArticlesList] = useState([]);

@@ -1,4 +1,4 @@
-POST http://localhost:5000/events/create
+POST ${process.env.SERVER_URL}events/create
 content-type: application/json
 
 {

@@ -38,7 +38,7 @@ const renderView = (
     //fetches authentication data from the backend
     axios({
       method: "post",
-      url: "http://localhost:5000/user/signin",
+      url: `${process.env.SERVER_URL}user/signin`,
       data: formData,
     })
       .then(function (response) {
@@ -157,7 +157,7 @@ const signUpView = (signUp: boolean, setSignUp: any) => {
     //dispatch(signin(e, history));
     axios({
       method: "post",
-      url: "http://localhost:5000/user/signup",
+      url: `${process.env.SERVER_URL}user/signup`,
       data: formData,
     })
       .then(function (response) {

@@ -40,7 +40,7 @@ const NewArticle: React.FC<Record<string, never>> = () => {
 
   const onFinish = (values: any) => {
     axios
-      .get("http://localhost:5000/learn/authors")
+      .get(`${process.env.SERVER_URL}learn/authors`)
       .then((res) => {
         const name = values.author;
         const iteratedData = res.data;
@@ -56,7 +56,7 @@ const NewArticle: React.FC<Record<string, never>> = () => {
       })
       .then(() => {
         axios
-          .get("http://localhost:5000/learn/topics")
+          .get(`${process.env.SERVER_URL}learn/topics`)
           .then((res) => {
             const name = values.topic;
             const iteratedData = res.data;
@@ -72,7 +72,7 @@ const NewArticle: React.FC<Record<string, never>> = () => {
           })
           .then(() => {
             const URL = "learn/article/create";
-            const API = axios.create({ baseURL: "http://localhost:5000/" });
+            const API = axios.create({ baseURL: `${process.env.SERVER_URL}` });
 
             API.interceptors.request.use((req) => {
               if (localStorage.getItem("profile")) {

@@ -33,7 +33,7 @@ const AddAuthor: React.FC<Record<string, never>> = () => {
   const [form] = Form.useForm();
   const onFinish = (values: any) => {
     const URL = "learn/author/create";
-    const API = axios.create({ baseURL: "http://localhost:5000/" });
+    const API = axios.create({ baseURL: `${process.env.SERVER_URL}` });
 
     API.interceptors.request.use((req) => {
       if (localStorage.getItem("profile")) {

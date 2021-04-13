@@ -36,7 +36,7 @@ const UpdateToken: React.FC<Record<string, never>> = () => {
 
   const onFinish = (values: any) => {
     const URL = "user/updateToken";
-    const API = axios.create({ baseURL: "http://localhost:5000/" });
+    const API = axios.create({ baseURL: `${process.env.SERVER_URL}` });
     API.interceptors.request.use((req) => {
       if (localStorage.getItem("profile")) {
         req.headers.Authorization = `Bearer ${
