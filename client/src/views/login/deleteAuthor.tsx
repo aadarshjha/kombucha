@@ -51,18 +51,19 @@ const DeleteAuthor: React.FC<Record<string, never>> = () => {
       })
       .then(() => {
         const URL = "learn/author/" + id + "/delete";
-        const API =  axios.create({ baseURL: 'http://localhost:5000/'});
+        const API = axios.create({ baseURL: "http://localhost:5000/" });
 
         API.interceptors.request.use((req) => {
-          if (localStorage.getItem('profile')){
-            req.headers.Authorization = `Bearer ${JSON.parse(localStorage.profile).token}`;
+          if (localStorage.getItem("profile")) {
+            req.headers.Authorization = `Bearer ${
+              JSON.parse(localStorage.profile).token
+            }`;
           }
 
           return req;
         });
 
-        API
-          .delete(URL)
+        API.delete(URL)
           .then((_response) => {
             alert("Author Deleted!");
           })

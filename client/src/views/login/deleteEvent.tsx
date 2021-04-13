@@ -53,18 +53,19 @@ const DeleteEvent: React.FC<Record<string, never>> = () => {
 
       for (const element of data) {
         if (element.title === title) {
-          const API =  axios.create({ baseURL: ''});
+          const API = axios.create({ baseURL: "" });
 
           API.interceptors.request.use((req) => {
-            if (localStorage.getItem('profile')){
-              req.headers.Authorization = `Bearer ${JSON.parse(localStorage.profile).token}`;
+            if (localStorage.getItem("profile")) {
+              req.headers.Authorization = `Bearer ${
+                JSON.parse(localStorage.profile).token
+              }`;
             }
 
             return req;
           });
 
-          API
-          .delete(`http://localhost:5000/events/${element._id}/delete`)
+          API.delete(`http://localhost:5000/events/${element._id}/delete`)
             .then((res) => {
               alert("Deleted!");
               return;

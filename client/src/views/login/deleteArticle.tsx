@@ -56,18 +56,19 @@ const DeleteArticle: React.FC<Record<string, never>> = () => {
       })
       .then(() => {
         const URL = "learn/article/" + article_id + "/delete";
-        const API =  axios.create({ baseURL: 'http://localhost:5000/'});
+        const API = axios.create({ baseURL: "http://localhost:5000/" });
 
         API.interceptors.request.use((req) => {
-          if (localStorage.getItem('profile')){
-            req.headers.Authorization = `Bearer ${JSON.parse(localStorage.profile).token}`;
+          if (localStorage.getItem("profile")) {
+            req.headers.Authorization = `Bearer ${
+              JSON.parse(localStorage.profile).token
+            }`;
           }
 
           return req;
         });
 
-        API
-          .delete(URL)
+        API.delete(URL)
           .then((_res) => {
             alert("Article Deleted!");
           })

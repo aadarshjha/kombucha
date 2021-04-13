@@ -159,15 +159,16 @@ const signUpView = (signUp: boolean, setSignUp: any) => {
       method: "post",
       url: "http://localhost:5000/user/signup",
       data: formData,
-    }).then(function (response) {
-      if (response.data != null) {
-        setSignUp(false);
-        console.log(response.data);
-      }
     })
-    .catch((err) => {
-      alert(err.response.data.message);
-    });
+      .then(function (response) {
+        if (response.data != null) {
+          setSignUp(false);
+          console.log(response.data);
+        }
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
   };
 
   return (

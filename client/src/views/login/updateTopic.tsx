@@ -56,20 +56,21 @@ const UpdateAuthor: React.FC<Record<string, never>> = () => {
       })
       .then(() => {
         const URL = "learn/topic/" + id + "/update";
-        const API =  axios.create({ baseURL: 'http://localhost:5000/'});
+        const API = axios.create({ baseURL: "http://localhost:5000/" });
 
-          API.interceptors.request.use((req) => {
-            if (localStorage.getItem('profile')){
-              req.headers.Authorization = `Bearer ${JSON.parse(localStorage.profile).token}`;
-            }
-  
-            return req;
-          });
-  
-          API
-          .patch(URL, {
-            name: values.updateName,
-          })
+        API.interceptors.request.use((req) => {
+          if (localStorage.getItem("profile")) {
+            req.headers.Authorization = `Bearer ${
+              JSON.parse(localStorage.profile).token
+            }`;
+          }
+
+          return req;
+        });
+
+        API.patch(URL, {
+          name: values.updateName,
+        })
           .then((_response) => {
             alert("Topic Updated!");
           })

@@ -45,22 +45,23 @@ const AddEvent: React.FC<Record<string, never>> = () => {
   const onFinish = (values: any) => {
     console.log(values);
     const URL = "events/create";
-    const API =  axios.create({ baseURL: 'http://localhost:5000/'});
+    const API = axios.create({ baseURL: "http://localhost:5000/" });
 
     API.interceptors.request.use((req) => {
-      if (localStorage.getItem('profile')){
-        req.headers.Authorization = `Bearer ${JSON.parse(localStorage.profile).token}`;
+      if (localStorage.getItem("profile")) {
+        req.headers.Authorization = `Bearer ${
+          JSON.parse(localStorage.profile).token
+        }`;
       }
 
       return req;
     });
 
-    API
-      .put(URL, {
-        title: values.header,
-        imageString: "testFile",
-        body: values.body,
-      })
+    API.put(URL, {
+      title: values.header,
+      imageString: "testFile",
+      body: values.body,
+    })
       .then((_response) => {
         alert("Reponse Saved!");
       })

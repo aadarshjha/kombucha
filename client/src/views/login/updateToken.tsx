@@ -36,28 +36,29 @@ const UpdateToken: React.FC<Record<string, never>> = () => {
 
   const onFinish = (values: any) => {
     const URL = "user/updateToken";
-    const API =  axios.create({ baseURL: 'http://localhost:5000/'});
+    const API = axios.create({ baseURL: "http://localhost:5000/" });
     API.interceptors.request.use((req) => {
-      if (localStorage.getItem('profile')){
-        req.headers.Authorization = `Bearer ${JSON.parse(localStorage.profile).token}`;
+      if (localStorage.getItem("profile")) {
+        req.headers.Authorization = `Bearer ${
+          JSON.parse(localStorage.profile).token
+        }`;
       }
 
       return req;
     });
 
-    API
-    .patch(URL, {
+    API.patch(URL, {
       body: values,
     })
-    .then((res) => {
-      console.log(res.data);
-      alert(res.data.message);
-      return;
-    })
-    .catch((err) => {
-      alert(err.response.data.message);
-      return;
-    });
+      .then((res) => {
+        console.log(res.data);
+        alert(res.data.message);
+        return;
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+        return;
+      });
   };
 
   return (
