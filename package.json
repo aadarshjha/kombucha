@@ -8,7 +8,8 @@
         "test": "echo \"No tests besides linting as of yet.\"",
         "format": "prettier --write **/*.ts **/*.tsx **/*.js",
         "pretest": "eslint --ext .ts --ext .js --ext .tsx .",
-        "install-deep": "npm i && cd client && npm i && cd ../server && npm i"
+        "install-deep": "npm i && cd client && npm i && cd ../server && npm i",
+        "deploy": "git add . && git commit -m Heroku && git subtree push --prefix server heroku master"
     },
     "repository": {
         "type": "git",
