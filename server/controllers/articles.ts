@@ -26,7 +26,10 @@ export const list: controller = (_req, res, next) => {
 };
 
 // defines a controller by which we create an article. 
-export const create: controller = async (req, res, next) => {
+export const create: controller = async (req: any, res, next) => {
+  if (!req.userId) {
+    res.send('User Unathenticated');
+  }
   try {
     if (await Article.findOne({ name: req.body.title })) {
       res.send(`Topic named ${req.body.title} already exists.\n`);
@@ -52,7 +55,10 @@ export const create: controller = async (req, res, next) => {
 };
 
 // Defines a controller by which we remove an article. 
-export const remove: controller = async (req, res, next) => {
+export const remove: controller = async (req: any, res, next) => {
+  if (!req.userId) {
+    res.send('User Unathenticated');
+  }
   try {
     const deletedArticle = await Article.findByIdAndDelete(req.params.id);
     res.send(`Successfully deleted author named ${deletedArticle.name}\n`);
@@ -65,7 +71,10 @@ export const remove: controller = async (req, res, next) => {
 };
 
 // Defines a controller by which we update an article by ID. 
-export const update: controller = async (req, res, next) => {
+export const update: controller = async (req: any, res, next) => {
+  if (!req.userId) {
+    res.send('User Unathenticated');
+  }
   try {
     const updatedArticle = await Article.findByIdAndUpdate(req.params.id, {
       $set: req.body,

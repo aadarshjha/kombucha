@@ -4,6 +4,7 @@ import React from "react";
 import "antd/dist/antd.css";
 import "./options.css";
 import { Form, Input, Button } from "antd";
+import axios from "axios";
 
 const { TextArea } = Input;
 
@@ -34,7 +35,30 @@ const UpdateToken: React.FC<Record<string, never>> = () => {
   const [form] = Form.useForm();
 
   const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
+    const URL = "user/updateToken";
+    const API = axios.create({ baseURL: "http://localhost:5000/" });
+    API.interceptors.request.use((req) => {
+      if (localStorage.getItem("profile")) {
+        req.headers.Authorization = `Bearer ${
+          JSON.parse(localStorage.profile).token
+        }`;
+      }
+
+      return req;
+    });
+
+    API.patch(URL, {
+      body: values,
+    })
+      .then((res) => {
+        console.log(res.data);
+        alert(res.data.message);
+        return;
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+        return;
+      });
   };
 
   return (
@@ -47,7 +71,7 @@ const UpdateToken: React.FC<Record<string, never>> = () => {
         scrollToFirstError
       >
         <Form.Item
-          name="Old Token Value"
+          name="oldToken"
           label="Old Token Value"
           rules={[
             {
@@ -61,7 +85,7 @@ const UpdateToken: React.FC<Record<string, never>> = () => {
         </Form.Item>
 
         <Form.Item
-          name="New Token Value"
+          name="newToken"
           label="New Token Value"
           rules={[
             {

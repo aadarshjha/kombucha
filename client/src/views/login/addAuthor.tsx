@@ -32,12 +32,24 @@ const tailFormItemLayout = {
 const AddAuthor: React.FC<Record<string, never>> = () => {
   const [form] = Form.useForm();
   const onFinish = (values: any) => {
-    axios
-      .put("http://localhost:5000/learn/author/create", {
-        name: values.name,
-        year: values.year,
-        majors: values.majors.split(","),
-      })
+    const URL = "learn/author/create";
+    const API = axios.create({ baseURL: "http://localhost:5000/" });
+
+    API.interceptors.request.use((req) => {
+      if (localStorage.getItem("profile")) {
+        req.headers.Authorization = `Bearer ${
+          JSON.parse(localStorage.profile).token
+        }`;
+      }
+
+      return req;
+    });
+
+    API.put(URL, {
+      name: values.name,
+      year: values.year,
+      majors: values.majors.split(","),
+    })
       .then((_response) => {
         alert("Author Saved!");
       })

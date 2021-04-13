@@ -59,14 +59,23 @@ const UpdateArticle: React.FC<Record<string, never>> = () => {
       })
       .then(() => {
         // const URL = learnRouter.patch("/article/:id/update", articleController.update);
-        const URL =
-          "http://localhost:5000/learn/article/" + article_id + "/update";
-        console.log(URL);
-        axios
-          .patch(URL, {
-            dateUpdated: moment().format("MM/DD/YYYY"),
-            content: values.content,
-          })
+        const URL = "learn/article/" + article_id + "/update";
+        const API = axios.create({ baseURL: "http://localhost:5000/" });
+
+        API.interceptors.request.use((req) => {
+          if (localStorage.getItem("profile")) {
+            req.headers.Authorization = `Bearer ${
+              JSON.parse(localStorage.profile).token
+            }`;
+          }
+
+          return req;
+        });
+
+        API.patch(URL, {
+          dateUpdated: moment().format("MM/DD/YYYY"),
+          content: values.content,
+        })
           .then((res) => {
             alert("Article Updated!");
           })

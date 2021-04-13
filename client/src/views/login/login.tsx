@@ -48,9 +48,9 @@ const renderView = (
         }
       })
       .catch((err) => {
-        alert("Cannot Sign In!");
+        alert(err.response.data.message);
       });
-    console.log(JSON.parse(localStorage.profile).token);
+    //console.log(JSON.parse(localStorage.profile).token);
   };
 
   if (signedIn) {
@@ -159,12 +159,16 @@ const signUpView = (signUp: boolean, setSignUp: any) => {
       method: "post",
       url: "http://localhost:5000/user/signup",
       data: formData,
-    }).then(function (response) {
-      if (response.data != null) {
-        setSignUp(false);
-        console.log(response.data);
-      }
-    });
+    })
+      .then(function (response) {
+        if (response.data != null) {
+          setSignUp(false);
+          console.log(response.data);
+        }
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
   };
 
   return (

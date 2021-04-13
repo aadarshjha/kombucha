@@ -24,7 +24,10 @@ export const list: controller = (_req, res, next) => {
 };
 
 // creates a new topic. 
-export const create: controller = async (req, res, next) => {
+export const create: controller = async (req: any, res, next) => {
+  if (!req.userId) {
+    res.send('User Unathenticated');
+  }
   try {
     // Only create new topic if the name doesn't exist already
     if (await Topic.findOne({ name: req.body.name })) {
@@ -44,7 +47,10 @@ export const create: controller = async (req, res, next) => {
 };
 
 // removes a particular topics and associated articles. 
-export const remove: controller = async (req, res, next) => {
+export const remove: controller = async (req: any, res, next) => {
+  if (!req.userId) {
+    res.send('User Unathenticated');
+  }
   try {
     // Remove all articles associated with the topic
     await Article.deleteMany({ topic: req.params.id });
@@ -69,7 +75,10 @@ export const remove: controller = async (req, res, next) => {
 };
 
 // updates a particular topic
-export const update: controller = async (req, res, next) => {
+export const update: controller = async (req: any, res, next) => {
+  if (!req.userId) {
+    res.send('User Unathenticated');
+  }
   try {
     const updatedTopic = await Topic.findByIdAndUpdate(req.params.id, {
       $set: req.body,
