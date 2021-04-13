@@ -7,7 +7,7 @@ import { Avatar } from "antd";
 const dummyData = [
   "Asia Miller",
   "Aadarsh Jha",
-  `${process.env.SERVER_URL}`,
+  `${process.env.REACT_APP_SERVER_URL}`,
   "Ashwin Kumar",
   "Zeyad Moustafa",
 ];

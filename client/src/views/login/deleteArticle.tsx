@@ -39,7 +39,7 @@ const DeleteArticle: React.FC<Record<string, never>> = () => {
     // first we fetch the article ID based on title
     let article_id: string;
     axios
-      .get(`${process.env.SERVER_URL}learn/articles`)
+      .get(`${process.env.REACT_APP_SERVER_URL}learn/articles`)
       .then((res) => {
         const iteratedData = res.data;
         const title = values.title;
@@ -56,7 +56,9 @@ const DeleteArticle: React.FC<Record<string, never>> = () => {
       })
       .then(() => {
         const URL = "learn/article/" + article_id + "/delete";
-        const API = axios.create({ baseURL: `${process.env.SERVER_URL}` });
+        const API = axios.create({
+          baseURL: `${process.env.REACT_APP_SERVER_URL}`,
+        });
 
         API.interceptors.request.use((req) => {
           if (localStorage.getItem("profile")) {

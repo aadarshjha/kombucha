@@ -47,7 +47,7 @@ const DeleteEvent: React.FC<Record<string, never>> = () => {
     const title = values.header;
     let id: string;
     let data;
-    axios.get(`${process.env.SERVER_URL}events`).then((res) => {
+    axios.get(`${process.env.REACT_APP_SERVER_URL}events`).then((res) => {
       let deleteID;
       const data = res.data;
 
@@ -57,13 +57,17 @@ const DeleteEvent: React.FC<Record<string, never>> = () => {
 
           API.interceptors.request.use((req) => {
             if (localStorage.getItem("profile")) {
-              req.headers.Authorization = `Bearer ${JSON.parse(localStorage.profile).token}`;
+              req.headers.Authorization = `Bearer ${
+                JSON.parse(localStorage.profile).token
+              }`;
             }
 
             return req;
           });
 
-          API.delete(`${process.env.SERVER_URL}events/${element._id}/delete`)
+          API.delete(
+            `${process.env.REACT_APP_SERVER_URL}events/${element._id}/delete`
+          )
             .then((res) => {
               alert("Deleted!");
               return;

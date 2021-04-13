@@ -45,7 +45,9 @@ const AddEvent: React.FC<Record<string, never>> = () => {
   const onFinish = (values: any) => {
     console.log(values);
     const URL = "events/create";
-    const API = axios.create({ baseURL: `${process.env.SERVER_URL}` });
+    const API = axios.create({
+      baseURL: `${process.env.REACT_APP_SERVER_URL}`,
+    });
 
     API.interceptors.request.use((req) => {
       if (localStorage.getItem("profile")) {

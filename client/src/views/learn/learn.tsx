@@ -151,7 +151,7 @@ const Learn: React.FC<Record<string, never>> = () => {
   };
 
   axios
-    .get("http://localhost:5000/learn/articles")
+    .get(`${process.env.REACT_APP_SERVER_URL}/learn/articles`)
     .then((response) => {
       // call all the functions to filter the data.
       fetchedData = response.data;

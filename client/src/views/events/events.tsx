@@ -13,7 +13,7 @@ const Events: React.FC<Record<string, never>> = () => {
   useEffect(() => {
     // localhost is the server which we use in development
     // we will use heroku services in deployment.
-    axios.get(`${process.env.SERVER_URL}/events`).then((res) => {
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/events`).then((res) => {
       setEvents(res.data);
     });
   }, []);

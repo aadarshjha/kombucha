@@ -34,7 +34,7 @@ const UpdateEvent: React.FC<Record<string, never>> = () => {
   const onFinish = (values: any) => {
     // get and then delete:
     const title = values.header;
-    axios.get(`${process.env.SERVER_URL}events`).then((res) => {
+    axios.get(`${process.env.REACT_APP_SERVER_URL}events`).then((res) => {
       const data = res.data;
 
       for (const element of data) {
@@ -50,9 +50,12 @@ const UpdateEvent: React.FC<Record<string, never>> = () => {
             return req;
           });
 
-          API.patch(`${process.env.SERVER_URL}events/${element._id}/update`, {
-            body: values.body,
-          })
+          API.patch(
+            `${process.env.REACT_APP_SERVER_URL}events/${element._id}/update`,
+            {
+              body: values.body,
+            }
+          )
             .then((res) => {
               alert("Updated!");
               return;

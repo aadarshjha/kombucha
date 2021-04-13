@@ -40,7 +40,7 @@ const NewArticle: React.FC<Record<string, never>> = () => {
 
   const onFinish = (values: any) => {
     axios
-      .get(`${process.env.SERVER_URL}learn/authors`)
+      .get(`${process.env.REACT_APP_SERVER_URL}learn/authors`)
       .then((res) => {
         const name = values.author;
         const iteratedData = res.data;
@@ -56,7 +56,7 @@ const NewArticle: React.FC<Record<string, never>> = () => {
       })
       .then(() => {
         axios
-          .get(`${process.env.SERVER_URL}learn/topics`)
+          .get(`${process.env.REACT_APP_SERVER_URL}learn/topics`)
           .then((res) => {
             const name = values.topic;
             const iteratedData = res.data;
@@ -72,7 +72,9 @@ const NewArticle: React.FC<Record<string, never>> = () => {
           })
           .then(() => {
             const URL = "learn/article/create";
-            const API = axios.create({ baseURL: `${process.env.SERVER_URL}` });
+            const API = axios.create({
+              baseURL: `${process.env.REACT_APP_SERVER_URL}`,
+            });
 
             API.interceptors.request.use((req) => {
               if (localStorage.getItem("profile")) {
