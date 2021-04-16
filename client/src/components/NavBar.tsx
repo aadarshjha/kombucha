@@ -29,9 +29,6 @@ const NavBar: React.FC<Record<string, never>> = () => {
       <Menu.Item icon={<CalendarOutlined />}>
         <Link to="/events">Events</Link>
       </Menu.Item>
-      {/* <Menu.Item icon={<PlayCircleOutlined />}>
-        <Link to="/play">Play</Link>
-      </Menu.Item> */}
     </Menu>
   );
 };

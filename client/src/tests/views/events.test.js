@@ -1,6 +1,6 @@
 // Test the Events component
 import ReactDOM from "react-dom";
-import Events from "../views/events/events";
+import Events from "../../views/events/events";
 import renderer from "react-test-renderer";
 
 // ensures that the events.tsx can itself render.

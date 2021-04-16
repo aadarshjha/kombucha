@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches options page snapshot 1`] = `
+<div
+  className="centered"
+>
+  <img
+    alt="VUMS Logo"
+    className="vumslogo"
+    src="vums.png"
+  />
+  <h1>
+    test
+  </h1>
+</div>
+`;
