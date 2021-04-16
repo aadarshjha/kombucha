@@ -3,7 +3,7 @@ import Topic from "../models/topic";
 import Article from "../models/article";
 
 // defines the typescript definition of controllers
-// requests and responses. 
+// requests and responses.
 interface controller {
   (
     req: Express.Request,
@@ -12,7 +12,7 @@ interface controller {
   ): void;
 }
 
-// lists all the educational topics. 
+// lists all the educational topics.
 export const list: controller = (_req, res, next) => {
   Topic.find({}, "name").exec((err: Error, topicNames: string[]) => {
     if (err) {
@@ -23,10 +23,10 @@ export const list: controller = (_req, res, next) => {
   });
 };
 
-// creates a new topic. 
+// creates a new topic.
 export const create: controller = async (req: any, res, next) => {
   if (!req.userId) {
-    res.send('User Unathenticated');
+    res.send("User Unathenticated");
   }
   try {
     // Only create new topic if the name doesn't exist already
@@ -46,10 +46,10 @@ export const create: controller = async (req: any, res, next) => {
   }
 };
 
-// removes a particular topics and associated articles. 
+// removes a particular topics and associated articles.
 export const remove: controller = async (req: any, res, next) => {
   if (!req.userId) {
-    res.send('User Unathenticated');
+    res.send("User Unathenticated");
   }
   try {
     // Remove all articles associated with the topic
@@ -77,7 +77,7 @@ export const remove: controller = async (req: any, res, next) => {
 // updates a particular topic
 export const update: controller = async (req: any, res, next) => {
   if (!req.userId) {
-    res.send('User Unathenticated');
+    res.send("User Unathenticated");
   }
   try {
     const updatedTopic = await Topic.findByIdAndUpdate(req.params.id, {
@@ -92,7 +92,7 @@ export const update: controller = async (req: any, res, next) => {
   }
 };
 
-// gets all articles of a topic. 
+// gets all articles of a topic.
 export const articles: controller = async (req, res, next) => {
   Article.find({ topic: req.params.id })
     .populate("author", "name")
