@@ -6,13 +6,6 @@ import ReactMarkdown from "react-markdown";
 
 const { SubMenu } = Menu;
 
-type backendData = {
-  header: string;
-  body: string;
-  difficulty: string;
-  category: string;
-};
-
 type stateObject = {
   isLearning: boolean;
   setLearning: any;
@@ -28,33 +21,12 @@ type catProps = {
 };
 
 const Articles: React.FC<catProps> = ({ articles, state }: catProps) => {
-  console.log(articles);
   const [articleTitle, setArticleTitle] = useState(articles[0].title);
   const [articleText, setArticleText] = useState(articles[0].content);
 
   const handleClick = (e: any) => {
     setArticleTitle(articles[e.key].title);
     setArticleText(articles[e.key].content);
-  };
-
-  // handles breaklines:
-  const displayArticleTest = (text: string) => {
-    // let str: any;
-    // const splitString = text.split(" ");
-    // console.log(splitString)
-    // splitString.forEach((element: string) => {
-    //   console.log(element)
-    //   if (element == "<br/>") {
-    //     console.log("HER")
-    //     str += <br></br>
-    //   } else {
-    //     str += <p>element</p>;
-    //   }
-    // })
-    // // str = <span></span/
-    // console.log(str)
-    // return str;
-    return text;
   };
 
   return (

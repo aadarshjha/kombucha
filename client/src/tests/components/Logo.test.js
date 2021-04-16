@@ -34,12 +34,6 @@ it("loads the title", () => {
   expect(div.querySelector("h1").textContent).toEqual("test");
 });
 
-// it("loads the correct number of menu optoins", () => {
-//   const div = document.createElement("div");
-//   ReactDOM.render(<Options />, div);
-//   expect(div.querySelectorAll(".ant-menu-item").length).toBe(14);
-// });
-
 // checks if the current iteration of the page matches a recent
 // UI snapshot.
 it("matches options page snapshot", () => {
