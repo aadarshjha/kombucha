@@ -3,7 +3,7 @@ import Author from "../models/author";
 import Article from "../models/article";
 
 // defines the typescript definition of controllers
-// requests and responses. 
+// requests and responses.
 interface controller {
   (
     req: Express.Request,
@@ -12,7 +12,7 @@ interface controller {
   ): void;
 }
 
-// lists all authors. 
+// lists all authors.
 export const list: controller = (_req, res, next) => {
   Author.find({}).exec((err: Error, authors: unknown[]) => {
     if (err) {
@@ -26,12 +26,12 @@ export const list: controller = (_req, res, next) => {
 // creates a new author.
 export const create: controller = async (req: any, res: any, next: any) => {
   if (!req.userId) {
-    res.send('User Unathenticated');
+    res.send("User Unathenticated");
   }
   try {
     // Only create new topic if the name doesn't exist already
     if (await Author.findOne({ name: req.body.name })) {
-      console.log("\n before res  \n"); 
+      console.log("\n before res  \n");
       res.send(`Author ${req.body.name} already exists.\n`);
     } else {
       await Author.create({
@@ -39,8 +39,8 @@ export const create: controller = async (req: any, res: any, next: any) => {
         year: req.body.year,
         majors: req.body.majors,
       });
-       
-      res.send(`Successfully created new author: ${req.body.name}\n`); 
+
+      res.send(`Successfully created new author: ${req.body.name}\n`);
     }
   } catch (err) {
     next(err);
@@ -51,10 +51,9 @@ export const create: controller = async (req: any, res: any, next: any) => {
 };
 
 // removes a particular author, and all articles associated with that particular author.
-export const remove: controller = async (req : any, res: any, next: any) => {
-
+export const remove: controller = async (req: any, res: any, next: any) => {
   if (!req.userId) {
-    res.send('User Unathenticated');
+    res.send("User Unathenticated");
   }
 
   try {
@@ -80,11 +79,10 @@ export const remove: controller = async (req : any, res: any, next: any) => {
   }
 };
 
-// updates a particular author. 
+// updates a particular author.
 export const update: controller = async (req: any, res: any, next: any) => {
-
   if (!req.userId) {
-    res.send('User Unathenticated');
+    res.send("User Unathenticated");
   }
 
   try {
@@ -100,7 +98,7 @@ export const update: controller = async (req: any, res: any, next: any) => {
   }
 };
 
-// finds all articles of a particular author. 
+// finds all articles of a particular author.
 export const articles: controller = async (req, res, next) => {
   Article.find({ author: req.params.id })
     .populate("author", "name")

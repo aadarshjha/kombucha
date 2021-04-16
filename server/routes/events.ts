@@ -1,6 +1,6 @@
 import express from "express";
 import * as eventController from "../controllers/events";
-import auth from "../middleware/auth"
+import auth from "../middleware/auth";
 
 const eventRouter = express.Router();
 

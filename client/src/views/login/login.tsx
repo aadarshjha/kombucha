@@ -32,6 +32,27 @@ const renderView = (
   signUp: boolean,
   setSignUp: any
 ) => {
+  //check to see if user authenticated
+  if (signedIn == false && localStorage.getItem("profile")) {
+    const URL = "user/userAuth";
+    const API = axios.create({ baseURL: "http://localhost:5000/" });
+    API.interceptors.request.use((req) => {
+      req.headers.Authorization = `Bearer ${
+        JSON.parse(localStorage.profile).token
+      }`;
+      return req;
+    });
+
+    API.post(URL)
+      .then(function (response) {
+        console.log(response.data.message);
+        setSignIn(true);
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
+  }
+
   //create function for submit
   const handleSubmit = (formData: any) => {
     //console.log(e);
@@ -278,10 +299,10 @@ const signUpView = (signUp: boolean, setSignUp: any) => {
 const Login: React.FC<Record<string, never>> = () => {
   const [signedIn, setSignIn] = useState(false);
   const [signUp, setSignUp] = useState(false);
+
   const curView = signUp
     ? signUpView(signUp, setSignUp)
     : renderView(signedIn, setSignIn, signUp, setSignUp);
-  const history = useHistory();
 
   return <div>{curView}</div>;
 };

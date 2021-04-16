@@ -2,7 +2,7 @@ import Express from "express";
 import Article from "../models/article";
 
 // defines the typescript definition of controllers
-// requests and responses. 
+// requests and responses.
 interface controller {
   (
     req: Express.Request,
@@ -11,7 +11,7 @@ interface controller {
   ): void;
 }
 
-// defines a controller by which we list all articles. 
+// defines a controller by which we list all articles.
 export const list: controller = (_req, res, next) => {
   Article.find({})
     .populate("author", "name")
@@ -25,10 +25,10 @@ export const list: controller = (_req, res, next) => {
     });
 };
 
-// defines a controller by which we create an article. 
+// defines a controller by which we create an article.
 export const create: controller = async (req: any, res, next) => {
   if (!req.userId) {
-    res.send('User Unathenticated');
+    res.send("User Unathenticated");
   }
   try {
     if (await Article.findOne({ name: req.body.title })) {
@@ -42,7 +42,7 @@ export const create: controller = async (req: any, res, next) => {
         dateUpdated: req.body.dateUpdated,
         topic: req.body.topic,
         content: req.body.content,
-        difficulty: req.body.difficulty
+        difficulty: req.body.difficulty,
       });
       res.send(`Successfully created new article: ${req.body.title}\n`);
     }
@@ -54,10 +54,10 @@ export const create: controller = async (req: any, res, next) => {
   }
 };
 
-// Defines a controller by which we remove an article. 
+// Defines a controller by which we remove an article.
 export const remove: controller = async (req: any, res, next) => {
   if (!req.userId) {
-    res.send('User Unathenticated');
+    res.send("User Unathenticated");
   }
   try {
     const deletedArticle = await Article.findByIdAndDelete(req.params.id);
@@ -70,10 +70,10 @@ export const remove: controller = async (req: any, res, next) => {
   }
 };
 
-// Defines a controller by which we update an article by ID. 
+// Defines a controller by which we update an article by ID.
 export const update: controller = async (req: any, res, next) => {
   if (!req.userId) {
-    res.send('User Unathenticated');
+    res.send("User Unathenticated");
   }
   try {
     const updatedArticle = await Article.findByIdAndUpdate(req.params.id, {

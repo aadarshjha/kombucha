@@ -25,7 +25,7 @@ export const list: controller = (_req, res, next) => {
 // creates a new event.
 export const create: controller = async (req: any, res, next) => {
   if (!req.userId) {
-    res.send('User Unathenticated');
+    res.send("User Unathenticated");
   }
   try {
     // Only create new event if the title doesn't exist already
@@ -50,7 +50,7 @@ export const create: controller = async (req: any, res, next) => {
 // removes an event.
 export const remove: controller = async (req: any, res, next) => {
   if (!req.userId) {
-    res.send('User Unathenticated');
+    res.send("User Unathenticated");
   }
   try {
     const deletedEvent = await Event.findByIdAndDelete(req.params.id);
@@ -66,7 +66,7 @@ export const remove: controller = async (req: any, res, next) => {
 // updates an event.
 export const update: controller = async (req: any, res, next) => {
   if (!req.userId) {
-    res.send('User Unathenticated');
+    res.send("User Unathenticated");
   }
   try {
     const updatedEvent = await Event.findByIdAndUpdate(req.params.id, {
