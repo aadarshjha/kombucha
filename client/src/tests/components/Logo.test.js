@@ -1,7 +1,6 @@
 // Test the Options component
 import ReactDOM from "react-dom";
 import Logo from "../../components/Logo";
-import BrowserRouter from "react-router-dom";
 import renderer from "react-test-renderer";
 
 window.matchMedia =
@@ -23,10 +22,10 @@ it("renders logo.tsx without crashing", () => {
 
 // checks if the <Logo /> component's img works.
 it("renders the VUMS logo", () => {
-    const div = document.createElement("div");
-    ReactDOM.render(<Logo />, div);
-    expect(div.querySelector(".vumslogo")).toBeTruthy();
-  });
+  const div = document.createElement("div");
+  ReactDOM.render(<Logo />, div);
+  expect(div.querySelector(".vumslogo")).toBeTruthy();
+});
 
 // loads the menu
 it("loads the title", () => {
