@@ -13,10 +13,6 @@ const Intro: React.FC<Record<string, never>> = () => (
       distribution of fresh produce to underprivileged persons in Davidson
       County.
     </p>
-    {/* <div className="scrollDown">
-      < CaretDownOutlined style={{ fontSize: '30px' }}/>
-      <p>Scroll Down For More Information!</p>
-    </div> */}
   </div>
 );
 
