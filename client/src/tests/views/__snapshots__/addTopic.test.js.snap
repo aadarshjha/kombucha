@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches learn page snapshot 1`] = `
+<div
+  className="centeredForm"
+>
+  <form
+    className="ant-form ant-form-horizontal"
+    id="register"
+    onSubmit={[Function]}
+  >
+    <div
+      className="ant-row ant-form-item"
+      style={
+        Object {
+          "marginBottom": undefined,
+          "marginLeft": undefined,
+          "marginRight": undefined,
+          "marginTop": undefined,
+        }
+      }
+    >
+      <div
+        className="ant-col ant-form-item-label ant-col-xs-24 ant-col-sm-8"
+        style={Object {}}
+      >
+        <label
+          className="ant-form-item-required"
+          htmlFor="register_name"
+          title="Topic Name"
+        >
+          Topic Name
+        </label>
+      </div>
+      <div
+        className="ant-col ant-form-item-control ant-col-xs-24 ant-col-sm-16"
+        style={Object {}}
+      >
+        <div
+          className="ant-form-item-control-input"
+        >
+          <div
+            className="ant-form-item-control-input-content"
+          >
+            <input
+              className="ant-input"
+              id="register_name"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ant-row ant-form-item"
+      style={
+        Object {
+          "marginBottom": undefined,
+          "marginLeft": undefined,
+          "marginRight": undefined,
+          "marginTop": undefined,
+        }
+      }
+    >
+      <div
+        className="ant-col ant-form-item-control ant-col-xs-24 ant-col-xs-offset-0 ant-col-sm-16 ant-col-sm-offset-8"
+        style={Object {}}
+      >
+        <div
+          className="ant-form-item-control-input"
+        >
+          <div
+            className="ant-form-item-control-input-content"
+          >
+            <button
+              className="ant-btn ant-btn-primary"
+              onClick={[Function]}
+              type="submit"
+            >
+              <span>
+                Submit Topic
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+`;
