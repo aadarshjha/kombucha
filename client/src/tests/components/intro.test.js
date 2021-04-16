@@ -1,6 +1,6 @@
 // Test the Options component
 import ReactDOM from "react-dom";
-import Intro from "../views/landingpage/Intro";
+import Intro from "../../views/landingpage/Intro";
 import renderer from "react-test-renderer";
 
 window.matchMedia =

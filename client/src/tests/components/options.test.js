@@ -1,6 +1,6 @@
 // Test the Options component
 import ReactDOM from "react-dom";
-import Options from "../views/login/options";
+import Options from "../../views/login/options";
 import renderer from "react-test-renderer";
 
 window.matchMedia =

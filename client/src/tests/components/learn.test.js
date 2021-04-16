@@ -1,9 +1,9 @@
 // Test the Events component
 import ReactDOM from "react-dom";
-import Learn, { fetchCategories } from "../views/learn/learn";
+import Learn, { fetchCategories } from "../../views/learn/learn";
 import renderer from "react-test-renderer";
-import categoryData from "../views/learn/categories.json";
-import mockData from "../views/learn/mockData.json";
+import categoryData from "../../views/learn/categories.json";
+import mockData from "../../views/learn/mockData.json";
 
 // ensures that the events.tsx can itself render.
 it("renders category.tsx without crashing", () => {
