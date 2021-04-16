@@ -21,10 +21,16 @@ it("renders options.tsx without crashing", () => {
 });
 
 // loads the menu
-it("loads the menu optoins", () => {
+it("loads the menu options", () => {
   const div = document.createElement("div");
   ReactDOM.render(<Options />, div);
   expect(div.querySelector(".ant-menu")).toBeTruthy();
+});
+
+it("loads the correct number of menu optoins", () => {
+  const div = document.createElement("div");
+  ReactDOM.render(<Options />, div);
+  expect(div.querySelectorAll(".ant-menu-item").length).toBe(14);
 });
 
 it("loads the general states number (the upper level of stats)", () => {
@@ -33,23 +39,17 @@ it("loads the general states number (the upper level of stats)", () => {
   expect(div.querySelectorAll(".ant-statistic-title").length).toBe(3);
 });
 
-// checks if all menu options are present:
-// it("loads the menu optoins", () => {
-//   const div = document.createElement("div");
-//   ReactDOM.render(<Options />, div);
-//   const elements = div.querySelectorAll(".ant-menu-item>a");
-//   console.log(elements[0].innerText)
-//   const elementsText = elements.forEach((element) => {
-//       return element.innerHTML
-//   })
-// //   console.log(elements);
-// });
+it("loads the circular stats", () => {
+  const div = document.createElement("div");
+  ReactDOM.render(<Options />, div);
+  expect(div.querySelectorAll(".ant-progress").length).toBe(4);
+});
 
-// it("loads the menu opto", () => {
-//   const div = document.createElement("div");
-//   ReactDOM.render(<Options />, div);
-//   expect(div.querySelector(".ant-menu")).toBeTruthy();
-// });
+it("loads the Current Articles, Current Authors, and Current Topics", () => {
+  const div = document.createElement("div");
+  ReactDOM.render(<Options />, div);
+  expect(div.querySelectorAll(".ant-list").length).toBe(3);
+});
 
 // checks if the current iteration of the page matches a recent
 // UI snapshot.
