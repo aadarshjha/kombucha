@@ -33,7 +33,7 @@ export const signin: controller = async (req: any, res: any) => {
     const token = jwt.sign(
       { username: oldUser.username, id: oldUser._id },
       secret.password,
-      { expiresIn: "60s" }
+      { expiresIn: "1hr" }
     );
 
     res.status(200).json({ result: oldUser, token });

@@ -21,7 +21,7 @@ const auth: controller = async (req: any, res: any, next: any) => {
     const secret = await User.findOne({ username: secretUserName });
 
     if (token && isCustomAuth) {
-      decodedData = jwt.verify(token, secret.password, { maxAge: "60s" });
+      decodedData = jwt.verify(token, secret.password, { maxAge: "1hr" });
       req.userId = JSON.parse(JSON.stringify(decodedData)).id;
     } else {
       decodedData = jwt.decode(token);
