@@ -40,12 +40,11 @@ const UpdateArticle: React.FC<Record<string, never>> = () => {
 
   const [authors, setAuthors] = useState([]);
 
-
   useEffect(() => {
     (async () => {
       const result: any = await axios(authorsURL);
       const authorResult = result.data;
-      console.log(authorResult)
+      console.log(authorResult);
       setAuthors(authorResult.map((element: any) => element.title));
     })();
   }, []);
