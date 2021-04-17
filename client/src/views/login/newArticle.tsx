@@ -60,7 +60,7 @@ const NewArticle: React.FC<Record<string, never>> = () => {
     axios
       .get("http://localhost:5000/learn/authors")
       .then((res) => {
-        const name = values.author;
+        const name = values.name;
         const iteratedData = res.data;
         for (const element of iteratedData) {
           if (element.name == name) {
@@ -161,6 +161,9 @@ const NewArticle: React.FC<Record<string, never>> = () => {
         >
           <Select
             placeholder="Select a option and change input text above"
+            onChange={(e) => {
+              console.log(e);
+            }}
             allowClear
           >
             {authors.map((element) => (
@@ -184,6 +187,9 @@ const NewArticle: React.FC<Record<string, never>> = () => {
           {/* <Input /> */}
           <Select
             placeholder="Select a option and change input text above"
+            onChange={(e) => {
+              console.log(e);
+            }}
             allowClear
           >
             {/* GET for all authors */}
