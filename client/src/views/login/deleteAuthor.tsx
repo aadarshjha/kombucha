@@ -7,7 +7,6 @@ import { Form, Input, Button, Upload, message, Alert, Select } from "antd";
 import axios from "axios";
 const { Option } = Select;
 
-
 const authorsURL = "http://localhost:5000/learn/authors";
 
 const formItemLayout = {
@@ -44,7 +43,6 @@ const DeleteAuthor: React.FC<Record<string, never>> = () => {
       setAuthors(authorResult.map((element: any) => element.name));
     })();
   }, []);
-
 
   let id: string;
   const onFinish = (values: any) => {
@@ -115,8 +113,7 @@ const DeleteAuthor: React.FC<Record<string, never>> = () => {
           <Input />
         </Form.Item> */}
 
-
-<Form.Item
+        <Form.Item
           name="name"
           label="Author Name"
           rules={[
@@ -133,9 +130,11 @@ const DeleteAuthor: React.FC<Record<string, never>> = () => {
             allowClear
           >
             {/* GET for all authors */}
-            {
-              authors.map((element) => <Option key={element} value={element}>{element}</Option>)
-            }
+            {authors.map((element) => (
+              <Option key={element} value={element}>
+                {element}
+              </Option>
+            ))}
             {/* <Option value={"asdf"}>{"asdf"}</Option>s */}
           </Select>
         </Form.Item>

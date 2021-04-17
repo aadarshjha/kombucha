@@ -9,7 +9,6 @@ const { Option } = Select;
 
 const authorsURL = "http://localhost:5000/learn/authors";
 
-
 const formItemLayout = {
   labelCol: {
     xs: { span: 24 },
@@ -40,7 +39,7 @@ const UpdateAuthor: React.FC<Record<string, never>> = () => {
   const [formVal, setFormVal] = useState({
     name: "",
     year: "",
-    majors: ""
+    majors: "",
   });
 
   useEffect(() => {
@@ -50,7 +49,6 @@ const UpdateAuthor: React.FC<Record<string, never>> = () => {
       setAuthors(authorResult.map((element: any) => element.name));
     })();
   }, []);
-
 
   const onFinish = (values: any) => {
     // associate an ID:
@@ -127,9 +125,11 @@ const UpdateAuthor: React.FC<Record<string, never>> = () => {
             allowClear
           >
             {/* GET for all authors */}
-            {
-              authors.map((element) => <Option key={element} value={element}>{element}</Option>)
-            }
+            {authors.map((element) => (
+              <Option key={element} value={element}>
+                {element}
+              </Option>
+            ))}
             {/* <Option value={"asdf"}>{"asdf"}</Option>s */}
           </Select>
         </Form.Item>
