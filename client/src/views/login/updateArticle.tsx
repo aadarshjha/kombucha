@@ -5,6 +5,9 @@ import "./options.css";
 import { Form, Input, Button, Select } from "antd";
 import axios from "axios";
 import moment from "moment";
+import ReactQuill from 'react-quill'; 
+import 'react-quill/dist/quill.snow.css';
+
 
 const { Option } = Select;
 const authorsURL = "http://localhost:5000/learn/articles";
@@ -50,6 +53,7 @@ const UpdateArticle: React.FC<Record<string, never>> = () => {
   }, []);
 
   const onFinish = (values: any) => {
+    console.log(values);
     axios
       .get("http://localhost:5000/learn/articles")
       .then((res) => {
@@ -149,7 +153,7 @@ const UpdateArticle: React.FC<Record<string, never>> = () => {
           ]}
           hasFeedback
         >
-          <TextArea rows={4} />
+          <ReactQuill theme="snow"/>
         </Form.Item>
 
         <Form.Item {...tailFormItemLayout}>

@@ -5,7 +5,10 @@ import "./options.css";
 import { Form, Input, Button, Select } from "antd";
 import axios from "axios";
 import moment from "moment";
+
 const { Option } = Select;
+import ReactQuill from 'react-quill'; 
+import 'react-quill/dist/quill.snow.css';
 
 const { TextArea } = Input;
 
@@ -202,12 +205,12 @@ const NewArticle: React.FC<Record<string, never>> = () => {
           rules={[
             {
               required: true,
-              message: "Content",
+              message: "Please enter content",
             },
           ]}
           hasFeedback
         >
-          <TextArea rows={4} />
+          <ReactQuill theme="snow"/>
         </Form.Item>
 
         <Form.Item
