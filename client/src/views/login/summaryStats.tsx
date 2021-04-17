@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
 import "./options.css";
-import { Progress, Statistic, Typography, List } from "antd";
+import { Progress, Statistic, List } from "antd";
 import "./options.css";
 import {
   BookOutlined,

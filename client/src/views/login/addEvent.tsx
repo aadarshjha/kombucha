@@ -3,8 +3,8 @@ import React from "react";
 // import { Menu, Dropdown, Button } from "antd";
 import "antd/dist/antd.css";
 import "./options.css";
-import { Form, Input, Button, Upload, message, Alert } from "antd";
-import { UploadOutlined, InboxOutlined } from "@ant-design/icons";
+import { Form, Input, Button, Upload } from "antd";
+import { InboxOutlined } from "@ant-design/icons";
 import axios from "axios";
 
 const { TextArea } = Input;

@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
-import { Menu, Dropdown, Button } from "antd";
-import { DownOutlined } from "@ant-design/icons";
+import { Menu } from "antd";
 import "antd/dist/antd.css";
 import "./options.css";
 import UpdateArticle from "./updateArticle";

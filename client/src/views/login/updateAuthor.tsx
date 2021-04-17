@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from "react";
-// import { Menu, Dropdown, Button } from "antd";
 import "antd/dist/antd.css";
 import "./options.css";
-import { Form, Input, Button, Upload, message, Alert, Select } from "antd";
+import { Form, Input, Button, Select } from "antd";
 import axios from "axios";
 const { Option } = Select;
 

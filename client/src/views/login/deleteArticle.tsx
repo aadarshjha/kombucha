@@ -43,7 +43,7 @@ const DeleteArticle: React.FC<Record<string, never>> = () => {
       const result: any = await axios(articlesURL);
       const articleResult = result.data;
       setArticles(articleResult.map((element: any) => element.title));
-      console.log(articleResult)
+      console.log(articleResult);
     })();
   }, []);
 

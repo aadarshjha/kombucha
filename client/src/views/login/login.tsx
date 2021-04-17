@@ -1,8 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { signin, signup } from "../../actions/auth";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react";
 import Logo from "../../components/Logo";
 import { Form, Input, Button, Checkbox } from "antd";
 import Options from "./options";
