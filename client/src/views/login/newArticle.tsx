@@ -161,9 +161,6 @@ const NewArticle: React.FC<Record<string, never>> = () => {
         >
           <Select
             placeholder="Select a option and change input text above"
-            onChange={(e) => {
-              console.log(e);
-            }}
             allowClear
           >
             {authors.map((element) => (
@@ -187,9 +184,6 @@ const NewArticle: React.FC<Record<string, never>> = () => {
           {/* <Input /> */}
           <Select
             placeholder="Select a option and change input text above"
-            onChange={(e) => {
-              console.log(e);
-            }}
             allowClear
           >
             {/* GET for all authors */}
