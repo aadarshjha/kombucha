@@ -1,13 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
+import React, { useState, useEffect } from "react";
 // import { Menu, Dropdown, Button } from "antd";
 import "antd/dist/antd.css";
 import "./options.css";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Select } from "antd";
 import axios from "axios";
 import moment from "moment";
+const { Option } = Select;
 
 const { TextArea } = Input;
+
+const authorsURL = "http://localhost:5000/learn/authors";
+const topicsURL = "http://localhost:5000/learn/topics";
 
 const formItemLayout = {
   labelCol: {
@@ -37,6 +41,21 @@ const NewArticle: React.FC<Record<string, never>> = () => {
 
   let author_id: string;
   let topic_id: string;
+
+  const [authors, setAuthors] = useState([]);
+  const [topics, setTopics] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const result: any = await axios(authorsURL);
+      const authorResult = result.data;
+      setAuthors(authorResult.map((element: any) => element.name));
+
+      const resultTopics: any = await axios(topicsURL);
+      const topicsResult = resultTopics.data;
+      setTopics(topicsResult.map((element: any) => element.name));
+    })();
+  }, []);
 
   const onFinish = (values: any) => {
     axios
@@ -134,33 +153,52 @@ const NewArticle: React.FC<Record<string, never>> = () => {
         >
           <Input />
         </Form.Item>
-
         <Form.Item
-          name="author"
-          label="Author"
+          name="name"
+          label="Author Name"
           rules={[
             {
               required: true,
-              message: "Enter Article Author",
+              message: "Enter Author Name",
             },
           ]}
           hasFeedback
         >
-          <Input />
+          <Select
+            placeholder="Select a option and change input text above"
+            allowClear
+          >
+            {authors.map((element) => (
+              <Option key={element} value={element}>
+                {element}
+              </Option>
+            ))}
+          </Select>
         </Form.Item>
-
         <Form.Item
           name="topic"
-          label="Topic"
+          label="Topic Name"
           rules={[
             {
               required: true,
-              message: "Topic",
+              message: "Enter Topic Name",
             },
           ]}
           hasFeedback
         >
-          <Input />
+          {/* <Input /> */}
+          <Select
+            placeholder="Select a option and change input text above"
+            allowClear
+          >
+            {/* GET for all authors */}
+            {topics.map((element) => (
+              <Option key={element} value={element}>
+                {element}
+              </Option>
+            ))}
+            {/* <Option value={"asdf"}>{"asdf"}</Option>s */}
+          </Select>
         </Form.Item>
 
         <Form.Item
