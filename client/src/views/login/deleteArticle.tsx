@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DownOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css";
 import "./options.css";
 
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Select } from "antd";
 import axios from "axios";
+const { Option } = Select;
 
-const { TextArea } = Input;
+const articlesURL = "http://localhost:5000/learn/articles";
 
 const formItemLayout = {
   labelCol: {
@@ -34,6 +35,17 @@ const tailFormItemLayout = {
 
 const DeleteArticle: React.FC<Record<string, never>> = () => {
   const [form] = Form.useForm();
+
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const result: any = await axios(articlesURL);
+      const articleResult = result.data;
+      setArticles(articleResult.map((element: any) => element.title));
+      console.log(articleResult)
+    })();
+  }, []);
 
   const onFinish = (values: any) => {
     // first we fetch the article ID based on title
@@ -105,7 +117,19 @@ const DeleteArticle: React.FC<Record<string, never>> = () => {
           ]}
           hasFeedback
         >
-          <Input />
+          {/* <Input /> */}
+          <Select
+            placeholder="Select a option and change input text above"
+            allowClear
+          >
+            {/* GET for all authors */}
+            {articles.map((element) => (
+              <Option key={element} value={element}>
+                {element}
+              </Option>
+            ))}
+            {/* <Option value={"asdf"}>{"asdf"}</Option>s */}
+          </Select>
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
