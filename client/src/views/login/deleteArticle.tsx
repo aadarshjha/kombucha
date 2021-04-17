@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from "react";
-import { DownOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css";
 import "./options.css";
 
