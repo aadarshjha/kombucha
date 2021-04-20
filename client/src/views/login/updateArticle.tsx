@@ -145,6 +145,7 @@ const UpdateArticle: React.FC<Record<string, never>> = () => {
         <Form.Item
           name="content"
           label="Content"
+          initialValue=""
           rules={[
             {
               required: true,
