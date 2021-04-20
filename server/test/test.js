@@ -3,7 +3,9 @@
 // import assert from "assert";
 const fetch = require("node-fetch");
 const chai = require("chai");
-const { collapseTextChangeRangesAcrossMultipleVersions } = require("typescript");
+const {
+  collapseTextChangeRangesAcrossMultipleVersions,
+} = require("typescript");
 const expect = chai.expect;
 
 /*
@@ -59,16 +61,16 @@ describe("/user signin", async () => {
   it("Testing user signin", async () => {
     await fetch(users.signin, {
       method: "POST",
-      headers: { "Content-Type": "application/json"},
-      body: JSON.stringify({username: "test", password: "test"}),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username: "test", password: "test" }),
     })
-    .then(response => response.json())
-    .then(data => {
-      tokenValue = data.token;
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
+      .then((response) => response.json())
+      .then((data) => {
+        tokenValue = data.token;
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   });
 });
 
@@ -83,7 +85,10 @@ describe("/events API Endpoints", async () => {
         image: "TestImage",
         body: "TestBody",
       }),
-      headers: { "Content-Type": "application/json", "Authorization" : 'Bearer ' + tokenValue },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenValue,
+      },
     });
 
     const testEvent = (
@@ -107,7 +112,10 @@ describe("/events API Endpoints", async () => {
         title: "TestTitle2",
         body: "TestBody2",
       }),
-      headers: { "Content-Type": "application/json" , "Authorization" : 'Bearer ' + tokenValue },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenValue,
+      },
     });
 
     const testEvent = (
@@ -126,7 +134,10 @@ describe("/events API Endpoints", async () => {
   it("Testing delete event", async () => {
     await fetch(events.delete(testEventID), {
       method: "DELETE",
-      headers: { "Content-Type": "application/json" , "Authorization" : 'Bearer ' + tokenValue },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenValue,
+      },
     });
 
     const testEvents = (
@@ -146,7 +157,10 @@ describe("/learn/author create and update", async () => {
         year: "TestYear",
         majors: ["Major1", "Major2", "Major3"],
       }),
-      headers: { "Content-Type": "application/json" , "Authorization" : 'Bearer ' + tokenValue },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenValue,
+      },
     });
 
     const testAuthor = (
@@ -165,7 +179,10 @@ describe("/learn/author create and update", async () => {
   it("Testing update author", async () => {
     await fetch(authors.update(testAuthorID), {
       method: "PATCH",
-      headers: { "Content-Type": "application/json" , "Authorization" : 'Bearer ' + tokenValue },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenValue,
+      },
       body: JSON.stringify({
         name: "TestComplete",
         year: "TestYearModified",
@@ -173,7 +190,9 @@ describe("/learn/author create and update", async () => {
       }),
     });
 
-    const updateAuthor = (await fetch(authors.list).then((res) => res.json())).slice(-1)[0];
+    const updateAuthor = (
+      await fetch(authors.list).then((res) => res.json())
+    ).slice(-1)[0];
     testAuthorID = updateAuthor["_id"];
     expect(updateAuthor).to.deep.equal({
       name: "TestComplete",
@@ -192,7 +211,10 @@ describe("/learn/topics create and update", async () => {
       body: JSON.stringify({
         name: "TestName",
       }),
-      headers: { "Content-Type": "application/json" , "Authorization" : 'Bearer ' + tokenValue },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenValue,
+      },
     });
 
     const testTopic = (
@@ -208,13 +230,18 @@ describe("/learn/topics create and update", async () => {
   it("Testing update topic", async () => {
     await fetch(topics.update(testTopicID), {
       method: "PATCH",
-      headers: { "Content-Type": "application/json" , "Authorization" : 'Bearer ' + tokenValue },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenValue,
+      },
       body: JSON.stringify({
         name: "TestComplete",
       }),
     });
 
-    const updateTopic = (await fetch(topics.list).then((res) => res.json())).slice(-1)[0];
+    const updateTopic = (
+      await fetch(topics.list).then((res) => res.json())
+    ).slice(-1)[0];
     testTopicID = updateTopic["_id"];
     expect(updateTopic).to.deep.equal({
       name: "TestComplete",
@@ -223,13 +250,14 @@ describe("/learn/topics create and update", async () => {
   });
 });
 
-
 describe("/learn/articles API endpoints", async () => {
-
   it("Testing create article", async () => {
     await fetch(articles.create, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" , "Authorization" : 'Bearer ' + tokenValue },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenValue,
+      },
       body: JSON.stringify({
         title: "TestArticle",
         author: testAuthorID,
@@ -238,7 +266,7 @@ describe("/learn/articles API endpoints", async () => {
         content: "TestContent",
         difficulty: "Hard",
       }),
-    }); 
+    });
 
     const testArticle = (
       await fetch(articles.list).then((res) => res.json())
@@ -265,7 +293,10 @@ describe("/learn/articles API endpoints", async () => {
   it("Testing update article", async () => {
     await fetch(articles.update(testArticleID), {
       method: "PATCH",
-      headers: { "Content-Type": "application/json" , "Authorization" : 'Bearer ' + tokenValue },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenValue,
+      },
       body: JSON.stringify({
         title: "TestArticleUpdated",
         author: testAuthorID,
@@ -274,7 +305,7 @@ describe("/learn/articles API endpoints", async () => {
         content: "TestArticleUpdated",
         difficulty: "Hard",
       }),
-    }); 
+    });
 
     const testArticle = (
       await fetch(articles.list).then((res) => res.json())
@@ -299,14 +330,15 @@ describe("/learn/articles API endpoints", async () => {
   });
 });
 
-
-
 describe("/learn API Delete", async () => {
   //Testing Delete functionality
   it("Testing delete author", async () => {
     await fetch(authors.delete(testAuthorID), {
       method: "DELETE",
-      headers: { "Content-Type": "application/json" , "Authorization" : 'Bearer ' + tokenValue },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenValue,
+      },
     });
 
     const testAuthor = (
@@ -320,7 +352,10 @@ describe("/learn API Delete", async () => {
   it("Testing delete topic", async () => {
     await fetch(topics.delete(testTopicID), {
       method: "DELETE",
-      headers: { "Content-Type": "application/json" , "Authorization" : 'Bearer ' + tokenValue },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenValue,
+      },
     });
 
     const testTopic = (
@@ -334,7 +369,10 @@ describe("/learn API Delete", async () => {
   it("Testing delete article", async () => {
     await fetch(articles.create, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" , "Authorization" : 'Bearer ' + tokenValue },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenValue,
+      },
       body: JSON.stringify({
         title: "TestArticleForDelete",
         author: testAuthorID,
@@ -352,13 +390,18 @@ describe("/learn API Delete", async () => {
 
     await fetch(articles.delete(testArticleID), {
       method: "DELETE",
-      headers: { "Content-Type": "application/json" , "Authorization" : 'Bearer ' + tokenValue },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenValue,
+      },
     });
 
     const testArticle = (
       await fetch(topics.list).then((res) => res.json())
     ).slice(-1);
-    const result = testArticle.find((article) => article["_id"] === testArticleID);
+    const result = testArticle.find(
+      (article) => article["_id"] === testArticleID
+    );
     expect(result).to.equal(undefined);
   });
 });

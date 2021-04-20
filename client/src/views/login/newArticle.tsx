@@ -6,8 +6,8 @@ import "./options.css";
 import { Form, Input, Button } from "antd";
 import axios from "axios";
 import moment from "moment";
-import ReactQuill from 'react-quill'; 
-import 'react-quill/dist/quill.snow.css';
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const { TextArea } = Input;
 
@@ -176,7 +176,7 @@ const NewArticle: React.FC<Record<string, never>> = () => {
           ]}
           hasFeedback
         >
-          <ReactQuill theme="snow"/>
+          <ReactQuill theme="snow" />
         </Form.Item>
 
         <Form.Item

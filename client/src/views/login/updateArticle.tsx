@@ -6,9 +6,8 @@ import "./options.css";
 import { Form, Input, Button } from "antd";
 import axios from "axios";
 import moment from "moment";
-import ReactQuill from 'react-quill'; 
-import 'react-quill/dist/quill.snow.css';
-
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 // we just get the title of the article
 // and the updated content
@@ -133,7 +132,7 @@ const UpdateArticle: React.FC<Record<string, never>> = () => {
           ]}
           hasFeedback
         >
-          <ReactQuill theme="snow"/>
+          <ReactQuill theme="snow" />
         </Form.Item>
 
         <Form.Item {...tailFormItemLayout}>
