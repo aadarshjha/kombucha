@@ -40,7 +40,7 @@ it("renders the correct form fields", () => {
     [...div.querySelectorAll(".ant-form-item-label>label")].map(
       (element) => element.textContent
     )
-  ).toEqual(["Title", "Author", "Topic", "Content", "Difficulty"]);
+  ).toEqual(["Title", "Author Name", "Topic Name", "Content", "Difficulty"]);
 });
 
 it("renders the submit button", () => {
