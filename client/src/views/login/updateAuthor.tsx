@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
-// import { Menu, Dropdown, Button } from "antd";
+import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
 import "./options.css";
-import { Form, Input, Button, Upload, message, Alert } from "antd";
+import { Form, Input, Button, Select } from "antd";
 import axios from "axios";
+const { Option } = Select;
+
+const authorsURL = "http://localhost:5000/learn/authors";
 
 const formItemLayout = {
   labelCol: {
@@ -32,6 +34,21 @@ const tailFormItemLayout = {
 const UpdateAuthor: React.FC<Record<string, never>> = () => {
   const [form] = Form.useForm();
   let id: string;
+  const [authors, setAuthors] = useState([]);
+  const [formVal, setFormVal] = useState({
+    name: "",
+    year: "",
+    majors: "",
+  });
+
+  useEffect(() => {
+    (async () => {
+      const result: any = await axios(authorsURL);
+      const authorResult = result.data;
+      setAuthors(authorResult.map((element: any) => element.name));
+    })();
+  }, []);
+
   const onFinish = (values: any) => {
     // associate an ID:
     const name = values.name;
@@ -88,10 +105,6 @@ const UpdateAuthor: React.FC<Record<string, never>> = () => {
         form={form}
         name="register"
         onFinish={onFinish}
-        initialValues={{
-          residence: ["zhejiang", "hangzhou", "xihu"],
-          prefix: "86",
-        }}
         scrollToFirstError
       >
         <Form.Item
@@ -105,7 +118,19 @@ const UpdateAuthor: React.FC<Record<string, never>> = () => {
           ]}
           hasFeedback
         >
-          <Input />
+          {/* <Input /> */}
+          <Select
+            placeholder="Select a option and change input text above"
+            allowClear
+          >
+            {/* GET for all authors */}
+            {authors.map((element) => (
+              <Option key={element} value={element}>
+                {element}
+              </Option>
+            ))}
+            {/* <Option value={"asdf"}>{"asdf"}</Option>s */}
+          </Select>
         </Form.Item>
         <Form.Item
           name="updateName"

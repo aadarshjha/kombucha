@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
-// import { Menu, Dropdown, Button } from "antd";
+import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
 import "./options.css";
-import { Form, Input, Button, Upload, message, Alert } from "antd";
+import { Form, Button, Select } from "antd";
 import axios from "axios";
+
+const { Option } = Select;
+const topicsURL = "http://localhost:5000/learn/topics";
 
 const formItemLayout = {
   labelCol: {
@@ -32,6 +34,17 @@ const tailFormItemLayout = {
 const DeleteTopic: React.FC<Record<string, never>> = () => {
   const [form] = Form.useForm();
   let id: string;
+
+  const [topics, setTopics] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const result: any = await axios(topicsURL);
+      const topicsResult = result.data;
+      setTopics(topicsResult.map((element: any) => element.name));
+    })();
+  }, []);
+
   const onFinish = (values: any) => {
     // associate an ID:
     const name = values.name;
@@ -94,7 +107,7 @@ const DeleteTopic: React.FC<Record<string, never>> = () => {
         }}
         scrollToFirstError
       >
-        <Form.Item
+        {/* <Form.Item
           name="name"
           label="Topic Name"
           rules={[
@@ -106,6 +119,31 @@ const DeleteTopic: React.FC<Record<string, never>> = () => {
           hasFeedback
         >
           <Input />
+        </Form.Item> */}
+        <Form.Item
+          name="name"
+          label="Topic Name"
+          rules={[
+            {
+              required: true,
+              message: "Enter Topic Name",
+            },
+          ]}
+          hasFeedback
+        >
+          {/* <Input /> */}
+          <Select
+            placeholder="Select a option and change input text above"
+            allowClear
+          >
+            {/* GET for all authors */}
+            {topics.map((element) => (
+              <Option key={element} value={element}>
+                {element}
+              </Option>
+            ))}
+            {/* <Option value={"asdf"}>{"asdf"}</Option>s */}
+          </Select>
         </Form.Item>
 
         <Form.Item {...tailFormItemLayout}>

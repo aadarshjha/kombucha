@@ -1,19 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
-// import { Menu, Dropdown, Button } from "antd";
+import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
 import "./options.css";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Select } from "antd";
 import axios from "axios";
 import moment from "moment";
 import ReactQuill from 'react-quill'; 
 import 'react-quill/dist/quill.snow.css';
 
 
-// we just get the title of the article
-// and the updated content
-// we also update the date of the article.
-
+const { Option } = Select;
+const authorsURL = "http://localhost:5000/learn/articles";
 const { TextArea } = Input;
 
 const formItemLayout = {
@@ -43,6 +40,17 @@ const UpdateArticle: React.FC<Record<string, never>> = () => {
   const [form] = Form.useForm();
 
   let article_id: string;
+
+  const [authors, setAuthors] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const result: any = await axios(authorsURL);
+      const authorResult = result.data;
+      console.log(authorResult);
+      setAuthors(authorResult.map((element: any) => element.title));
+    })();
+  }, []);
 
   const onFinish = (values: any) => {
     console.log(values);
@@ -119,7 +127,19 @@ const UpdateArticle: React.FC<Record<string, never>> = () => {
           ]}
           hasFeedback
         >
-          <Input />
+          {/* <Input /> */}
+          <Select
+            placeholder="Select a option and change input text above"
+            allowClear
+          >
+            {/* GET for all authors */}
+            {authors.map((element) => (
+              <Option key={element} value={element}>
+                {element}
+              </Option>
+            ))}
+            {/* <Option value={"asdf"}>{"asdf"}</Option>s */}
+          </Select>
         </Form.Item>
 
         <Form.Item

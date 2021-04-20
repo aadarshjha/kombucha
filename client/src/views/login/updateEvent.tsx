@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
-// import { Menu, Dropdown, Button } from "antd";
+import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
 import "./options.css";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Select } from "antd";
 import axios from "axios";
+
+const { Option } = Select;
+const eventsURL = "http://localhost:5000/events";
 
 const formItemLayout = {
   labelCol: {
@@ -31,6 +33,16 @@ const tailFormItemLayout = {
 
 const UpdateEvent: React.FC<Record<string, never>> = () => {
   const [form] = Form.useForm();
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const result: any = await axios(eventsURL);
+      const eventsResult = result.data;
+      setEvents(eventsResult.map((element: any) => element.title));
+    })();
+  }, []);
+
   const onFinish = (values: any) => {
     // get and then delete:
     const title = values.header;
@@ -90,7 +102,18 @@ const UpdateEvent: React.FC<Record<string, never>> = () => {
           ]}
           hasFeedback
         >
-          <Input />
+          {/* <Input /> */}
+          <Select
+            placeholder="Select a option and change input text above"
+            allowClear
+          >
+            {/* GET for all authors */}
+            {events.map((element: any) => (
+              <Option key={element} value={element}>
+                {element}
+              </Option>
+            ))}
+          </Select>
         </Form.Item>
 
         <Form.Item
