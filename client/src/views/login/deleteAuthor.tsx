@@ -4,6 +4,7 @@ import "antd/dist/antd.css";
 import "./options.css";
 import { Form, Button, Select } from "antd";
 import axios from "axios";
+import { BACKEND_URL } from "../../api";
 const { Option } = Select;
 
 const authorsURL = "http://localhost:5000/learn/authors";
@@ -48,7 +49,7 @@ const DeleteAuthor: React.FC<Record<string, never>> = () => {
     // associate an ID:
     const name = values.name;
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/learn/authors`)
+      .get(`${BACKEND_URL}/learn/authors`)
       .then((res) => {
         const iteratedData = res.data;
         for (const element of iteratedData) {
@@ -64,7 +65,7 @@ const DeleteAuthor: React.FC<Record<string, never>> = () => {
       .then(() => {
         const URL = "learn/author/" + id + "/delete";
         const API = axios.create({
-          baseURL: `${process.env.REACT_APP_SERVER_URL}/`,
+          baseURL: `${BACKEND_URL}/`,
         });
 
         API.interceptors.request.use((req) => {

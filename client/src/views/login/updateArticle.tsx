@@ -5,9 +5,9 @@ import "./options.css";
 import { Form, Input, Button, Select } from "antd";
 import axios from "axios";
 import moment from "moment";
-import ReactQuill from 'react-quill'; 
-import 'react-quill/dist/quill.snow.css';
-
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import { BACKEND_URL } from "../../api";
 
 const { Option } = Select;
 const authorsURL = "http://localhost:5000/learn/articles";
@@ -55,7 +55,7 @@ const UpdateArticle: React.FC<Record<string, never>> = () => {
   const onFinish = (values: any) => {
     console.log(values);
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/learn/articles`)
+      .get(`${BACKEND_URL}/learn/articles`)
       .then((res) => {
         const name = values.title;
         const iteratedData = res.data;
@@ -73,7 +73,7 @@ const UpdateArticle: React.FC<Record<string, never>> = () => {
         // const URL = learnRouter.patch("/article/:id/update", articleController.update);
         const URL = "learn/article/" + article_id + "/update";
         const API = axios.create({
-          baseURL: `${process.env.REACT_APP_SERVER_URL}/`,
+          baseURL: `${BACKEND_URL}/`,
         });
 
         API.interceptors.request.use((req) => {
@@ -156,7 +156,7 @@ const UpdateArticle: React.FC<Record<string, never>> = () => {
           ]}
           hasFeedback
         >
-          <ReactQuill theme="snow"/>
+          <ReactQuill theme="snow" />
         </Form.Item>
 
         <Form.Item {...tailFormItemLayout}>

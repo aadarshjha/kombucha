@@ -5,6 +5,7 @@ import "./learn.css";
 import "./articles.css";
 import Articles from "./articles";
 import axios from "axios";
+import { BACKEND_URL } from "../../api";
 
 let fetchedData: Array<backendData>;
 let byCategory: any;
@@ -149,7 +150,7 @@ const Learn: React.FC<Record<string, never>> = () => {
   };
 
   axios
-    .get(`${process.env.REACT_APP_SERVER_URL}/learn/articles`)
+    .get(`${BACKEND_URL}/learn/articles`)
     .then((response) => {
       // call all the functions to filter the data.
       fetchedData = response.data;

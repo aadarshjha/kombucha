@@ -7,8 +7,9 @@ import axios from "axios";
 import moment from "moment";
 
 const { Option } = Select;
-import ReactQuill from 'react-quill'; 
-import 'react-quill/dist/quill.snow.css';
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import { BACKEND_URL } from "../../api";
 
 const { TextArea } = Input;
 
@@ -61,7 +62,7 @@ const NewArticle: React.FC<Record<string, never>> = () => {
 
   const onFinish = (values: any) => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/learn/authors`)
+      .get(`${BACKEND_URL}/learn/authors`)
       .then((res) => {
         const name = values.name;
         const iteratedData = res.data;
@@ -77,7 +78,7 @@ const NewArticle: React.FC<Record<string, never>> = () => {
       })
       .then(() => {
         axios
-          .get(`${process.env.REACT_APP_SERVER_URL}/learn/topics`)
+          .get(`${BACKEND_URL}/learn/topics`)
           .then((res) => {
             const name = values.topic;
             const iteratedData = res.data;
@@ -94,7 +95,7 @@ const NewArticle: React.FC<Record<string, never>> = () => {
           .then(() => {
             const URL = "learn/article/create";
             const API = axios.create({
-              baseURL: `${process.env.REACT_APP_SERVER_URL}/`,
+              baseURL: `${BACKEND_URL}/`,
             });
 
             API.interceptors.request.use((req) => {
@@ -213,7 +214,7 @@ const NewArticle: React.FC<Record<string, never>> = () => {
           ]}
           hasFeedback
         >
-          <ReactQuill theme="snow"/>
+          <ReactQuill theme="snow" />
         </Form.Item>
 
         <Form.Item

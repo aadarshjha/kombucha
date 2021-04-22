@@ -4,6 +4,7 @@ import "antd/dist/antd.css";
 import "./options.css";
 import { Form, Input, Button } from "antd";
 import axios from "axios";
+import { BACKEND_URL } from "../../api";
 
 const { TextArea } = Input;
 
@@ -36,7 +37,7 @@ const UpdateToken: React.FC<Record<string, never>> = () => {
   const onFinish = (values: any) => {
     const URL = "user/updateToken";
     const API = axios.create({
-      baseURL: `${process.env.REACT_APP_SERVER_URL}/`,
+      baseURL: `${BACKEND_URL}/`,
     });
     API.interceptors.request.use((req) => {
       if (localStorage.getItem("profile")) {

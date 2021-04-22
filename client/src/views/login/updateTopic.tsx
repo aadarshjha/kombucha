@@ -4,6 +4,7 @@ import "antd/dist/antd.css";
 import "./options.css";
 import { Form, Input, Button, Select } from "antd";
 import axios from "axios";
+import { BACKEND_URL } from "../../api";
 
 const { Option } = Select;
 const topicsURL = "http://localhost:5000/learn/topics";
@@ -49,7 +50,7 @@ const UpdateAuthor: React.FC<Record<string, never>> = () => {
     const name = values.name;
     console.log(name);
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/learn/topics`)
+      .get(`${BACKEND_URL}/learn/topics`)
       .then((res) => {
         const iteratedData = res.data;
         console.log(iteratedData);
@@ -69,7 +70,7 @@ const UpdateAuthor: React.FC<Record<string, never>> = () => {
       .then(() => {
         const URL = "learn/topic/" + id + "/update";
         const API = axios.create({
-          baseURL: `${process.env.REACT_APP_SERVER_URL}/`,
+          baseURL: `${BACKEND_URL}/`,
         });
 
         API.interceptors.request.use((req) => {

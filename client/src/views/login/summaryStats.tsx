@@ -10,11 +10,12 @@ import {
   HighlightOutlined,
 } from "@ant-design/icons";
 import axios from "axios";
+import { BACKEND_URL } from "../../api";
 
-const articleURL = `${process.env.REACT_APP_SERVER_URL}/learn/articles`;
-const authorsURL = `${process.env.REACT_APP_SERVER_URL}/learn/authors`;
-const topicsURL = `${process.env.REACT_APP_SERVER_URL}/learn/topics`;
-const eventsURL = `${process.env.REACT_APP_SERVER_URL}/events`;
+const articleURL = `${BACKEND_URL}/learn/articles`;
+const authorsURL = `${BACKEND_URL}/learn/authors`;
+const topicsURL = `${BACKEND_URL}/learn/topics`;
+const eventsURL = `${BACKEND_URL}/events`;
 
 const SummaryStats: React.FC<Record<string, never>> = () => {
   const [articlesList, setArticlesList] = useState([]);

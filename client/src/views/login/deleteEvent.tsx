@@ -4,6 +4,7 @@ import "antd/dist/antd.css";
 import "./options.css";
 import { Form, Button, Select } from "antd";
 import axios from "axios";
+import { BACKEND_URL } from "../../api";
 
 const { Option } = Select;
 
@@ -49,7 +50,7 @@ const DeleteEvent: React.FC<Record<string, never>> = () => {
     const title = values.header;
     let id: string;
     let data;
-    axios.get(`${process.env.REACT_APP_SERVER_URL}/events`).then((res) => {
+    axios.get(`${BACKEND_URL}/events`).then((res) => {
       let deleteID;
       const data = res.data;
 
@@ -67,9 +68,7 @@ const DeleteEvent: React.FC<Record<string, never>> = () => {
             return req;
           });
 
-          API.delete(
-            `${process.env.REACT_APP_SERVER_URL}/events/${element._id}/delete`
-          )
+          API.delete(`${BACKEND_URL}/events/${element._id}/delete`)
             .then((res) => {
               alert("Deleted!");
               return;
