@@ -4,6 +4,7 @@ import "antd/dist/antd.css";
 import "./options.css";
 import { Form, Input, Button, Select } from "antd";
 import axios from "axios";
+import { BACKEND_URL } from "../../api";
 
 const { Option } = Select;
 const eventsURL = "http://localhost:5000/events";
@@ -46,7 +47,7 @@ const UpdateEvent: React.FC<Record<string, never>> = () => {
   const onFinish = (values: any) => {
     // get and then delete:
     const title = values.header;
-    axios.get(`${process.env.REACT_APP_SERVER_URL}/events`).then((res) => {
+    axios.get(`${BACKEND_URL}/events`).then((res) => {
       const data = res.data;
 
       for (const element of data) {
@@ -62,12 +63,9 @@ const UpdateEvent: React.FC<Record<string, never>> = () => {
             return req;
           });
 
-          API.patch(
-            `${process.env.REACT_APP_SERVER_URL}/events/${element._id}/update`,
-            {
-              body: values.body,
-            }
-          )
+          API.patch(`${BACKEND_URL}/events/${element._id}/update`, {
+            body: values.body,
+          })
             .then((res) => {
               alert("Updated!");
               return;

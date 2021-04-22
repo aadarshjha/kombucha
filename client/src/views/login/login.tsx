@@ -5,6 +5,7 @@ import { Form, Input, Button, Checkbox } from "antd";
 import Options from "./options";
 import "antd/dist/antd.css";
 import axios from "axios";
+import { BACKEND_URL } from "../../api";
 
 // minimal styling.
 const layout = {
@@ -56,7 +57,7 @@ const renderView = (
     //fetches authentication data from the backend
     axios({
       method: "post",
-      url: `${process.env.REACT_APP_SERVER_URL}/user/signin`,
+      url: `${BACKEND_URL}/user/signin`,
       data: formData,
     })
       .then(function (response) {
@@ -175,7 +176,7 @@ const signUpView = (signUp: boolean, setSignUp: any) => {
     //dispatch(signin(e, history));
     axios({
       method: "post",
-      url: `${process.env.REACT_APP_SERVER_URL}/user/signup`,
+      url: `${BACKEND_URL}/user/signup`,
       data: formData,
     })
       .then(function (response) {

@@ -5,6 +5,7 @@ import "./options.css";
 import { Form, Input, Button, Upload } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import axios from "axios";
+import { BACKEND_URL } from "../../api";
 
 const { TextArea } = Input;
 
@@ -45,7 +46,7 @@ const AddEvent: React.FC<Record<string, never>> = () => {
     console.log(values);
     const URL = "events/create";
     const API = axios.create({
-      baseURL: `${process.env.REACT_APP_SERVER_URL}/`,
+      baseURL: `${BACKEND_URL}/`,
     });
 
     API.interceptors.request.use((req) => {

@@ -5,6 +5,7 @@ import "./options.css";
 
 import { Form, Input, Button, Select } from "antd";
 import axios from "axios";
+import { BACKEND_URL } from "../../api";
 const { Option } = Select;
 
 const articlesURL = "http://localhost:5000/learn/articles";
@@ -50,7 +51,7 @@ const DeleteArticle: React.FC<Record<string, never>> = () => {
     // first we fetch the article ID based on title
     let article_id: string;
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/learn/articles`)
+      .get(`${BACKEND_URL}/learn/articles`)
       .then((res) => {
         const iteratedData = res.data;
         const title = values.title;
@@ -68,7 +69,7 @@ const DeleteArticle: React.FC<Record<string, never>> = () => {
       .then(() => {
         const URL = "learn/article/" + article_id + "/delete";
         const API = axios.create({
-          baseURL: `${process.env.REACT_APP_SERVER_URL}/`,
+          baseURL: `${BACKEND_URL}/`,
         });
 
         API.interceptors.request.use((req) => {
