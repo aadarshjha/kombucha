@@ -1,13 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { signin, signup } from "../../actions/auth";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react";
 import Logo from "../../components/Logo";
 import { Form, Input, Button, Checkbox } from "antd";
 import Options from "./options";
 import "antd/dist/antd.css";
 import axios from "axios";
+import { BACKEND_URL } from "../../api";
 
 // minimal styling.
 const layout = {
@@ -59,7 +57,7 @@ const renderView = (
     //fetches authentication data from the backend
     axios({
       method: "post",
-      url: "http://localhost:5000/user/signin",
+      url: `${BACKEND_URL}/user/signin`,
       data: formData,
     })
       .then(function (response) {
@@ -178,7 +176,7 @@ const signUpView = (signUp: boolean, setSignUp: any) => {
     //dispatch(signin(e, history));
     axios({
       method: "post",
-      url: "http://localhost:5000/user/signup",
+      url: `${BACKEND_URL}/user/signup`,
       data: formData,
     })
       .then(function (response) {

@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
-// import { Menu, Dropdown, Button } from "antd";
 import "antd/dist/antd.css";
 import "./options.css";
 import { Form, Input, Button } from "antd";
 import axios from "axios";
+import { BACKEND_URL } from "../../api";
 
 const { TextArea } = Input;
 
@@ -36,7 +36,9 @@ const UpdateToken: React.FC<Record<string, never>> = () => {
 
   const onFinish = (values: any) => {
     const URL = "user/updateToken";
-    const API = axios.create({ baseURL: "http://localhost:5000/" });
+    const API = axios.create({
+      baseURL: `${BACKEND_URL}/`,
+    });
     API.interceptors.request.use((req) => {
       if (localStorage.getItem("profile")) {
         req.headers.Authorization = `Bearer ${

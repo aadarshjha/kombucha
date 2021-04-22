@@ -3,6 +3,7 @@ import Logo from "../../components/Logo";
 import { Card } from "antd";
 import "./events.css";
 import axios from "axios";
+import { BACKEND_URL } from "../../api";
 
 const { Meta } = Card;
 
@@ -13,7 +14,7 @@ const Events: React.FC<Record<string, never>> = () => {
   useEffect(() => {
     // localhost is the server which we use in development
     // we will use heroku services in deployment.
-    axios.get("http://localhost:5000/events").then((res) => {
+    axios.get(`${BACKEND_URL}/events`).then((res) => {
       setEvents(res.data);
     });
   }, []);

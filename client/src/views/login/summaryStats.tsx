@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
 import "./options.css";
-import { Progress, Statistic, Typography, List } from "antd";
+import { Progress, Statistic, List } from "antd";
 import "./options.css";
 import {
   BookOutlined,
@@ -10,11 +10,12 @@ import {
   HighlightOutlined,
 } from "@ant-design/icons";
 import axios from "axios";
+import { BACKEND_URL } from "../../api";
 
-const articleURL = "http://localhost:5000/learn/articles";
-const authorsURL = "http://localhost:5000/learn/authors";
-const topicsURL = "http://localhost:5000/learn/topics";
-const eventsURL = "http://localhost:5000/events";
+const articleURL = `${BACKEND_URL}/learn/articles`;
+const authorsURL = `${BACKEND_URL}/learn/authors`;
+const topicsURL = `${BACKEND_URL}/learn/topics`;
+const eventsURL = `${BACKEND_URL}/events`;
 
 const SummaryStats: React.FC<Record<string, never>> = () => {
   const [articlesList, setArticlesList] = useState([]);

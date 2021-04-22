@@ -1,10 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
-// import { Menu, Dropdown, Button } from "antd";
+import React, { useEffect, useState } from "react";
 import "antd/dist/antd.css";
 import "./options.css";
-import { Form, Input, Button, Upload, message, Alert } from "antd";
+import { Form, Button, Select } from "antd";
 import axios from "axios";
+import { BACKEND_URL } from "../../api";
+const { Option } = Select;
+
+const authorsURL = "http://localhost:5000/learn/authors";
 
 const formItemLayout = {
   labelCol: {
@@ -31,12 +34,22 @@ const tailFormItemLayout = {
 
 const DeleteAuthor: React.FC<Record<string, never>> = () => {
   const [form] = Form.useForm();
+  const [authors, setAuthors] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const result: any = await axios(authorsURL);
+      const authorResult = result.data;
+      setAuthors(authorResult.map((element: any) => element.name));
+    })();
+  }, []);
+
   let id: string;
   const onFinish = (values: any) => {
     // associate an ID:
     const name = values.name;
     axios
-      .get("http://localhost:5000/learn/authors")
+      .get(`${BACKEND_URL}/learn/authors`)
       .then((res) => {
         const iteratedData = res.data;
         for (const element of iteratedData) {
@@ -51,7 +64,9 @@ const DeleteAuthor: React.FC<Record<string, never>> = () => {
       })
       .then(() => {
         const URL = "learn/author/" + id + "/delete";
-        const API = axios.create({ baseURL: "http://localhost:5000/" });
+        const API = axios.create({
+          baseURL: `${BACKEND_URL}/`,
+        });
 
         API.interceptors.request.use((req) => {
           if (localStorage.getItem("profile")) {
@@ -84,13 +99,9 @@ const DeleteAuthor: React.FC<Record<string, never>> = () => {
         form={form}
         name="register"
         onFinish={onFinish}
-        initialValues={{
-          residence: ["zhejiang", "hangzhou", "xihu"],
-          prefix: "86",
-        }}
         scrollToFirstError
       >
-        <Form.Item
+        {/* <Form.Item
           name="name"
           label="Author Name"
           rules={[
@@ -102,11 +113,37 @@ const DeleteAuthor: React.FC<Record<string, never>> = () => {
           hasFeedback
         >
           <Input />
+        </Form.Item> */}
+
+        <Form.Item
+          name="name"
+          label="Author Name"
+          rules={[
+            {
+              required: true,
+              message: "Enter Author Name",
+            },
+          ]}
+          hasFeedback
+        >
+          {/* <Input /> */}
+          <Select
+            placeholder="Select a option and change input text above"
+            allowClear
+          >
+            {/* GET for all authors */}
+            {authors.map((element) => (
+              <Option key={element} value={element}>
+                {element}
+              </Option>
+            ))}
+            {/* <Option value={"asdf"}>{"asdf"}</Option>s */}
+          </Select>
         </Form.Item>
 
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
-            Update Author
+            Delete Author
           </Button>
         </Form.Item>
       </Form>

@@ -3,11 +3,12 @@ import "antd/dist/antd.css";
 import { UserOutlined } from "@ant-design/icons";
 import "./landingpage.css";
 import { Avatar } from "antd";
+import { BACKEND_URL } from "../../api";
 
 const dummyData = [
   "Asia Miller",
   "Aadarsh Jha",
-  "Sam Lee",
+  `${BACKEND_URL}/`,
   "Ashwin Kumar",
   "Zeyad Moustafa",
 ];

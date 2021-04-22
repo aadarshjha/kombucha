@@ -40,16 +40,11 @@ it("renders the correct form fields", () => {
     [...div.querySelectorAll(".ant-form-item-label>label")].map(
       (element) => element.textContent
     )
-  ).toEqual(["Title", "Author", "Topic", "Content", "Difficulty"]);
+  ).toEqual(["Title", "Author Name", "Topic Name", "Content", "Difficulty"]);
 });
 
 it("renders the submit button", () => {
   const div = document.createElement("div");
   ReactDOM.render(<NewArticle />, div);
   expect(div.querySelectorAll(".ant-btn-primary")).toBeTruthy();
-});
-
-it("matches learn page snapshot", () => {
-  const tree = renderer.create(<NewArticle />).toJSON();
-  expect(tree).toMatchSnapshot();
 });

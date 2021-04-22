@@ -48,8 +48,3 @@ it("renders the submit button", () => {
   ReactDOM.render(<UpdateArticle />, div);
   expect(div.querySelectorAll(".ant-btn-primary")).toBeTruthy();
 });
-
-it("matches learn page snapshot", () => {
-  const tree = renderer.create(<UpdateArticle />).toJSON();
-  expect(tree).toMatchSnapshot();
-});

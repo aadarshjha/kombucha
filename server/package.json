@@ -4,10 +4,10 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "watch": "tsc -w",
+        "start": "node dist/index.js",
+        "postinstall": "tsc",
         "dev": "ts-node-dev ./index.ts",
-        "start": "ts-node-dev ./index.ts",
-        "test": "concurrently -k -s first \"NODE_ENV=test ts-node ./index.ts \" \"wait-on http://localhost:5000/events && mocha ./test/test.js\""
+        "test": "concurrently -k -s first \"NODE_ENV=test ts-node ./index.ts \" \"wait-on ${process.env.REACT_APP_SERVER_URL}/events && mocha ./test/test.js\""
     },
     "author": "",
     "license": "ISC",
