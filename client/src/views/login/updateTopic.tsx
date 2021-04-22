@@ -49,7 +49,7 @@ const UpdateAuthor: React.FC<Record<string, never>> = () => {
     const name = values.name;
     console.log(name);
     axios
-      .get("http://localhost:5000/learn/topics")
+      .get(`${process.env.REACT_APP_SERVER_URL}/learn/topics`)
       .then((res) => {
         const iteratedData = res.data;
         console.log(iteratedData);
@@ -68,7 +68,9 @@ const UpdateAuthor: React.FC<Record<string, never>> = () => {
       })
       .then(() => {
         const URL = "learn/topic/" + id + "/update";
-        const API = axios.create({ baseURL: "http://localhost:5000/" });
+        const API = axios.create({
+          baseURL: `${process.env.REACT_APP_SERVER_URL}/`,
+        });
 
         API.interceptors.request.use((req) => {
           if (localStorage.getItem("profile")) {

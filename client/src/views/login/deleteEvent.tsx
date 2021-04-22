@@ -49,7 +49,7 @@ const DeleteEvent: React.FC<Record<string, never>> = () => {
     const title = values.header;
     let id: string;
     let data;
-    axios.get("http://localhost:5000/events").then((res) => {
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/events`).then((res) => {
       let deleteID;
       const data = res.data;
 
@@ -67,7 +67,9 @@ const DeleteEvent: React.FC<Record<string, never>> = () => {
             return req;
           });
 
-          API.delete(`http://localhost:5000/events/${element._id}/delete`)
+          API.delete(
+            `${process.env.REACT_APP_SERVER_URL}/events/${element._id}/delete`
+          )
             .then((res) => {
               alert("Deleted!");
               return;

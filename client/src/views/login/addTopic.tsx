@@ -32,7 +32,9 @@ const AddTopic: React.FC<Record<string, never>> = () => {
   const [form] = Form.useForm();
   const onFinish = (values: any) => {
     const URL = "learn/topic/create";
-    const API = axios.create({ baseURL: "http://localhost:5000/" });
+    const API = axios.create({
+      baseURL: `${process.env.REACT_APP_SERVER_URL}/`,
+    });
 
     API.interceptors.request.use((req) => {
       if (localStorage.getItem("profile")) {
