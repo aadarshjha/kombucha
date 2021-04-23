@@ -8,7 +8,7 @@ import { BACKEND_URL } from "../../api";
 const dummyData = [
   "Asia Miller",
   "Aadarsh Jha",
-  `${BACKEND_URL}/`,
+  "Sam Lee",
   "Ashwin Kumar",
   "Zeyad Moustafa",
 ];

@@ -71,13 +71,11 @@ const Articles: React.FC<catProps> = ({ articles, state }: catProps) => {
           paddingRight: "10px",
         }}
       >
-        {/* This is dynamically loaded based on what is selected */}
         <div>
           <h1>{articleTitle}</h1>
         </div>
         <div>
           <ReactQuill value={articleText} readOnly={true} theme={"bubble"} />
-          {/* <ReactMarkdown source={turndownService.turndown(String({articleText}))} /> */}
         </div>
       </div>
     </div>
