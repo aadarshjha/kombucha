@@ -3,6 +3,9 @@
 // import assert from "assert";
 const fetch = require("node-fetch");
 const chai = require("chai");
+const {
+  collapseTextChangeRangesAcrossMultipleVersions,
+} = require("typescript");
 const expect = chai.expect;
 
 /*
@@ -45,6 +48,32 @@ const topics = {
   get: (id) => url(`/learn/topic/${id}`),
 };
 
+const users = {
+  signin: url("/user/signin"),
+};
+
+let tokenValue = "";
+let testAuthorID = "";
+let testTopicID = "";
+let testArticleID = "";
+
+describe("/user signin", async () => {
+  it("Testing user signin", async () => {
+    await fetch(users.signin, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username: "test", password: "test" }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        tokenValue = data.token;
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  });
+});
+
 describe("/events API Endpoints", async () => {
   // Testing Create functionality
   let testEventID;
@@ -56,7 +85,10 @@ describe("/events API Endpoints", async () => {
         image: "TestImage",
         body: "TestBody",
       }),
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenValue,
+      },
     });
 
     const testEvent = (
@@ -80,7 +112,10 @@ describe("/events API Endpoints", async () => {
         title: "TestTitle2",
         body: "TestBody2",
       }),
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenValue,
+      },
     });
 
     const testEvent = (
@@ -95,10 +130,14 @@ describe("/events API Endpoints", async () => {
     });
   });
 
-  // Testing Delete functionality
+  // //Testing Delete functionality
   it("Testing delete event", async () => {
     await fetch(events.delete(testEventID), {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenValue,
+      },
     });
 
     const testEvents = (
@@ -109,11 +148,7 @@ describe("/events API Endpoints", async () => {
   });
 });
 
-describe("/learn API endpoints", async () => {
-  let testAuthorID;
-  let testTopicID;
-  let testArticleID;
-
+describe("/learn/author create and update", async () => {
   it("Testing create author", async () => {
     await fetch(authors.create, {
       method: "PUT",
@@ -122,7 +157,10 @@ describe("/learn API endpoints", async () => {
         year: "TestYear",
         majors: ["Major1", "Major2", "Major3"],
       }),
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenValue,
+      },
     });
 
     const testAuthor = (
@@ -138,13 +176,45 @@ describe("/learn API endpoints", async () => {
     });
   });
 
+  it("Testing update author", async () => {
+    await fetch(authors.update(testAuthorID), {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenValue,
+      },
+      body: JSON.stringify({
+        name: "TestComplete",
+        year: "TestYearModified",
+        majors: ["MajorSome", "MajorSome", "MajorSomething"],
+      }),
+    });
+
+    const updateAuthor = (
+      await fetch(authors.list).then((res) => res.json())
+    ).slice(-1)[0];
+    testAuthorID = updateAuthor["_id"];
+    expect(updateAuthor).to.deep.equal({
+      name: "TestComplete",
+      year: "TestYearModified",
+      majors: ["MajorSome", "MajorSome", "MajorSomething"],
+      __v: 0,
+      _id: testAuthorID,
+    });
+  });
+});
+
+describe("/learn/topics create and update", async () => {
   it("Testing create topic", async () => {
     await fetch(topics.create, {
       method: "PUT",
       body: JSON.stringify({
         name: "TestName",
       }),
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenValue,
+      },
     });
 
     const testTopic = (
@@ -157,17 +227,45 @@ describe("/learn API endpoints", async () => {
     });
   });
 
+  it("Testing update topic", async () => {
+    await fetch(topics.update(testTopicID), {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenValue,
+      },
+      body: JSON.stringify({
+        name: "TestComplete",
+      }),
+    });
+
+    const updateTopic = (
+      await fetch(topics.list).then((res) => res.json())
+    ).slice(-1)[0];
+    testTopicID = updateTopic["_id"];
+    expect(updateTopic).to.deep.equal({
+      name: "TestComplete",
+      _id: testTopicID,
+    });
+  });
+});
+
+describe("/learn/articles API endpoints", async () => {
   it("Testing create article", async () => {
     await fetch(articles.create, {
       method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenValue,
+      },
       body: JSON.stringify({
         title: "TestArticle",
         author: testAuthorID,
         dateUpdated: "3/3/2003",
         topic: testTopicID,
         content: "TestContent",
+        difficulty: "Hard",
       }),
-      headers: { "Content-Type": "application/json" },
     });
 
     const testArticle = (
@@ -178,16 +276,132 @@ describe("/learn API endpoints", async () => {
       title: "TestArticle",
       author: {
         _id: testAuthorID,
-        name: "TestName",
+        name: "TestComplete",
       },
       dateUpdated: "2003-03-03T06:00:00.000Z",
+      difficulty: "Hard",
       topic: {
         _id: testTopicID,
-        name: "TestName",
+        name: "TestComplete",
       },
       content: "TestContent",
       __v: 0,
       _id: testArticleID,
     });
+  });
+
+  it("Testing update article", async () => {
+    await fetch(articles.update(testArticleID), {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenValue,
+      },
+      body: JSON.stringify({
+        title: "TestArticleUpdated",
+        author: testAuthorID,
+        dateUpdated: "3/3/2003",
+        topic: testTopicID,
+        content: "TestArticleUpdated",
+        difficulty: "Hard",
+      }),
+    });
+
+    const testArticle = (
+      await fetch(articles.list).then((res) => res.json())
+    ).slice(-1)[0];
+    testArticleID = testArticle["_id"];
+    expect(testArticle).to.deep.equal({
+      title: "TestArticleUpdated",
+      author: {
+        _id: testAuthorID,
+        name: "TestComplete",
+      },
+      dateUpdated: "2003-03-03T06:00:00.000Z",
+      difficulty: "Hard",
+      topic: {
+        _id: testTopicID,
+        name: "TestComplete",
+      },
+      content: "TestArticleUpdated",
+      __v: 0,
+      _id: testArticleID,
+    });
+  });
+});
+
+describe("/learn API Delete", async () => {
+  //Testing Delete functionality
+  it("Testing delete author", async () => {
+    await fetch(authors.delete(testAuthorID), {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenValue,
+      },
+    });
+
+    const testAuthor = (
+      await fetch(authors.list).then((res) => res.json())
+    ).slice(-1);
+    const result = testAuthor.find((author) => author["_id"] === testAuthorID);
+    expect(result).to.equal(undefined);
+  });
+
+  //Testing Delete functionality
+  it("Testing delete topic", async () => {
+    await fetch(topics.delete(testTopicID), {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenValue,
+      },
+    });
+
+    const testTopic = (
+      await fetch(topics.list).then((res) => res.json())
+    ).slice(-1);
+    const result = testTopic.find((topic) => topic["_id"] === testTopicID);
+    expect(result).to.equal(undefined);
+  });
+
+  // //Testing Delete functionality
+  it("Testing delete article", async () => {
+    await fetch(articles.create, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenValue,
+      },
+      body: JSON.stringify({
+        title: "TestArticleForDelete",
+        author: testAuthorID,
+        dateUpdated: "3/3/2003",
+        topic: testTopicID,
+        content: "TestContent",
+        difficulty: "Hard",
+      }),
+    });
+
+    const createArticle = (
+      await fetch(articles.list).then((res) => res.json())
+    ).slice(-1)[0];
+    testArticleID = createArticle["_id"];
+
+    await fetch(articles.delete(testArticleID), {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenValue,
+      },
+    });
+
+    const testArticle = (
+      await fetch(topics.list).then((res) => res.json())
+    ).slice(-1);
+    const result = testArticle.find(
+      (article) => article["_id"] === testArticleID
+    );
+    expect(result).to.equal(undefined);
   });
 });

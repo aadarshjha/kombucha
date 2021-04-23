@@ -6,9 +6,9 @@ import { Form, Input, Button, Select } from "antd";
 import axios from "axios";
 import moment from "moment";
 
-const { Option } = Select;
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+const { Option } = Select;
 import { BACKEND_URL } from "../../api";
 
 const { TextArea } = Input;
