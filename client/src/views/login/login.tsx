@@ -33,7 +33,7 @@ const renderView = (
   //check to see if user authenticated
   if (signedIn == false && localStorage.getItem("profile")) {
     const URL = "user/userAuth";
-    const API = axios.create({ baseURL: "http://localhost:5000/" });
+    const API = axios.create({ baseURL: BACKEND_URL });
     API.interceptors.request.use((req) => {
       req.headers.Authorization = `Bearer ${
         JSON.parse(localStorage.profile).token
