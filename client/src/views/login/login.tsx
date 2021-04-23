@@ -11,7 +11,7 @@ import { BACKEND_URL } from "../../api";
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 },
-  
+
 };
 const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
@@ -70,7 +70,6 @@ const renderView = (
       .catch((err) => {
         alert(err.response.data.message);
       });
-    //console.log(JSON.parse(localStorage.profile).token);
   };
 
   if (signedIn) {
@@ -78,13 +77,6 @@ const renderView = (
       <div>
         <Logo page="Admin Update Page"></Logo>
         <Options />
-        {/* <Button
-          onClick={() => {
-            setSignIn(true);
-          }}
-        >
-          Toggle View
-        </Button> */}
       </div>
     );
   } else {

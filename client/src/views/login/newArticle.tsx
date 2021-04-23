@@ -13,8 +13,8 @@ import { BACKEND_URL } from "../../api";
 
 const { TextArea } = Input;
 
-const authorsURL = "http://localhost:5000/learn/authors";
-const topicsURL = "http://localhost:5000/learn/topics";
+const authorsURL = `${BACKEND_URL}/learn/authors`;
+const topicsURL = `${BACKEND_URL}/learn/topics`;
 
 const formItemLayout = {
   labelCol: {

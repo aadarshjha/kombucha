@@ -7,7 +7,7 @@ import axios from "axios";
 import { BACKEND_URL } from "../../api";
 
 const { Option } = Select;
-const topicsURL = "http://localhost:5000/learn/topics";
+const topicsURL = `${BACKEND_URL}/learn/topics`;
 
 const formItemLayout = {
   labelCol: {

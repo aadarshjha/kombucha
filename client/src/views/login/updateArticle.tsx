@@ -10,7 +10,7 @@ import "react-quill/dist/quill.snow.css";
 import { BACKEND_URL } from "../../api";
 
 const { Option } = Select;
-const authorsURL = "http://localhost:5000/learn/articles";
+const authorsURL = `${BACKEND_URL}/learn/articles`;
 const { TextArea } = Input;
 
 const formItemLayout = {
