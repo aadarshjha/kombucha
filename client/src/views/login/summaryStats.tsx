@@ -43,7 +43,6 @@ const SummaryStats: React.FC<Record<string, never>> = () => {
         return element.title;
       });
 
-      // console.log(authors)
       const newAuthorList = authorResult.map((element: any) => {
         return element.name;
       });
@@ -131,33 +130,41 @@ const SummaryStats: React.FC<Record<string, never>> = () => {
         </div>
         <br />
 
-        <div className={"progressBars"}
-        style={{
-          backgroundColor: "red"
-        }}
-        >
+        <div className={"progressBars"}>
           <Progress
             type="circle"
             percent={numEvents}
             format={(percent) => `${percent} Events`}
+            style={{
+              paddingBlock: "10px",
+            }}
           />
 
           <Progress
             type="circle"
             percent={numDiff.easy}
             format={(percent) => `${percent} Easy`}
+            style={{
+              paddingBlock: "10px",
+            }}
           />
 
           <Progress
             type="circle"
             percent={numDiff.medium}
             format={(percent) => `${percent} Medium`}
+            style={{
+              paddingBlock: "10px",
+            }}
           />
 
           <Progress
             type="circle"
             percent={numDiff.hard}
             format={(percent) => `${percent} Difficult`}
+            style={{
+              paddingBlock: "10px",
+            }}
           />
         </div>
       </div>
