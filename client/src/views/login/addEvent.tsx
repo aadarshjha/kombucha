@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
+import React, { useState } from "react";
 import "antd/dist/antd.css";
 import "./options.css";
-import { Form, Input, Button, Upload } from "antd";
+import { Form, Input, Button, Upload, message } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { BACKEND_URL } from "../../api";
@@ -42,6 +42,7 @@ const tailFormItemLayout = {
 
 const AddEvent: React.FC<Record<string, never>> = () => {
   const [form] = Form.useForm();
+  const [file, setFile] = useState("");
   const onFinish = (values: any) => {
     console.log(values);
     const URL = "events/create";
@@ -61,7 +62,7 @@ const AddEvent: React.FC<Record<string, never>> = () => {
 
     API.put(URL, {
       title: values.header,
-      imageString: "testFile",
+      image: file,
       body: values.body,
     })
       .then((_response) => {
@@ -70,6 +71,31 @@ const AddEvent: React.FC<Record<string, never>> = () => {
       .catch((_err) => {
         alert("Something Went Wrong!");
       });
+  };
+  const [previewVisible, setPreviewVisible] = useState(false);
+  const [previewImage, setPreviewImage] = useState("");
+
+  const handleCancel = () => setPreviewVisible(false);
+
+  // const handlePreview = (file) => {
+  //   setPreviewImage(file.thumbUrl);
+  //   setPreviewVisible(true);
+  // };
+
+  const handleUpload = (info) => {
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      const res = fileReader.result;
+      console.log("file", res);
+      setFile(res as string);
+    };
+    // `originFileObj`, most important.
+    if (info.fileList[0]) {
+      fileReader.readAsDataURL(info.fileList[0].originFileObj);
+    }
+    // const file = fileReader.result;
+    // console.log("fileList", info.fileList[0].originFileObj);
+    // setFileList(fileList);
   };
 
   return (
@@ -107,16 +133,19 @@ const AddEvent: React.FC<Record<string, never>> = () => {
             getValueFromEvent={normFile}
             noStyle
           >
-            <Upload.Dragger name="files" action="/upload.do">
+            <Upload.Dragger
+              name="files"
+              action="/upload.do"
+              onChange={handleUpload}
+              beforeUpload={() => false}
+            >
               <p className="ant-upload-drag-icon">
                 <InboxOutlined />
               </p>
               <p className="ant-upload-text">
                 Click or drag file to this area to upload
               </p>
-              <p className="ant-upload-hint">
-                Support for a single or bulk upload.
-              </p>
+              <p className="ant-upload-hint">Please upload one image!</p>
             </Upload.Dragger>
           </Form.Item>
         </Form.Item>

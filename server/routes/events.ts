@@ -8,7 +8,11 @@ const eventRouter = express.Router();
 eventRouter.get("/", eventController.list);
 
 // PUT request for creating new topic
-eventRouter.put("/create", auth, eventController.create);
+eventRouter.put(
+  "/create",
+  [auth, express.json({ limit: "5mb" }), express.urlencoded({ limit: "5mb" })],
+  eventController.create
+);
 
 // DELETE request to delete topic
 eventRouter.delete("/:id/delete", auth, eventController.remove);

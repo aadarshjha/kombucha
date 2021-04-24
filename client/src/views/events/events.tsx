@@ -31,7 +31,15 @@ const Events: React.FC<Record<string, never>> = () => {
             hoverable
             key={element.title}
             style={{ width: "40%", marginBottom: "10px", minWidth: "500px" }}
-            cover={<img alt="test image" src={"test.jpg"} />}
+            cover={
+              <div className="cropped">
+                <img
+                  alt="event image"
+                  src={element.image}
+                  className="cardImage"
+                />
+              </div>
+            }
           >
             <Meta title={element.title} description={element.body} />
           </Card>
