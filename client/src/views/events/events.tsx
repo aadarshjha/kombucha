@@ -30,7 +30,7 @@ const Events: React.FC<Record<string, never>> = () => {
           <Card
             hoverable
             key={element.title}
-            style={{ width: "40%", marginBottom: "10px" }}
+            style={{ width: "40%", marginBottom: "10px", minWidth: "500px" }}
             cover={
               <div className="cropped">
                 <img

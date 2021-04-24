@@ -11,7 +11,6 @@ import { BACKEND_URL } from "../../api";
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 },
-
 };
 const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
@@ -92,6 +91,7 @@ const renderView = (
             position: "relative",
             left: "-60px",
             paddingTop: "40px",
+            minWidth: "600px",
           }}
         >
           <Form
@@ -137,6 +137,7 @@ const renderView = (
               position: "relative",
               left: "70px",
               paddingTop: "10px",
+              minWidth: "600px",
             }}
           >
             <Button

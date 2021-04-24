@@ -813,6 +813,11 @@ exports[`matches options page snapshot 1`] = `
       >
         <div
           className="ant-progress ant-progress-circle ant-progress-status-normal ant-progress-show-info ant-progress-default"
+          style={
+            Object {
+              "paddingBlock": "10px",
+            }
+          }
         >
           <div
             className="ant-progress-inner"
@@ -877,6 +882,11 @@ exports[`matches options page snapshot 1`] = `
         </div>
         <div
           className="ant-progress ant-progress-circle ant-progress-status-normal ant-progress-show-info ant-progress-default"
+          style={
+            Object {
+              "paddingBlock": "10px",
+            }
+          }
         >
           <div
             className="ant-progress-inner"
@@ -941,6 +951,11 @@ exports[`matches options page snapshot 1`] = `
         </div>
         <div
           className="ant-progress ant-progress-circle ant-progress-status-normal ant-progress-show-info ant-progress-default"
+          style={
+            Object {
+              "paddingBlock": "10px",
+            }
+          }
         >
           <div
             className="ant-progress-inner"
@@ -1005,6 +1020,11 @@ exports[`matches options page snapshot 1`] = `
         </div>
         <div
           className="ant-progress ant-progress-circle ant-progress-status-normal ant-progress-show-info ant-progress-default"
+          style={
+            Object {
+              "paddingBlock": "10px",
+            }
+          }
         >
           <div
             className="ant-progress-inner"

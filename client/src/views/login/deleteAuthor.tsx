@@ -101,20 +101,6 @@ const DeleteAuthor: React.FC<Record<string, never>> = () => {
         onFinish={onFinish}
         scrollToFirstError
       >
-        {/* <Form.Item
-          name="name"
-          label="Author Name"
-          rules={[
-            {
-              required: true,
-              message: "Enter Author Name",
-            },
-          ]}
-          hasFeedback
-        >
-          <Input />
-        </Form.Item> */}
-
         <Form.Item
           name="name"
           label="Author Name"
@@ -126,14 +112,13 @@ const DeleteAuthor: React.FC<Record<string, never>> = () => {
           ]}
           hasFeedback
         >
-          {/* <Input /> */}
           <Select
             placeholder="Select a option and change input text above"
             allowClear
           >
             {/* GET for all authors */}
-            {authors.map((element) => (
-              <Option key={element} value={element}>
+            {authors.map((element, i) => (
+              <Option key={i} value={element}>
                 {element}
               </Option>
             ))}

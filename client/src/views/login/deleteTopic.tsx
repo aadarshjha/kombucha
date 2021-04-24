@@ -110,19 +110,6 @@ const DeleteTopic: React.FC<Record<string, never>> = () => {
         }}
         scrollToFirstError
       >
-        {/* <Form.Item
-          name="name"
-          label="Topic Name"
-          rules={[
-            {
-              required: true,
-              message: "Enter Topic Name",
-            },
-          ]}
-          hasFeedback
-        >
-          <Input />
-        </Form.Item> */}
         <Form.Item
           name="name"
           label="Topic Name"
@@ -134,14 +121,13 @@ const DeleteTopic: React.FC<Record<string, never>> = () => {
           ]}
           hasFeedback
         >
-          {/* <Input /> */}
           <Select
             placeholder="Select a option and change input text above"
             allowClear
           >
             {/* GET for all authors */}
-            {topics.map((element) => (
-              <Option key={element} value={element}>
+            {topics.map((element, i) => (
+              <Option key={i} value={element}>
                 {element}
               </Option>
             ))}

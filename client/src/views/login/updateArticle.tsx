@@ -135,8 +135,8 @@ const UpdateArticle: React.FC<Record<string, never>> = () => {
             allowClear
           >
             {/* GET for all authors */}
-            {authors.map((element) => (
-              <Option key={element} value={element}>
+            {authors.map((element, i) => (
+              <Option key={i} value={element}>
                 {element}
               </Option>
             ))}
