@@ -86,8 +86,7 @@ const userView = (fetchedData: any, viewState: stateObject) => {
     return (
       <div className="test">
         <Logo page="Learn With VUMS" />
-        <div className="categories"
-        >
+        <div className="categories">
           {/* spread the state when we click the button */}
           {/* easy */}
           <Category
