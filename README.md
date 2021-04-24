@@ -21,7 +21,7 @@ In order to use Kombucha, you must have [Node](https://nodejs.org/en/) installed
 1. Navigate to https://kombucha.vercel.app/ for the integrated frontend and backend deployed version.
 2. Navigate to https://enigmatic-beach-56036.herokuapp.com/ for the deployed backend system. Of course, you must used the routes defined in our project to fetch the correct data, such as https://enigmatic-beach-56036.herokuapp.com/learn/articles
 
-Important Note!
+### Important Note!
 
 1. Please note that it may take up to a minute for the data to appear on the screen, this is because we use a free-tier service of heroku. Thanks!
 
