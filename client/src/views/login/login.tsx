@@ -9,14 +9,9 @@ import { BACKEND_URL } from "../../api";
 
 // minimal styling.
 const layout = {
-<<<<<<< HEAD
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
-=======
-  labelCol: { span: 8 },
-  wrapperCol: { span: 16 },
 
->>>>>>> df5f9f04e48cfb09cebdda26aca32077783ead63
 };
 const tailLayout = {
     wrapperCol: { offset: 8, span: 16 },
@@ -36,28 +31,15 @@ const renderView = (
     signUp: boolean,
     setSignUp: any
 ) => {
-<<<<<<< HEAD
     //check to see if user authenticated
     if (signedIn == false && localStorage.getItem("profile")) {
         const URL = "user/userAuth";
-        const API = axios.create({ baseURL: "http://localhost:5000/" });
+        const API = axios.create({ baseURL: BACKEND_URL });
         API.interceptors.request.use((req) => {
             req.headers.Authorization = `Bearer ${JSON.parse(localStorage.profile).token
                 }`;
             return req;
         });
-=======
-  //check to see if user authenticated
-  if (signedIn == false && localStorage.getItem("profile")) {
-    const URL = "user/userAuth";
-    const API = axios.create({ baseURL: BACKEND_URL });
-    API.interceptors.request.use((req) => {
-      req.headers.Authorization = `Bearer ${
-        JSON.parse(localStorage.profile).token
-      }`;
-      return req;
-    });
->>>>>>> df5f9f04e48cfb09cebdda26aca32077783ead63
 
         API.post(URL)
             .then(function (response) {
@@ -69,7 +51,6 @@ const renderView = (
             });
     }
 
-<<<<<<< HEAD
     //create function for submit
     const handleSubmit = (formData: any) => {
         //console.log(e);
@@ -138,77 +119,6 @@ const renderView = (
                         >
                             <Input />
                         </Form.Item>
-=======
-  //create function for submit
-  const handleSubmit = (formData: any) => {
-    //console.log(e);
-    //fetches authentication data from the backend
-    axios({
-      method: "post",
-      url: `${BACKEND_URL}/user/signin`,
-      data: formData,
-    })
-      .then(function (response) {
-        if (response.data != null) {
-          setSignIn(true);
-          localStorage.setItem("profile", JSON.stringify({ ...response.data }));
-        }
-      })
-      .catch((err) => {
-        alert(err.response.data.message);
-      });
-  };
-
-  if (signedIn) {
-    return (
-      <div>
-        <Logo page="Admin Update Page"></Logo>
-        <Options />
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <Logo page="Login To VUMS"></Logo>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-            position: "relative",
-            left: "-60px",
-            paddingTop: "40px",
-          }}
-        >
-          <Form
-            {...layout}
-            name="basic"
-            initialValues={{ remember: true }}
-            onFinish={handleSubmit}
-            onFinishFailed={onFinishFailed}
-            style={{ width: "400px" }}
-          >
-            <Form.Item
-              label="Username"
-              name="username"
-              rules={[
-                { required: true, message: "Please input your username!" },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-
-            <Form.Item
-              label="Password"
-              name="password"
-              rules={[
-                { required: true, message: "Please input your password!" },
-              ]}
-            >
-              <Input.Password />
-            </Form.Item>
->>>>>>> df5f9f04e48cfb09cebdda26aca32077783ead63
 
                         <Form.Item
                             label="Password"
