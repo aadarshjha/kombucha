@@ -228,7 +228,22 @@ const NewArticle: React.FC<Record<string, never>> = () => {
           ]}
           hasFeedback
         >
-          <Input />
+          {/* <Input /> */}
+
+          <Select
+            placeholder="Select a option and change input text above"
+            allowClear
+          >
+            <Option value="easy">
+              Easy
+            </Option>
+            <Option value="medium">
+              Medium
+            </Option>
+            <Option value="hard">
+              Hard
+            </Option>
+          </Select>
         </Form.Item>
 
         <Form.Item {...tailFormItemLayout}>

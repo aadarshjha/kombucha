@@ -131,7 +131,11 @@ const SummaryStats: React.FC<Record<string, never>> = () => {
         </div>
         <br />
 
-        <div className={"progressBars"}>
+        <div className={"progressBars"}
+        style={{
+          backgroundColor: "red"
+        }}
+        >
           <Progress
             type="circle"
             percent={numEvents}
