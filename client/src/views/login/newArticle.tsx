@@ -169,8 +169,8 @@ const NewArticle: React.FC<Record<string, never>> = () => {
             placeholder="Select a option and change input text above"
             allowClear
           >
-            {authors.map((element) => (
-              <Option key={element} value={element}>
+            {authors.map((element, i) => (
+              <Option key={i} value={element}>
                 {element}
               </Option>
             ))}
@@ -193,8 +193,8 @@ const NewArticle: React.FC<Record<string, never>> = () => {
             allowClear
           >
             {/* GET for all authors */}
-            {topics.map((element) => (
-              <Option key={element} value={element}>
+            {topics.map((element, i) => (
+              <Option key={i} value={element}>
                 {element}
               </Option>
             ))}
