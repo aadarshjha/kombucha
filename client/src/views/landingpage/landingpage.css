@@ -24,7 +24,13 @@
 }
 
 .intro {
-  height: 95vh;
+  height: 90vh;
+}
+
+@media screen and (max-height: 400px) and (max-width: 400px) {
+  .intro {
+    margin-top: 50vh;
+  }
 }
 
 .scroll {
@@ -43,13 +49,15 @@
   font-style: italic;
   width: 40%;
 }
-.left p, .right p {
+.left p,
+.right p {
   /* color: red; */
   width: 500px;
   text-align: justify;
 }
 
-.left, .right {
+.left,
+.right {
   padding: 30px;
 }
 
