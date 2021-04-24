@@ -91,6 +91,7 @@ const renderView = (
             position: "relative",
             left: "-60px",
             paddingTop: "40px",
+            minWidth: "600px",
           }}
         >
           <Form
@@ -136,6 +137,7 @@ const renderView = (
               position: "relative",
               left: "70px",
               paddingTop: "10px",
+              minWidth: "600px",
             }}
           >
             <Button

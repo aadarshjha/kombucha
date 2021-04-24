@@ -109,8 +109,8 @@ const UpdateEvent: React.FC<Record<string, never>> = () => {
             allowClear
           >
             {/* GET for all authors */}
-            {events.map((element: any) => (
-              <Option key={element} value={element}>
+            {events.map((element: any, i) => (
+              <Option key={i} value={element}>
                 {element}
               </Option>
             ))}

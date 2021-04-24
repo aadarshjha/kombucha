@@ -43,6 +43,7 @@ const DeleteArticle: React.FC<Record<string, never>> = () => {
       const result: any = await axios(articlesURL);
       const articleResult = result.data;
       setArticles(articleResult.map((element: any) => element.title));
+      console.log("ehre");
       console.log(articleResult);
     })();
   }, []);
@@ -125,8 +126,8 @@ const DeleteArticle: React.FC<Record<string, never>> = () => {
             allowClear
           >
             {/* GET for all authors */}
-            {articles.map((element) => (
-              <Option key={element} value={element}>
+            {articles.map((element, i) => (
+              <Option key={i} value={element}>
                 {element}
               </Option>
             ))}
