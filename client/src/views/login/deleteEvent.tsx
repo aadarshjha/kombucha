@@ -8,7 +8,7 @@ import { BACKEND_URL } from "../../api";
 
 const { Option } = Select;
 
-const eventsURL = "http://localhost:5000/events";
+const eventsURL = `${BACKEND_URL}/events`;
 
 const formItemLayout = {
   labelCol: {

@@ -3,9 +3,8 @@ import "./articles.css";
 import { Menu } from "antd";
 import { Button } from "antd";
 import ReactMarkdown from "react-markdown";
-import ReactQuill from 'react-quill'; 
-import 'react-quill/dist/quill.bubble.css';
-
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.bubble.css";
 
 const { SubMenu } = Menu;
 
@@ -72,17 +71,11 @@ const Articles: React.FC<catProps> = ({ articles, state }: catProps) => {
           paddingRight: "10px",
         }}
       >
-        {/* This is dynamically loaded based on what is selected */}
         <div>
           <h1>{articleTitle}</h1>
         </div>
         <div>
-        <ReactQuill
-          value={articleText}
-          readOnly={true}
-          theme={"bubble"}
-          />
-          {/* <ReactMarkdown source={turndownService.turndown(String({articleText}))} /> */}
+          <ReactQuill value={articleText} readOnly={true} theme={"bubble"} />
         </div>
       </div>
     </div>

@@ -6,15 +6,15 @@ import { Form, Input, Button, Select } from "antd";
 import axios from "axios";
 import moment from "moment";
 
-const { Option } = Select;
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+const { Option } = Select;
 import { BACKEND_URL } from "../../api";
 
 const { TextArea } = Input;
 
-const authorsURL = "http://localhost:5000/learn/authors";
-const topicsURL = "http://localhost:5000/learn/topics";
+const authorsURL = `${BACKEND_URL}/learn/authors`;
+const topicsURL = `${BACKEND_URL}/learn/topics`;
 
 const formItemLayout = {
   labelCol: {
