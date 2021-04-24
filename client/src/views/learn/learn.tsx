@@ -37,9 +37,9 @@ export const fetchCategories = (dataFromBackend: Array<backendData>) => {
   const medium: Array<backendData> = [];
   const hard: Array<backendData> = [];
   dataFromBackend.map((element) => {
-    if (element.difficulty === "easy") {
+    if (element.difficulty.toLowerCase() === "easy") {
       easy.push(element);
-    } else if (element.difficulty === "medium") {
+    } else if (element.difficulty.toLowerCase() === "medium") {
       medium.push(element);
     } else {
       hard.push(element);
@@ -57,15 +57,19 @@ export const fetchArticles = (
   elementDifficulty: string,
   dataFromBackend: Array<backendData>
 ) => {
+  console.log(elementCategory);
+  console.log(elementDifficulty);
+  console.log(dataFromBackend);
   const returnedArticles: Array<backendData> = [];
   dataFromBackend.map((element) => {
     if (
       element.topic.name == elementCategory &&
-      element.difficulty == elementDifficulty
+      element.difficulty.toLowerCase() == elementDifficulty.toLowerCase()
     ) {
       returnedArticles.push(element);
     }
   });
+  console.log(returnedArticles);
   return returnedArticles;
 };
 
