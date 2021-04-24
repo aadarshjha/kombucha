@@ -1,12 +1,27 @@
-# Kombucha 📖  🍎
+# Kombucha 📖 🍎
 
-### What Is Kombucha? 
+### Intructions
 
-Kombucha is a fully integrated, end-to-end educational platform for the Vanderbilt Undergraduate Microbiome Society (VUMS). 
+In order to use Kombucha, you must have [Node](https://nodejs.org/en/) installed locally on your computer. After doing so, please follow the next steps to get Kombucha running on your device:
+
+1. Open up your terminal, and execute `git clone https://github.com/aadarshjha/kombucha.git`
+2. `cd kombucha`
+3. `npm install deep`
+4. `cd client`
+5. `npm install`
+6. `cd ../server`
+7. `npm install`
+8. `cd ..`
+9. `cd client`
+10. ``
+
+### What Is Kombucha?
+
+Kombucha is a fully integrated, end-to-end educational platform for the Vanderbilt Undergraduate Microbiome Society (VUMS).
 
 ### Technical Requirements
 
-Kombucha is a full-stack application build from the MERN (MongoDB, Express, React, and Node) Stack. 
+Kombucha is a full-stack application build from the MERN (MongoDB, Express, React, and Node) Stack.
 
 ### Additional Information
 
