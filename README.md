@@ -1,6 +1,6 @@
 # Kombucha 📖 🍎
 
-### Intructions
+### Dev Instructions (Running Locally On Your Computer)
 
 In order to use Kombucha, you must have [Node](https://nodejs.org/en/) installed locally on your computer. After doing so, please follow the next steps to get Kombucha running on your device:
 
@@ -12,8 +12,18 @@ In order to use Kombucha, you must have [Node](https://nodejs.org/en/) installed
 6. `cd ../server`
 7. `npm install`
 8. `cd ..`
-9. `cd client`
-10. ``
+9. `npm run start`
+10. Navigate to http://localhost:3000/ for the local frontend deployment.
+11. Navgiate to http://localhost:5000/ for the local backend deployment.
+
+### Deployment Instructions
+
+1. Navigate to https://kombucha.vercel.app/ for the integrated frontend and backend deployed version.
+2. Navigate to https://enigmatic-beach-56036.herokuapp.com/ for the deployed backend system. Of course, you must used the routes defined in our project to fetch the correct data, such as https://enigmatic-beach-56036.herokuapp.com/learn/articles
+
+Important Note!
+
+1. Please note that it may take up to a minute for the data to appear on the screen, this is because we use a free-tier service of heroku. Thanks!
 
 ### What Is Kombucha?
 
