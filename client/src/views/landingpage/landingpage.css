@@ -27,7 +27,7 @@
   height: 90vh;
 }
 
-@media screen and (max-height: 400px) and (max-width: 400px) {
+@media screen and (max-height: 500px) {
   .intro {
     margin-top: 50vh;
   }
