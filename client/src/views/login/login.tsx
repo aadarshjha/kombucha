@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import Logo from "../../components/Logo";
-import { Form, Input, Button, Checkbox, Row } from "antd";
+import { Form, Input, Button, Checkbox } from "antd";
 import Options from "./options";
 import "antd/dist/antd.css";
 import axios from "axios";
@@ -69,7 +69,6 @@ const renderView = (
             .catch((err) => {
                 alert(err.response.data.message);
             });
-        //console.log(JSON.parse(localStorage.profile).token);
     };
 
     if (signedIn) {
@@ -77,13 +76,6 @@ const renderView = (
             <div>
                 <Logo page="Admin Update Page"></Logo>
                 <Options />
-                {/* <Button
-          onClick={() => {
-            setSignIn(true);
-          }}
-        >
-          Toggle View
-        </Button> */}
             </div>
         );
     } else {
@@ -129,8 +121,13 @@ const renderView = (
                         >
                             <Input.Password />
                         </Form.Item>
-                    </Form>
 
+                        <Form.Item {...middleLayout}>
+                            <Button type="primary" htmlType="submit">
+                                Sign-in
+              </Button>
+                        </Form.Item>
+                    </Form>
                     <div
                         style={{
                             display: "flex",
@@ -138,15 +135,11 @@ const renderView = (
                             alignItems: "center",
                             flexDirection: "column",
                             position: "relative",
+                            left: "70px",
                             paddingTop: "10px",
-                            left: "60px",
+                            minWidth: "600px",
                         }}
                     >
-                        <Form.Item>
-                            <Button type="primary" htmlType="submit">
-                                Sign-in
-                            </Button>
-                        </Form.Item>
                         <Button
                             type="link"
                             onClick={() => {
@@ -154,10 +147,18 @@ const renderView = (
                             }}
                         >
                             Don&apos;t have an account? Sign-up!
-                     </Button>
+            </Button>
                     </div>
-                </div >
-            </div >
+
+                    {/* <Button
+            onClick={() => {
+              setSignIn(!signedIn);
+            }}
+          >
+            Toggle View
+          </Button> */}
+                </div>
+            </div>
         );
     }
 };
@@ -260,7 +261,7 @@ const signUpView = (signUp: boolean, setSignUp: any) => {
                     <Form.Item {...middleLayout}>
                         <Button type="primary" htmlType="submit">
                             Register
-                </Button>
+            </Button>
                     </Form.Item>
                 </Form>
                 <div
@@ -270,7 +271,7 @@ const signUpView = (signUp: boolean, setSignUp: any) => {
                         alignItems: "center",
                         flexDirection: "column",
                         position: "relative",
-                        left: "5%",
+                        left: "75px",
                         paddingTop: "10px",
                     }}
                 >
@@ -283,7 +284,7 @@ const signUpView = (signUp: boolean, setSignUp: any) => {
           </Button>
                 </div>
             </div>
-        </div >
+        </div>
     );
 };
 
