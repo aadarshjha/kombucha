@@ -278,7 +278,7 @@ describe("/learn/articles API endpoints", async () => {
         _id: testAuthorID,
         name: "TestComplete",
       },
-      dateUpdated: "2003-03-03T06:00:00.000Z",
+      dateUpdated: new Date("3/3/2003").toISOString(),
       difficulty: "Hard",
       topic: {
         _id: testTopicID,
@@ -317,7 +317,7 @@ describe("/learn/articles API endpoints", async () => {
         _id: testAuthorID,
         name: "TestComplete",
       },
-      dateUpdated: "2003-03-03T06:00:00.000Z",
+      dateUpdated: new Date("3/3/2003").toISOString(),
       difficulty: "Hard",
       topic: {
         _id: testTopicID,
