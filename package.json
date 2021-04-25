@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "concurrently \"cd client && npm start\" \"cd server && npm start\"",
-        "test": "echo \"No tests besides linting as of yet.\"",
+        "test": "npm run install-deep && cd client && npm test && cd ../server && npm run test",
         "format": "prettier --write **/*.ts **/*.tsx **/*.js",
         "pretest": "eslint --ext .ts --ext .js --ext .tsx .",
         "install-deep": "npm i && cd client && npm i && cd ../server && npm i",
@@ -44,6 +44,7 @@
         "enzyme-adapter-react-16": "^1.15.6",
         "eslint": "^7.21.0",
         "eslint-config-prettier": "^8.1.0",
+        "eslint-plugin-only-warn": "^1.0.2",
         "eslint-plugin-react": "^7.22.0",
         "prettier": "2.2.1",
         "react-test-renderer": "^17.0.2"
