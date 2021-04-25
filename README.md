@@ -5,7 +5,7 @@
 In order to use Kombucha, you must have [Node](https://nodejs.org/en/) installed locally on your computer. After doing so, please follow the next steps to get Kombucha running on your device:
 
 1. Open up your terminal, and execute `git clone https://github.com/aadarshjha/kombucha.git` or unzip the povided `kombucha-main.zip` file. 
-2. `cd kombucha`
+2. `cd kombucha` or `cd kombucha-main`
 3. `npm run install-deep`
 4. `npm run start`
 5. Navigate to http://localhost:3000/ for the local frontend deployment.
