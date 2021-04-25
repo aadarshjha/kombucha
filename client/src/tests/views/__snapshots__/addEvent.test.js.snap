@@ -156,7 +156,7 @@ exports[`matches learn page snapshot 1`] = `
                     <p
                       className="ant-upload-hint"
                     >
-                      Support for a single or bulk upload.
+                      Please upload one image!
                     </p>
                   </div>
                 </span>
